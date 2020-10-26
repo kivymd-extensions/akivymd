@@ -6,7 +6,7 @@ Awesome KivyMD is a package containing customized and non-material widgets for K
 
 ```bash
 pip install kivymd-components
-componemts install sweetalert
+components install akivymd
 ```
 
 ## Usage
