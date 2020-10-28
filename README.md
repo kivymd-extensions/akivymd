@@ -59,9 +59,9 @@ Test().run()
 
 ## Usage with Buildozer
 
-For now we cannot specify dependencies in the `bulldozer.spec` specification file in the `garden_requirements` 
+For now we cannot specify dependencies in the `buildozer.spec` specification file in the `garden_requirements` 
 (for example, like `components_requirements`) parameter. Instead, you must navigate to the root directory of your project,
-where the bulldozer.spec file is located, and issue the command:
+where the buildozer.spec file is located, and issue the command:
 
 ```bash
 pip install kivymd-components
