@@ -3,13 +3,13 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import (
     StringProperty,
     ListProperty,
-    BooleanProperty,
     NumericProperty,
     OptionProperty,
 )
 from kivy.animation import Animation
-from kivymd.theming import ThemableBehavior
 from kivy.clock import Clock
+
+from kivymd.theming import ThemableBehavior
 
 Builder.load_string(
     """
@@ -34,8 +34,7 @@ Builder.load_string(
         theme_text_color: 'Custom'
         text_color: root.percent_color if root.percent_color else app.theme_cls.primary_color
         font_size: root.percent_size
-
-    """
+"""
 )
 
 

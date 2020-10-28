@@ -1,16 +1,16 @@
 from kivy.lang.builder import Builder
-from kivymd.theming import ThemableBehavior
 from kivy.uix.boxlayout import BoxLayout
 from kivy.clock import Clock
-from akivymd.uix.spinners import AKSpinnerDoubleBounce
-from kivymd.uix.button import MDFillRoundFlatButton
 from kivy.properties import (
-    ObjectProperty,
     NumericProperty,
     ListProperty,
     StringProperty,
 )
 from kivy.animation import Animation
+
+from kivymd.uix.button import MDFillRoundFlatButton
+
+from akivymd.uix.spinners import AKSpinnerDoubleBounce
 
 Builder.load_string(
     """
@@ -80,7 +80,7 @@ Builder.load_string(
                 opacity: 0
                 icon: root.failure_icon
                 text: root.failure_text
-    """
+"""
 )
 
 

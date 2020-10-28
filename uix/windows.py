@@ -1,8 +1,6 @@
 from kivy.lang.builder import Builder
-from kivy.uix.scatter import Scatter
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.floatlayout import FloatLayout
-from kivymd.theming import ThemableBehavior
 from kivy.properties import (
     NumericProperty,
     StringProperty,
@@ -14,6 +12,8 @@ from kivy.clock import Clock
 from kivy.animation import Animation
 from kivy.core.window import Window
 from kivy.uix.behaviors import ButtonBehavior
+
+from kivymd.theming import ThemableBehavior
 from kivymd.uix.behaviors import RectangularElevationBehavior
 
 Builder.load_string(
@@ -95,8 +95,7 @@ Builder.load_string(
                 pos: self.pos
                 size: self.size
                 radius: [0,0, root.window_radius, root.window_radius]
-
-    """
+"""
 )
 
 

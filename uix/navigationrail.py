@@ -1,6 +1,5 @@
 from kivy.lang.builder import Builder
 from kivy.uix.boxlayout import BoxLayout
-from kivymd.theming import ThemableBehavior
 from kivy.properties import (
     ListProperty,
     StringProperty,
@@ -10,7 +9,8 @@ from kivy.properties import (
 from kivy.clock import Clock
 from kivy.animation import Animation
 from kivy.uix.behaviors import ButtonBehavior
-from kivymd.uix.behaviors import RectangularRippleBehavior
+
+from kivymd.theming import ThemableBehavior
 
 Builder.load_string(
     """
@@ -92,8 +92,7 @@ Builder.load_string(
 
     BoxLayout:
         id: content
-
-    """
+"""
 )
 
 

@@ -7,14 +7,15 @@ from kivy.properties import (
     BooleanProperty,
     OptionProperty,
 )
-from kivymd.theming import ThemableBehavior
 from kivy.metrics import dp
 from kivy.uix.behaviors import ButtonBehavior
-from kivymd.uix.behaviors import CircularRippleBehavior
 from kivy.animation import Animation
 from kivy.clock import Clock
-from akivymd.uix.badgelayout import AKBadgeLayout
 from kivy.core.window import Window
+
+from kivymd.theming import ThemableBehavior
+
+from akivymd.uix.badgelayout import AKBadgeLayout
 
 Builder.load_string(
     """
@@ -22,7 +23,6 @@ Builder.load_string(
     size_hint: None, None
     size: root.button_height , root.button_height
     pos_hint: {'center_x': .5, 'center_y': .5}
-
 
     canvas.before:
         Color:
@@ -84,7 +84,7 @@ Builder.load_string(
 
     BoxLayout:
         id: _button_box
-    """
+"""
 )
 
 

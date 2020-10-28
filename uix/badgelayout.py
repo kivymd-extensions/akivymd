@@ -1,5 +1,4 @@
 from kivy.lang.builder import Builder
-from kivy.uix.widget import Widget
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.floatlayout import FloatLayout
 from kivy.properties import (
@@ -10,7 +9,7 @@ from kivy.properties import (
     OptionProperty,
 )
 from kivy.metrics import dp
-from kivy.clock import Clock
+
 from kivymd.theming import ThemableBehavior
 
 Builder.load_string(
@@ -105,11 +104,9 @@ class AKBadgeLayout(FloatLayout):
     badge_disabled = BooleanProperty(False)
 
     def add_widget(self, widget, index=0, canvas=None):
-
         if issubclass(widget.__class__, BadgeItem) or issubclass(
             widget.__class__, BadgeContent
         ):
-
             return super().add_widget(widget, index=index, canvas=canvas)
         else:
             return self.ids.box.add_widget(widget)

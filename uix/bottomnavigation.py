@@ -1,21 +1,20 @@
-from kivymd.app import MDApp
 from kivy.lang.builder import Builder
 from kivy.uix.boxlayout import BoxLayout
 from kivy.animation import Animation
 from kivy.properties import (
     NumericProperty,
-    ObjectProperty,
     ListProperty,
     StringProperty,
 )
 from kivy.clock import Clock
-from kivymd.uix.button import MDIconButton
 from kivy.metrics import dp
 from kivy.core.window import Window
+
+from kivymd.uix.button import MDIconButton
 from kivymd.uix.label import MDLabel
 from kivymd.theming import ThemableBehavior
 
-__all__ = "AKBottomNavigation"
+__all__ = ("AKBottomNavigation",)
 
 Builder.load_string(
     """
@@ -90,8 +89,6 @@ Builder.load_string(
                 id: _buttons_bar
                 size_hint: None , None
                 size: root.width , dp(70)
-
-
 """
 )
 

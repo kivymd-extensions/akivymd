@@ -1,5 +1,4 @@
 from kivy.lang.builder import Builder
-from kivymd.app import MDApp
 from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import (
     ListProperty,
@@ -9,14 +8,15 @@ from kivy.properties import (
     OptionProperty,
 )
 from kivy.clock import Clock
-from kivy.graphics import Ellipse, Color, Rotate, PushMatrix, PopMatrix
-from kivymd.theming import ThemableBehavior
-from kivymd.color_definitions import palette, colors
+from kivy.graphics import Ellipse, Color
 from kivy.utils import get_color_from_hex
 from kivy.animation import Animation
+
 from kivymd.uix.label import MDLabel
+from kivymd.color_definitions import palette, colors
+from kivymd.theming import ThemableBehavior
+
 from akivymd.helper import point_on_circle
-from kivy.core.window import Window
 
 """issues
 color_mode
@@ -36,8 +36,7 @@ Builder.load_string(
     text_color: 1,1,1,1
 
 <AKPieChart>:
-
-    """
+"""
 )
 
 

@@ -1,4 +1,3 @@
-from kivy.factory import Factory
 from kivy.lang.builder import Builder
 from kivy.properties import (
     ListProperty,
@@ -13,7 +12,6 @@ from kivy.core.window import Window, WindowBase
 from kivy.animation import Animation
 from kivy.uix.modalview import ModalView
 
-from kivymd.theming import ThemableBehavior
 from kivymd.uix.dialog import BaseDialog
 from kivymd.uix.behaviors import RectangularElevationBehavior
 from kivymd.app import MDApp
@@ -28,7 +26,6 @@ Builder.load_string(
     background_color: 0,0,0,0
     size: root.size_portrait if root._orientation == 'portrait'\
         else root.size_landscape
-
 
     MainAlertBox:
         elevation: root.elevation

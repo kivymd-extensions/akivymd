@@ -1,16 +1,15 @@
 from kivy.lang.builder import Builder
 from kivy.uix.boxlayout import BoxLayout
-from kivymd.theming import ThemableBehavior
 from kivy.properties import (
     NumericProperty,
     StringProperty,
     ListProperty,
     BooleanProperty,
 )
-from kivymd.uix.toolbar import MDToolbar
 from kivy.uix.scrollview import ScrollView
 from kivy.clock import Clock
-from kivy.animation import Animation
+
+from kivymd.theming import ThemableBehavior
 
 Builder.load_string(
     """
@@ -62,8 +61,7 @@ Builder.load_string(
             anchor_title: root.anchor_title
             md_bg_color: root.toolbar_bg if root.toolbar_bg else root.theme_cls.primary_color
             elevation: 0.01 if root.elevation==0 else root.elevation
-
-    """
+"""
 )
 
 

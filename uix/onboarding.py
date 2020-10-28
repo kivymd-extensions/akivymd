@@ -3,7 +3,6 @@ from kivy.clock import Clock
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.carousel import Carousel
 from kivy.uix.widget import Widget
-from kivymd.theming import ThemableBehavior
 from kivy.properties import (
     NumericProperty,
     BooleanProperty,
@@ -14,6 +13,8 @@ from kivy.core.window import Window
 from kivy.animation import Animation
 from kivy.event import EventDispatcher
 from kivy.metrics import dp
+
+from kivymd.theming import ThemableBehavior
 
 Builder.load_string(
     """
@@ -74,8 +75,7 @@ Builder.load_string(
             opacity: 1 if root.skip_button else 0
             text_color: root.circles_color if root.circles_color else root.theme_cls.primary_color
             pos_hint: {'right': .95, 'center_y': .5}
-
-    """
+"""
 )
 
 

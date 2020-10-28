@@ -5,6 +5,7 @@ from kivy.properties import (
     OptionProperty,
 )
 from kivy.animation import Animation
+
 from kivymd.utils import asynckivy
 
 

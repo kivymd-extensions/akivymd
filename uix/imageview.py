@@ -1,16 +1,13 @@
 from kivy.lang import Builder
-from kivy.uix.carousel import Carousel
-from kivymd.uix.dialog import BaseDialog
-from kivymd.theming import ThemableBehavior
 from kivy.properties import (
     ObjectProperty,
     NumericProperty,
     StringProperty,
-    BooleanProperty,
 )
 from kivy.uix.scatter import Scatter
 from kivy.animation import Animation
-from kivy.metrics import dp
+
+from kivymd.uix.dialog import BaseDialog
 
 Builder.load_string(
     """
@@ -58,7 +55,7 @@ Builder.load_string(
             scroll_distance: dp(9999)
             min_move: 0
 
-    """
+"""
 )
 
 

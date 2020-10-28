@@ -2,13 +2,11 @@ from kivy.lang.builder import Builder
 from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import (
     StringProperty,
-    ListProperty,
     NumericProperty,
     OptionProperty,
     BooleanProperty,
 )
 from kivy.clock import Clock
-from kivy.uix.floatlayout import FloatLayout
 from kivy.animation import Animation
 from kivy.core.window import Window
 
@@ -28,8 +26,7 @@ Builder.load_string(
             size_hint: None, None
             size: root.hintwidget_width, root.hintwidget_height
             opacity: root._hintwidget_alpha
-
-    """
+"""
 )
 
 

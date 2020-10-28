@@ -6,10 +6,10 @@ from kivy.properties import (
     StringProperty,
     BooleanProperty,
 )
-from kivymd.theming import ThemableBehavior
 from kivy.animation import Animation
 from kivy.clock import Clock
-from kivy.metrics import dp
+
+from kivymd.theming import ThemableBehavior
 
 Builder.load_string(
     """

@@ -3,7 +3,6 @@ from kivy.lang.builder import Builder
 from kivy.properties import (
     ListProperty,
     StringProperty,
-    NumericProperty,
     BooleanProperty,
 )
 from kivy.uix.behaviors import ButtonBehavior

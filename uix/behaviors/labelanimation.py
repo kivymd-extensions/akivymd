@@ -2,8 +2,6 @@ from kivy.lang.builder import Builder
 from kivy.properties import NumericProperty, StringProperty, BooleanProperty
 from kivy.animation import Animation
 
-import time
-
 Builder.load_string(
     """
 <AKAnimationBehaviorBase>:
@@ -15,8 +13,7 @@ Builder.load_string(
 
     canvas.after:
         PopMatrix
-
-    """
+"""
 )
 
 

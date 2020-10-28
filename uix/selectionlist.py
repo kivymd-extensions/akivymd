@@ -6,11 +6,9 @@ from kivy.properties import (
     NumericProperty,
     StringProperty,
     BooleanProperty,
-    ListProperty,
 )
-from kivy.metrics import dp
 from kivy.animation import Animation
-from kivy.uix.image import Image
+
 from kivymd.uix.behaviors.ripplebehavior import CircularRippleBehavior
 from kivymd.theming import ThemableBehavior
 
@@ -62,7 +60,7 @@ Builder.load_string(
             halign: 'center'
             theme_text_color: 'Secondary'
             font_style: 'Caption'
-    """
+"""
 )
 
 

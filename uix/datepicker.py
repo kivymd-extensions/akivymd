@@ -1,18 +1,16 @@
 from kivy.lang import Builder
-from kivy.uix.modalview import ModalView
 from kivy.uix.behaviors import ButtonBehavior
-from kivymd.uix.behaviors import RectangularRippleBehavior
-from kivymd.uix.dialog import BaseDialog
 from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import (
     StringProperty,
-    NumericProperty,
-    BooleanProperty,
     ListProperty,
     OptionProperty,
 )
-from datetime import timedelta, datetime
+from datetime import datetime
+
 from kivymd.theming import ThemableBehavior
+from kivymd.uix.behaviors import RectangularRippleBehavior
+from kivymd.uix.dialog import BaseDialog
 
 Builder.load_string(
     """
