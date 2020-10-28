@@ -217,3 +217,9 @@ class AKRating(ThemableBehavior, BoxLayout):
 
     def on_rate(self, *args):
         pass
+
+    def set_rate(self, rate):
+        """Set current rate. """
+
+        self._selected = rate - 1
+        self._update_items()
