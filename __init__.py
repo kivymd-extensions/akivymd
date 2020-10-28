@@ -1,10 +1,10 @@
 import os
 import sys
 
-sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+sys.path.append(os.path.dirname(__file__).split("akivymd")[0])
+from kivy.logger import Logger
 
 import akivymd.factory_registers
-from kivy.logger import Logger
 
 __version__ = "1.2.1"
 __description__ = "A set of fancy widgets for KivyMD"
