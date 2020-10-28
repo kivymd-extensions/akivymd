@@ -1,15 +1,19 @@
 from kivy.lang import Builder
-from kivy.uix.modalview import ModalView
 from kivy.uix.behaviors import ButtonBehavior
+from kivy.uix.boxlayout import BoxLayout
+from kivy.properties import (
+    StringProperty,
+    ListProperty,
+    OptionProperty,
+)
+from datetime import datetime
+
+from kivymd.theming import ThemableBehavior
 from kivymd.uix.behaviors import RectangularRippleBehavior
 from kivymd.uix.dialog import BaseDialog
-from kivy.uix.boxlayout import BoxLayout
-from kivy.properties import StringProperty, NumericProperty, BooleanProperty, ListProperty, OptionProperty
-from datetime import timedelta, datetime
-from kivymd.theming import ThemableBehavior
 
 Builder.load_string(
-    '''
+    """
 <MDLabeltitle2@MDLabel>:
     theme_text_color: 'Custom'
     text_color: 1,1,1,1
@@ -127,54 +131,53 @@ Builder.load_string(
                 text: 'Select'
                 pos_hint: {'center_x': .5 , 'center_y': .5}
                 on_release: root._choose()
-'''
+"""
 )
 
 
 class AKDatePicker(BaseDialog, ThemableBehavior):
 
     year_range = ListProperty([1930, 2021])
-    month_type = OptionProperty('string', options=['string', 'int'])
-    _day_title = StringProperty('-')
-    _month_title = StringProperty('-')
-    _year_title = StringProperty('-')
+    month_type = OptionProperty("string", options=["string", "int"])
+    _day_title = StringProperty("-")
+    _month_title = StringProperty("-")
+    _year_title = StringProperty("-")
 
     def __init__(self, callback=None, **kwargs):
         super(AKDatePicker, self).__init__(**kwargs)
         self.month_dic = {
-            '1': 'January',
-            '2': 'February',
-            '3': 'March',
-            '4': 'April',
-            '5': 'May',
-            '6': 'June',
-            '7': 'July',
-            '8': 'August',
-            '9': 'September',
-            '10': 'October',
-            '11': 'November',
-            '12': 'December'
+            "1": "January",
+            "2": "February",
+            "3": "March",
+            "4": "April",
+            "5": "May",
+            "6": "June",
+            "7": "July",
+            "8": "August",
+            "9": "September",
+            "10": "October",
+            "11": "November",
+            "12": "December",
         }
 
         self.callback = callback
         for x in reversed(range(self.year_range[0], self.year_range[1])):
             self.ids.year_view.add_widget(
-                ButtonBase(
-                    text='%d' %
-                    x, on_release=self._set_year))
+                ButtonBase(text="%d" % x, on_release=self._set_year)
+            )
         for x in reversed(range(1, 13)):
-            if self.month_type == 'string':
+            if self.month_type == "string":
                 month = self.month_dic[str(x)]
             else:
                 month = str(x)
 
-            self.ids.month_view.add_widget(ButtonBase(
-                text=month, on_release=self._set_month))
+            self.ids.month_view.add_widget(
+                ButtonBase(text=month, on_release=self._set_month)
+            )
         for x in reversed(range(1, 32)):
             self.ids.day_view.add_widget(
-                ButtonBase(
-                    text='%d' %
-                    x, on_release=self._set_day))
+                ButtonBase(text="%d" % x, on_release=self._set_day)
+            )
 
     def _set_day(self, instance):
         self._day_title = instance.text
@@ -186,16 +189,16 @@ class AKDatePicker(BaseDialog, ThemableBehavior):
         self._year_title = instance.text
 
     def on_dismiss(self):
-        self._year_title = '-'
-        self._month_title = '-'
-        self._day_title = '-'
+        self._year_title = "-"
+        self._month_title = "-"
+        self._day_title = "-"
         return
 
     def _choose(self):
         if not self.callback:
             return False
 
-        if self.month_type == 'string':
+        if self.month_type == "string":
             for k, v in self.month_dic.items():
                 if v == self._month_title:
                     self._month_title = k
@@ -203,9 +206,7 @@ class AKDatePicker(BaseDialog, ThemableBehavior):
 
         try:
             date = datetime(
-                int(self._year_title),
-                int(self._month_title),
-                int(self._day_title)
+                int(self._year_title), int(self._month_title), int(self._day_title)
             )
         except BaseException:
             date = False
