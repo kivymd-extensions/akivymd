@@ -1,13 +1,17 @@
-from kivy.factory import Factory
 from kivy.lang.builder import Builder
-from kivy.properties import ListProperty, StringProperty, NumericProperty, OptionProperty, ObjectProperty
+from kivy.properties import (
+    ListProperty,
+    StringProperty,
+    NumericProperty,
+    OptionProperty,
+    ObjectProperty,
+)
 from kivy.uix.boxlayout import BoxLayout
 from kivy.clock import Clock
 from kivy.core.window import Window, WindowBase
 from kivy.animation import Animation
 from kivy.uix.modalview import ModalView
 
-from kivymd.theming import ThemableBehavior
 from kivymd.uix.dialog import BaseDialog
 from kivymd.uix.behaviors import RectangularElevationBehavior
 from kivymd.app import MDApp
@@ -22,7 +26,6 @@ Builder.load_string(
     background_color: 0,0,0,0
     size: root.size_portrait if root._orientation == 'portrait'\
         else root.size_landscape
-
 
     MainAlertBox:
         elevation: root.elevation
@@ -82,27 +85,29 @@ Builder.load_string(
     """
 )
 
+
 class MainAlertBox(RectangularElevationBehavior, BoxLayout):
-    pass 
+    pass
+
 
 class AKAlertDialog(BaseDialog):
-    radius = NumericProperty('10dp')
+    radius = NumericProperty("10dp")
     bg_color = ListProperty()
-    size_portrait = ListProperty(['250dp', '350dp'])
-    size_landscape = ListProperty(['400dp', '250dp'])
-    header_width_landscape = NumericProperty('110dp')
-    header_height_portrait = NumericProperty('110dp')
-    fixed_orientation = OptionProperty(None, options=['portrait', 'landscape'])
+    size_portrait = ListProperty(["250dp", "350dp"])
+    size_landscape = ListProperty(["400dp", "250dp"])
+    header_width_landscape = NumericProperty("110dp")
+    header_height_portrait = NumericProperty("110dp")
+    fixed_orientation = OptionProperty(None, options=["portrait", "landscape"])
     header_bg = ListProperty()
-    header_text_type = OptionProperty('icon', options=['icon', 'text'])
+    header_text_type = OptionProperty("icon", options=["icon", "text"])
     header_text = StringProperty()
-    header_icon = StringProperty('android')
+    header_icon = StringProperty("android")
     header_color = ListProperty()
-    header_h_pos = StringProperty('center')
-    header_v_pos = StringProperty('center')
-    header_font_size = NumericProperty('55dp')
+    header_h_pos = StringProperty("center")
+    header_v_pos = StringProperty("center")
+    header_font_size = NumericProperty("55dp")
     progress_interval = NumericProperty(None)
-    progress_width = NumericProperty('2dp')
+    progress_width = NumericProperty("2dp")
     progress_color = ListProperty()
     elevation = NumericProperty(10)
     content_cls = ObjectProperty()
@@ -115,7 +120,7 @@ class AKAlertDialog(BaseDialog):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         Window.bind(on_resize=self._get_orientation)
-        self.register_event_type('on_progress_finish')
+        self.register_event_type("on_progress_finish")
         Clock.schedule_once(self._update)
 
     def _update(self, *args):
@@ -143,7 +148,7 @@ class AKAlertDialog(BaseDialog):
         if self.collide_point(pos[0], pos[1]):
             return super().on_touch_down(touch)
         if self._get_top_modal() == self:
-            MDApp.get_running_app().root.dispatch('on_touch_down', touch)
+            MDApp.get_running_app().root.dispatch("on_touch_down", touch)
         return super().on_touch_down(touch)
 
     def on_touch_up(self, touch):
@@ -151,7 +156,7 @@ class AKAlertDialog(BaseDialog):
         if self.collide_point(pos[0], pos[1]):
             return super().on_touch_up(touch)
         if self._get_top_modal() == self:
-            MDApp.get_running_app().root.dispatch('on_touch_up', touch)
+            MDApp.get_running_app().root.dispatch("on_touch_up", touch)
         return super().on_touch_up(touch)
 
     def on_touch_move(self, touch):
@@ -160,7 +165,7 @@ class AKAlertDialog(BaseDialog):
             return super().on_touch_move(touch)
 
         if self._get_top_modal() == self:
-            MDApp.get_running_app().root.dispatch('on_touch_move', touch)
+            MDApp.get_running_app().root.dispatch("on_touch_move", touch)
         return super().on_touch_move(touch)
 
     def _window_touch_down(self, instance, touch):
@@ -169,7 +174,7 @@ class AKAlertDialog(BaseDialog):
         if collide_modal == self and self._get_top_modal == self:
             return
         if collide_modal == self and self._get_top_modal != self:
-            return collide_modal.dispatch('on_touch_down', touch)
+            return collide_modal.dispatch("on_touch_down", touch)
 
     def _window_touch_up(self, instance, touch):
         pos = touch.pos
@@ -177,7 +182,7 @@ class AKAlertDialog(BaseDialog):
         if collide_modal == self and self._get_top_modal == self:
             return
         if collide_modal == self and self._get_top_modal != self:
-            return collide_modal.dispatch('on_touch_up', touch)
+            return collide_modal.dispatch("on_touch_up", touch)
 
     def _window_touch_move(self, instance, touch):
         pos = touch.pos
@@ -185,15 +190,15 @@ class AKAlertDialog(BaseDialog):
         if collide_modal == self and self._get_top_modal == self:
             return
         if collide_modal == self and self._get_top_modal != self:
-            return collide_modal.dispatch('on_touch_move', touch)
+            return collide_modal.dispatch("on_touch_move", touch)
 
     def _get_orientation(self, *args):
         if self.fixed_orientation:
             self._orientation = self.fixed_orientation
-        elif self.theme_cls.device_orientation == 'portrait':
-            self._orientation = 'portrait'
+        elif self.theme_cls.device_orientation == "portrait":
+            self._orientation = "portrait"
         else:
-            self._orientation = 'landscape'
+            self._orientation = "landscape"
 
     def on_content_cls(self, *args):
         if not self.content_cls:
@@ -216,22 +221,19 @@ class AKAlertDialog(BaseDialog):
 
     def _opening_animation(self):
         self.opacity = 0
-        anim = Animation(
-            opacity=1, duration=self.opening_duration, t='out_quad')
+        anim = Animation(opacity=1, duration=self.opening_duration, t="out_quad")
         anim.start(self)
 
     def _dismiss_animation(self):
-        anim = Animation(
-            opacity=0, duration=self.dismiss_duration, t='out_quad')
+        anim = Animation(opacity=0, duration=self.dismiss_duration, t="out_quad")
         anim.start(self)
 
     def _start_progress(self):
         if not self.progress_interval:
             return
         max_width = self.size[0] - self.radius * 2
-        anim = Animation(_progress_value=max_width,
-                         duration=self.progress_interval)
-        anim.bind(on_complete=lambda x, y: self.dispatch('on_progress_finish'))
+        anim = Animation(_progress_value=max_width, duration=self.progress_interval)
+        anim.bind(on_complete=lambda x, y: self.dispatch("on_progress_finish"))
         anim.start(self)
 
     def on_progress_finish(self, *args):

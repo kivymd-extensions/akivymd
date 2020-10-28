@@ -1,21 +1,28 @@
 from kivy.lang.builder import Builder
 from kivy.uix.boxlayout import BoxLayout
-from kivy.properties import NumericProperty, StringProperty, ListProperty, BooleanProperty, OptionProperty
-from kivymd.theming import ThemableBehavior
+from kivy.properties import (
+    NumericProperty,
+    StringProperty,
+    ListProperty,
+    BooleanProperty,
+    OptionProperty,
+)
 from kivy.metrics import dp
 from kivy.uix.behaviors import ButtonBehavior
-from kivymd.uix.behaviors import CircularRippleBehavior
 from kivy.animation import Animation
 from kivy.clock import Clock
-from akivymd.uix.badgelayout import AKBadgeLayout
 from kivy.core.window import Window
+
+from kivymd.theming import ThemableBehavior
+
+from akivymd.uix.badgelayout import AKBadgeLayout
+
 Builder.load_string(
     """
 <Button_Item>
     size_hint: None, None
     size: root.button_height , root.button_height
     pos_hint: {'center_x': .5, 'center_y': .5}
-
 
     canvas.before:
         Color:
@@ -77,12 +84,12 @@ Builder.load_string(
 
     BoxLayout:
         id: _button_box
-    """
+"""
 )
 
 
 class Button_Item(ThemableBehavior, ButtonBehavior, BoxLayout):
-    transition = StringProperty('out_quad')
+    transition = StringProperty("out_quad")
     duration = NumericProperty(0.3)
     button_bg_color = ListProperty(None)
     button_width = NumericProperty(dp(120))
@@ -94,17 +101,15 @@ class Button_Item(ThemableBehavior, ButtonBehavior, BoxLayout):
     text = StringProperty()
     icon = StringProperty()
     mode = OptionProperty(
-        'color_on_normal',
-        options=[
-            'color_on_normal',
-            'color_on_active'])
+        "color_on_normal", options=["color_on_normal", "color_on_active"]
+    )
     # ================
     badgeitem_size = NumericProperty(dp(20))
     badge_bg_color = ListProperty()
     badgeitem_padding = NumericProperty(dp(3))
     badgeitem_color = ListProperty()
-    badge_position = StringProperty('right')
-    badge_text = StringProperty('')
+    badge_position = StringProperty("right")
+    badge_text = StringProperty("")
     badge_bold = BooleanProperty(False)
     badge_offset = NumericProperty(0.4)
     badge_disabled = BooleanProperty(False)
@@ -125,41 +130,41 @@ class Button_Item(ThemableBehavior, ButtonBehavior, BoxLayout):
 
     def _button_expand(self):
         label_anim = Animation(
-            opacity=1,
-            transition=self.transition,
-            duration=self.duration)
+            opacity=1, transition=self.transition, duration=self.duration
+        )
         label_anim.start(self.ids._label)
 
         anim = Animation(
             width=self.button_width,
             _bg_opacity=1,
             t=self.transition,
-            duration=self.duration)
+            duration=self.duration,
+        )
         anim.start(self)
 
     def _button_shrink(self):
-        if self.mode == 'color_on_active':
+        if self.mode == "color_on_active":
             opacity = 0
         else:
             opacity = 1
 
         label_anim = Animation(
-            opacity=0,
-            transition=self.transition,
-            duration=self.duration)
+            opacity=0, transition=self.transition, duration=self.duration
+        )
         label_anim.start(self.ids._label)
 
         but_anim = Animation(
             width=self.height,
             _bg_opacity=opacity,
             t=self.transition,
-            duration=self.duration)
+            duration=self.duration,
+        )
         but_anim.start(self)
 
 
 class AKBottomNavigation2(ThemableBehavior, BoxLayout):
-    bottomnavigation_height = NumericProperty('65dp')
-    radius = NumericProperty('20dp')
+    bottomnavigation_height = NumericProperty("65dp")
+    radius = NumericProperty("20dp")
     bg_color = ListProperty(None)
     elelevation = NumericProperty(None)
 
@@ -172,8 +177,9 @@ class AKBottomNavigation2(ThemableBehavior, BoxLayout):
     def _update(self, *args):
         self.width = Window.width
         buttons = self.ids._button_box.children
-        button_sizes = ((len(buttons) - 1) *
-                        buttons[0].button_height) + buttons[0].button_width
+        button_sizes = ((len(buttons) - 1) * buttons[0].button_height) + buttons[
+            0
+        ].button_width
         space = self.width - button_sizes
         spacing = space / (len(buttons) + 1)
         self.ids._button_box.spacing = spacing
@@ -183,7 +189,7 @@ class AKBottomNavigation2(ThemableBehavior, BoxLayout):
         if not index:
             index = -1
         button = self.ids._button_box.children[index]
-        button.dispatch('on_release')
+        button.dispatch("on_release")
 
     def add_widget(self, widget, index=0, canvas=None):
         if issubclass(widget.__class__, Button_Item):

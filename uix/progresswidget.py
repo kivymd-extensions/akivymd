@@ -1,9 +1,15 @@
 from kivy.lang.builder import Builder
 from kivy.uix.boxlayout import BoxLayout
-from kivy.properties import StringProperty, ListProperty, BooleanProperty, NumericProperty, OptionProperty
+from kivy.properties import (
+    StringProperty,
+    ListProperty,
+    NumericProperty,
+    OptionProperty,
+)
 from kivy.animation import Animation
-from kivymd.theming import ThemableBehavior
 from kivy.clock import Clock
+
+from kivymd.theming import ThemableBehavior
 
 Builder.load_string(
     """
@@ -28,8 +34,7 @@ Builder.load_string(
         theme_text_color: 'Custom'
         text_color: root.percent_color if root.percent_color else app.theme_cls.primary_color
         font_size: root.percent_size
-
-    """
+"""
 )
 
 
@@ -37,16 +42,16 @@ class AKCircularProgress(ThemableBehavior, BoxLayout):
     circle_color = ListProperty()
     start_deg = NumericProperty(0)
     end_deg = NumericProperty(360)
-    line_width = NumericProperty('3dp')
+    line_width = NumericProperty("3dp")
     percent_color = ListProperty()
-    percent_size = NumericProperty('20dp')
+    percent_size = NumericProperty("20dp")
     current_percent = NumericProperty(-1)
     anim_speed = NumericProperty(0.3)
-    anim_transition = StringProperty('out_quad')
+    anim_transition = StringProperty("out_quad")
     max_percent = NumericProperty(100)
-    percent_type = OptionProperty('percent', options=['percent', 'relative'])
+    percent_type = OptionProperty("percent", options=["percent", "relative"])
     background_circle_color = ListProperty()
-    background_line_width = NumericProperty('1dp')
+    background_line_width = NumericProperty("1dp")
     _current_deg = NumericProperty(-1)
 
     def __init__(self, **kwargs):
@@ -64,14 +69,19 @@ class AKCircularProgress(ThemableBehavior, BoxLayout):
         percent_anim = Animation(
             _current_deg=self.start_deg + _current_deg,
             duration=self.anim_speed,
-            t=self.anim_transition
+            t=self.anim_transition,
         )
         percent_anim.start(self)
 
     def on__current_deg(self, *args):
-        if self.percent_type == 'percent':
-            self.ids._percent_label.text = str(
-                int((self._current_deg - self.start_deg) / self._each_percent)) + ' %'
-        elif self.percent_type == 'relative':
-            self.ids._percent_label.text = str(int(
-                (self._current_deg - self.start_deg) / self._each_percent)) + '\\' + str(self.max_percent)
+        if self.percent_type == "percent":
+            self.ids._percent_label.text = (
+                str(int((self._current_deg - self.start_deg) / self._each_percent))
+                + " %"
+            )
+        elif self.percent_type == "relative":
+            self.ids._percent_label.text = (
+                str(int((self._current_deg - self.start_deg) / self._each_percent))
+                + "\\"
+                + str(self.max_percent)
+            )

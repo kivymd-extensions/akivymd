@@ -1,20 +1,26 @@
 from kivy.lang.builder import Builder
-from kivymd.app import MDApp
 from kivy.uix.boxlayout import BoxLayout
-from kivy.properties import ListProperty, NumericProperty, StringProperty, BooleanProperty, OptionProperty
+from kivy.properties import (
+    ListProperty,
+    NumericProperty,
+    StringProperty,
+    BooleanProperty,
+    OptionProperty,
+)
 from kivy.clock import Clock
-from kivy.graphics import Ellipse, Color, Rotate, PushMatrix, PopMatrix
-from kivymd.theming import ThemableBehavior
-from kivymd.color_definitions import palette, colors
+from kivy.graphics import Ellipse, Color
 from kivy.utils import get_color_from_hex
 from kivy.animation import Animation
-from kivymd.uix.label import MDLabel
-from akivymd.helper import point_on_circle
-from kivy.core.window import Window
 
-'''issues
+from kivymd.uix.label import MDLabel
+from kivymd.color_definitions import palette, colors
+from kivymd.theming import ThemableBehavior
+
+from akivymd.helper import point_on_circle
+
+"""issues
 color_mode
-'''
+"""
 
 Builder.load_string(
     """
@@ -30,14 +36,13 @@ Builder.load_string(
     text_color: 1,1,1,1
 
 <AKPieChart>:
-
-    """
+"""
 )
 
 
 class PieChartNumberLabel(MDLabel):
     percent = NumericProperty(0)
-    title = StringProperty('')
+    title = StringProperty("")
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -52,13 +57,11 @@ class AKPieChart(ThemableBehavior, BoxLayout):
     items = ListProperty()
     order = BooleanProperty(True)
     starting_animation = BooleanProperty(True)
-    transition = StringProperty('out_cubic')
+    transition = StringProperty("out_cubic")
     duration = NumericProperty(1)
     color_mode = OptionProperty(
-        'colors',
-        options=[
-            'primary_color',
-            'accent_color'])  # not solved
+        "colors", options=["primary_color", "accent_color"]
+    )  # not solved
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -69,7 +72,7 @@ class AKPieChart(ThemableBehavior, BoxLayout):
             percentage_sum += v
 
         if percentage_sum != 100:
-            raise Exception('Sum of percenages must be 100')
+            raise Exception("Sum of percenages must be 100")
 
         new_items = {}
         for k, v in items[0].items():
@@ -77,25 +80,21 @@ class AKPieChart(ThemableBehavior, BoxLayout):
 
         if self.order:
             new_items = {
-                k: v for k,
-                v in sorted(
-                    new_items.items(),
-                    key=lambda item: item[1])}
+                k: v for k, v in sorted(new_items.items(), key=lambda item: item[1])
+            }
 
         return new_items
 
     def _make_chart(self, items):
         self.size = (min(self.size), min(self.size))
         if not items:
-            raise Exception('Items cannot be empty.')
+            raise Exception("Items cannot be empty.")
 
         items = self._format_items(items)
         angle_start = 0
         color_item = 0
         i = 1
-        circle_center = [
-            self.pos[0] + self.size[0] / 2,
-            self.pos[1] + self.size[1] / 2]
+        circle_center = [self.pos[0] + self.size[0] / 2, self.pos[1] + self.size[1] / 2]
 
         for title, value in items.items():
             with self.canvas.before:
@@ -105,9 +104,8 @@ class AKPieChart(ThemableBehavior, BoxLayout):
                 else:
                     alpha = 1
 
-                if self.color_mode == 'colors':
-                    color = get_color_from_hex(
-                        colors[palette[color_item]]['500'])
+                if self.color_mode == "colors":
+                    color = get_color_from_hex(colors[palette[color_item]]["500"])
 
                 c = Color(rgb=color, a=alpha)
                 if self.starting_animation:
@@ -115,13 +113,15 @@ class AKPieChart(ThemableBehavior, BoxLayout):
                         pos=self.pos,
                         size=self.size,
                         angle_start=angle_start,
-                        angle_end=angle_start + 0.01)
+                        angle_end=angle_start + 0.01,
+                    )
 
                     anim = Animation(
                         size=self.size,
                         angle_end=angle_start + value,
                         duration=self.duration,
-                        t=self.transition)
+                        t=self.transition,
+                    )
                     anim_opcity = Animation(a=1, duration=self.duration * 0.5)
 
                     anim_opcity.start(c)
@@ -131,7 +131,8 @@ class AKPieChart(ThemableBehavior, BoxLayout):
                         pos=self.pos,
                         size=self.size,
                         angle_start=angle_start,
-                        angle_end=angle_start + value)
+                        angle_end=angle_start + value,
+                    )
             color_item += 1
             angle_start += value
 
@@ -141,9 +142,9 @@ class AKPieChart(ThemableBehavior, BoxLayout):
                 label_pos = point_on_circle(
                     (angle_start + angle_start + value) / 2,
                     circle_center,
-                    self.size[0] / 3)
-                l = PieChartNumberLabel(
-                    x=label_pos[0], y=label_pos[1], title=title)
+                    self.size[0] / 3,
+                )
+                l = PieChartNumberLabel(x=label_pos[0], y=label_pos[1], title=title)
                 anim_label = Animation(percent=value * 100 / 360)
                 anim_label.start(l)
             angle_start += value

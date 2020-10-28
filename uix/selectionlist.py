@@ -2,10 +2,13 @@ from kivy.lang import Builder
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.stacklayout import StackLayout
 from kivy.uix.behaviors import ButtonBehavior
-from kivy.properties import NumericProperty, StringProperty, BooleanProperty, ListProperty
-from kivy.metrics import dp
+from kivy.properties import (
+    NumericProperty,
+    StringProperty,
+    BooleanProperty,
+)
 from kivy.animation import Animation
-from kivy.uix.image import Image
+
 from kivymd.uix.behaviors.ripplebehavior import CircularRippleBehavior
 from kivymd.theming import ThemableBehavior
 
@@ -57,16 +60,17 @@ Builder.load_string(
             halign: 'center'
             theme_text_color: 'Secondary'
             font_style: 'Caption'
-    """
+"""
 )
 
 
 class AKSelectListAvatarItem(
-        ThemableBehavior, ButtonBehavior, CircularRippleBehavior, BoxLayout):
+    ThemableBehavior, ButtonBehavior, CircularRippleBehavior, BoxLayout
+):
     columns = NumericProperty(4)
-    source = StringProperty('')
-    first_label = StringProperty('')
-    second_label = StringProperty('')
+    source = StringProperty("")
+    first_label = StringProperty("")
+    second_label = StringProperty("")
     animate_start = BooleanProperty(True)
 
     def __init__(self, **kwargs):
@@ -90,18 +94,13 @@ class AKSelectListAvatarItem(
         self.parent._selected_list = selected_list
 
     def _selection_anim(self):
-        anim = Animation(
-            font_size=self.width / 3,
-            t='out_bounce',
-            duration=0.1)
+        anim = Animation(font_size=self.width / 3, t="out_bounce", duration=0.1)
         anim.start(self.ids._box)
 
     def _deselection_anim(self):
         anim = Animation(
-            font_size=0,
-            size=self.ids._box.texture_size,
-            t='in_bounce',
-            duration=0.1)
+            font_size=0, size=self.ids._box.texture_size, t="in_bounce", duration=0.1
+        )
         anim.start(self.ids._box)
 
 
