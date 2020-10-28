@@ -3,10 +3,9 @@ import sys
 
 from kivy.logger import Logger
 
-import akivymd.factory_registers
-
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 
+import akivymd.factory_registers
 
 __version__ = "1.2.1"
 __description__ = "A set of fancy widgets for KivyMD"
