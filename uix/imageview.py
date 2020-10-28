@@ -1,11 +1,7 @@
-from kivy.lang import Builder
-from kivy.properties import (
-    ObjectProperty,
-    NumericProperty,
-    StringProperty,
-)
-from kivy.uix.scatter import Scatter
 from kivy.animation import Animation
+from kivy.lang import Builder
+from kivy.properties import NumericProperty, ObjectProperty, StringProperty
+from kivy.uix.scatter import Scatter
 
 from kivymd.uix.dialog import BaseDialog
 
@@ -106,7 +102,9 @@ class AKImageViewerItem(Scatter):
 
     def reset_max_zoom(self):
         max_zoom_anim = Animation(
-            scale=self.zoom_max, duration=self.bounce_duration, t=self.bounce_animation
+            scale=self.zoom_max,
+            duration=self.bounce_duration,
+            t=self.bounce_animation,
         )
         max_zoom_anim.start(self)
 
@@ -118,7 +116,9 @@ class AKImageViewerItem(Scatter):
 
     def reset_min_zoom(self):
         min_zoom_anim = Animation(
-            scale=self.zoom_min, duration=self.bounce_duration, t=self.bounce_animation
+            scale=self.zoom_min,
+            duration=self.bounce_duration,
+            t=self.bounce_animation,
         )
         min_zoom_anim.start(self)
         self.reset_position()

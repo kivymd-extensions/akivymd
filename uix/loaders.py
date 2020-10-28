@@ -88,8 +88,12 @@ class AKLabelLoader(MDLabel):
             self.start_anim.cancel_all(self)
 
         if self.bg_rec_opacity != 0 and self.fr_rec_opacity != 0:
-            self.stop_anim = Animation(fr_rec_opacity=0, t="out_quad", duration=0.8)
-            self.stop_anim &= Animation(bg_rec_opacity=0, t="out_quad", duration=0.8)
+            self.stop_anim = Animation(
+                fr_rec_opacity=0, t="out_quad", duration=0.8
+            )
+            self.stop_anim &= Animation(
+                bg_rec_opacity=0, t="out_quad", duration=0.8
+            )
             self.stop_anim.start(self)
 
     def on_text(self, *args):
@@ -131,8 +135,12 @@ class AKImageLoader(ThemableBehavior, AsyncImage):
         self.color = [1, 1, 1, 1]
         if self.start_anim:
             self.start_anim.cancel_all(self)
-            self.stop_anim = Animation(fr_rec_opacity=0, t="out_quad", duration=0.8)
-            self.stop_anim &= Animation(bg_rec_opacity=0, t="out_quad", duration=0.8)
+            self.stop_anim = Animation(
+                fr_rec_opacity=0, t="out_quad", duration=0.8
+            )
+            self.stop_anim &= Animation(
+                bg_rec_opacity=0, t="out_quad", duration=0.8
+            )
             self.stop_anim.start(self)
 
     def on_source(self, *args):

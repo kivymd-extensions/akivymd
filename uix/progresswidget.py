@@ -1,13 +1,13 @@
+from kivy.animation import Animation
+from kivy.clock import Clock
 from kivy.lang.builder import Builder
-from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import (
-    StringProperty,
     ListProperty,
     NumericProperty,
     OptionProperty,
+    StringProperty,
 )
-from kivy.animation import Animation
-from kivy.clock import Clock
+from kivy.uix.boxlayout import BoxLayout
 
 from kivymd.theming import ThemableBehavior
 
@@ -76,12 +76,22 @@ class AKCircularProgress(ThemableBehavior, BoxLayout):
     def on__current_deg(self, *args):
         if self.percent_type == "percent":
             self.ids._percent_label.text = (
-                str(int((self._current_deg - self.start_deg) / self._each_percent))
+                str(
+                    int(
+                        (self._current_deg - self.start_deg)
+                        / self._each_percent
+                    )
+                )
                 + " %"
             )
         elif self.percent_type == "relative":
             self.ids._percent_label.text = (
-                str(int((self._current_deg - self.start_deg) / self._each_percent))
+                str(
+                    int(
+                        (self._current_deg - self.start_deg)
+                        / self._each_percent
+                    )
+                )
                 + "\\"
                 + str(self.max_percent)
             )

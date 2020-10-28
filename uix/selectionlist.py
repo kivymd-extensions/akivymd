@@ -1,16 +1,12 @@
+from kivy.animation import Animation
 from kivy.lang import Builder
+from kivy.properties import BooleanProperty, NumericProperty, StringProperty
+from kivy.uix.behaviors import ButtonBehavior
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.stacklayout import StackLayout
-from kivy.uix.behaviors import ButtonBehavior
-from kivy.properties import (
-    NumericProperty,
-    StringProperty,
-    BooleanProperty,
-)
-from kivy.animation import Animation
 
-from kivymd.uix.behaviors.ripplebehavior import CircularRippleBehavior
 from kivymd.theming import ThemableBehavior
+from kivymd.uix.behaviors.ripplebehavior import CircularRippleBehavior
 
 Builder.load_string(
     """
@@ -99,7 +95,10 @@ class AKSelectListAvatarItem(
 
     def _deselection_anim(self):
         anim = Animation(
-            font_size=0, size=self.ids._box.texture_size, t="in_bounce", duration=0.1
+            font_size=0,
+            size=self.ids._box.texture_size,
+            t="in_bounce",
+            duration=0.1,
         )
         anim.start(self.ids._box)
 

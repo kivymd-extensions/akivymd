@@ -1,16 +1,11 @@
-from kivy.lang.builder import Builder
-from kivy.uix.boxlayout import BoxLayout
-from kivy.clock import Clock
-from kivy.properties import (
-    NumericProperty,
-    ListProperty,
-    StringProperty,
-)
 from kivy.animation import Animation
-
-from kivymd.uix.button import MDFillRoundFlatButton
+from kivy.clock import Clock
+from kivy.lang.builder import Builder
+from kivy.properties import ListProperty, NumericProperty, StringProperty
+from kivy.uix.boxlayout import BoxLayout
 
 from akivymd.uix.spinners import AKSpinnerDoubleBounce
+from kivymd.uix.button import MDFillRoundFlatButton
 
 Builder.load_string(
     """
@@ -152,12 +147,16 @@ class AKProgressbutton(BoxLayout):
             duration=self.duration,
             t=self.animation,
         )
-        anim_label = Animation(opacity=1, duration=self.duration, t=self.animation)
+        anim_label = Animation(
+            opacity=1, duration=self.duration, t=self.animation
+        )
 
         anim_box.start(self)
         anim_label.start(self.ids._success_label)
 
-        Clock.schedule_once(lambda x: self._reset(), self.reset_timeout + self.duration)
+        Clock.schedule_once(
+            lambda x: self._reset(), self.reset_timeout + self.duration
+        )
 
     def failure(self):
         self._spinner_state(False)
@@ -167,17 +166,23 @@ class AKProgressbutton(BoxLayout):
             duration=self.duration,
             t=self.animation,
         )
-        anim_label = Animation(opacity=1, duration=self.duration, t=self.animation)
+        anim_label = Animation(
+            opacity=1, duration=self.duration, t=self.animation
+        )
 
         anim_box.start(self)
         anim_label.start(self.ids._failure_label)
 
-        Clock.schedule_once(lambda x: self._reset(), self.reset_timeout + self.duration)
+        Clock.schedule_once(
+            lambda x: self._reset(), self.reset_timeout + self.duration
+        )
 
     def _reset(self):
         self.button.disabled = False
         self._spinner_state(False)
-        button_anim = Animation(opacity=1, duration=self.duration, t=self.animation)
+        button_anim = Animation(
+            opacity=1, duration=self.duration, t=self.animation
+        )
 
         success_box = Animation(
             _success_opacity=0,
@@ -185,7 +190,9 @@ class AKProgressbutton(BoxLayout):
             duration=self.duration,
             t=self.animation,
         )
-        success_label = Animation(opacity=0, duration=self.duration, t=self.animation)
+        success_label = Animation(
+            opacity=0, duration=self.duration, t=self.animation
+        )
 
         failure_box = Animation(
             _failure_opacity=0,
@@ -193,7 +200,9 @@ class AKProgressbutton(BoxLayout):
             duration=self.duration,
             t=self.animation,
         )
-        failure_label = Animation(opacity=0, duration=self.duration, t=self.animation)
+        failure_label = Animation(
+            opacity=0, duration=self.duration, t=self.animation
+        )
 
         button_anim.start(self.button)
         success_box.start(self)

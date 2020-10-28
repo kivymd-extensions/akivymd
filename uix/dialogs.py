@@ -1,20 +1,20 @@
+from kivy.animation import Animation
+from kivy.clock import Clock
+from kivy.core.window import Window, WindowBase
 from kivy.lang.builder import Builder
 from kivy.properties import (
     ListProperty,
-    StringProperty,
     NumericProperty,
-    OptionProperty,
     ObjectProperty,
+    OptionProperty,
+    StringProperty,
 )
 from kivy.uix.boxlayout import BoxLayout
-from kivy.clock import Clock
-from kivy.core.window import Window, WindowBase
-from kivy.animation import Animation
 from kivy.uix.modalview import ModalView
 
-from kivymd.uix.dialog import BaseDialog
-from kivymd.uix.behaviors import RectangularElevationBehavior
 from kivymd.app import MDApp
+from kivymd.uix.behaviors import RectangularElevationBehavior
+from kivymd.uix.dialog import BaseDialog
 
 Builder.load_string(
     """
@@ -221,18 +221,24 @@ class AKAlertDialog(BaseDialog):
 
     def _opening_animation(self):
         self.opacity = 0
-        anim = Animation(opacity=1, duration=self.opening_duration, t="out_quad")
+        anim = Animation(
+            opacity=1, duration=self.opening_duration, t="out_quad"
+        )
         anim.start(self)
 
     def _dismiss_animation(self):
-        anim = Animation(opacity=0, duration=self.dismiss_duration, t="out_quad")
+        anim = Animation(
+            opacity=0, duration=self.dismiss_duration, t="out_quad"
+        )
         anim.start(self)
 
     def _start_progress(self):
         if not self.progress_interval:
             return
         max_width = self.size[0] - self.radius * 2
-        anim = Animation(_progress_value=max_width, duration=self.progress_interval)
+        anim = Animation(
+            _progress_value=max_width, duration=self.progress_interval
+        )
         anim.bind(on_complete=lambda x, y: self.dispatch("on_progress_finish"))
         anim.start(self)
 

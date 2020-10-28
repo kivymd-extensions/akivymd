@@ -1,21 +1,20 @@
-from kivy.lang.builder import Builder
-from kivy.uix.boxlayout import BoxLayout
-from kivy.properties import (
-    NumericProperty,
-    StringProperty,
-    ListProperty,
-    BooleanProperty,
-    OptionProperty,
-)
-from kivy.metrics import dp
-from kivy.uix.behaviors import ButtonBehavior
 from kivy.animation import Animation
 from kivy.clock import Clock
 from kivy.core.window import Window
-
-from kivymd.theming import ThemableBehavior
+from kivy.lang.builder import Builder
+from kivy.metrics import dp
+from kivy.properties import (
+    BooleanProperty,
+    ListProperty,
+    NumericProperty,
+    OptionProperty,
+    StringProperty,
+)
+from kivy.uix.behaviors import ButtonBehavior
+from kivy.uix.boxlayout import BoxLayout
 
 from akivymd.uix.badgelayout import AKBadgeLayout
+from kivymd.theming import ThemableBehavior
 
 Builder.load_string(
     """
@@ -177,9 +176,9 @@ class AKBottomNavigation2(ThemableBehavior, BoxLayout):
     def _update(self, *args):
         self.width = Window.width
         buttons = self.ids._button_box.children
-        button_sizes = ((len(buttons) - 1) * buttons[0].button_height) + buttons[
-            0
-        ].button_width
+        button_sizes = (
+            (len(buttons) - 1) * buttons[0].button_height
+        ) + buttons[0].button_width
         space = self.width - button_sizes
         spacing = space / (len(buttons) + 1)
         self.ids._button_box.spacing = spacing
