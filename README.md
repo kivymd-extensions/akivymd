@@ -15,7 +15,7 @@ components install akivymd
 
 ## Usage
 
-```
+```python
 from kivy.lang import Builder
 
 from kivymd.app import MDApp
@@ -55,6 +55,23 @@ class Test(MDApp):
 
 
 Test().run()
+```
+
+## Usage with Buildozer
+
+For now we cannot specify dependencies in the `bulldozer.spec` specification file in the `garden_requirements` 
+(for example, like `components_requirements`) parameter. Instead, you must navigate to the root directory of your project,
+where the bulldozer.spec file is located, and issue the command:
+
+```bash
+pip install kivymd-components
+components install --app akivymd
+```
+
+The component package will be installed locally in your project. Remember to import a package of components as follows:
+
+```python
+from kivymd.components.akivymd.uix.widget import Widget
 ```
 
 ### Dependencies:
