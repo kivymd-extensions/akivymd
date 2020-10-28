@@ -8,7 +8,8 @@ from kivymd.uix.label import MDLabel
 
 __all__ = ("AKLabelLoader", "AKImageLoader")
 
-Builder.load_string("""
+Builder.load_string(
+    """
 
 <AKLabelLoader>:
     canvas.before:

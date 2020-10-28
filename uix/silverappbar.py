@@ -1,7 +1,12 @@
 from kivy.lang.builder import Builder
 from kivy.uix.boxlayout import BoxLayout
 from kivymd.theming import ThemableBehavior
-from kivy.properties import NumericProperty, StringProperty, ListProperty, BooleanProperty
+from kivy.properties import (
+    NumericProperty,
+    StringProperty,
+    ListProperty,
+    BooleanProperty,
+)
 from kivymd.uix.toolbar import MDToolbar
 from kivy.uix.scrollview import ScrollView
 from kivy.clock import Clock
@@ -71,32 +76,30 @@ class AKSilverAppbarHeader(BoxLayout):
 
 
 class NewScrollView(ScrollView):
-
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         Clock.schedule_once(lambda x: self._update())
 
     def on_vbar(self, *args):
-        toolbar_percent = (self.root.ids.toolbar.height /
-                           self.parent.parent.ids.scroll_box.height) * 100
+        toolbar_percent = (
+            self.root.ids.toolbar.height / self.parent.parent.ids.scroll_box.height
+        ) * 100
         current_percent = (self.vbar[0] + self.vbar[1]) * 100
-        banner_percent_min = (1 - self.parent.parent.max_height /
-                              self.parent.parent.ids.scroll_box.height) * 100 + toolbar_percent
+        banner_percent_min = (
+            1 - self.parent.parent.max_height / self.parent.parent.ids.scroll_box.height
+        ) * 100 + toolbar_percent
         if self.root.hide_toolbar:
             if banner_percent_min <= current_percent:
                 current_percent_in_banner = current_percent - banner_percent_min
-                opacity = current_percent_in_banner / \
-                    (100 - banner_percent_min)
+                opacity = current_percent_in_banner / (100 - banner_percent_min)
 
-                self.root._darkness = self.root.header_max_darkness * \
-                    (1 - opacity)
+                self.root._darkness = self.root.header_max_darkness * (1 - opacity)
 
                 if not self.root.pin_top:
                     self.root.toolbar_bg = self.root.toolbar_bg[0:3] + [0]
                     self.root.ids.toolbar.opacity = opacity
                 else:
-                    self.root.toolbar_bg = self.root.toolbar_bg[0:3] + [
-                        1 - opacity]
+                    self.root.toolbar_bg = self.root.toolbar_bg[0:3] + [1 - opacity]
                     self.root.ids.toolbar._hard_shadow_a = 1 - opacity
                     self.root.ids.toolbar._soft_shadow_a = 1 - opacity
 

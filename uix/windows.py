@@ -3,12 +3,19 @@ from kivy.uix.scatter import Scatter
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.floatlayout import FloatLayout
 from kivymd.theming import ThemableBehavior
-from kivy.properties import NumericProperty, StringProperty, ListProperty, BooleanProperty, ObjectProperty
+from kivy.properties import (
+    NumericProperty,
+    StringProperty,
+    ListProperty,
+    BooleanProperty,
+    ObjectProperty,
+)
 from kivy.clock import Clock
 from kivy.animation import Animation
 from kivy.core.window import Window
 from kivy.uix.behaviors import ButtonBehavior
 from kivymd.uix.behaviors import RectangularElevationBehavior
+
 Builder.load_string(
     """
 <HeaderButton>
@@ -107,30 +114,29 @@ class HeaderButton(ThemableBehavior, ButtonBehavior, BoxLayout):
     button_text_color = ListProperty()
 
 
-class AKFloatingWindow(
-        ThemableBehavior, RectangularElevationBehavior, BoxLayout):
+class AKFloatingWindow(ThemableBehavior, RectangularElevationBehavior, BoxLayout):
     _window_active = BooleanProperty(False)
-    header_height = NumericProperty('20dp')
+    header_height = NumericProperty("20dp")
     header_color_normal = ListProperty()
     header_color_active = ListProperty()
     header_text_color = ListProperty()
-    title_font_size = NumericProperty('10dp')
+    title_font_size = NumericProperty("10dp")
     window_title = StringProperty()
     window_elevation = NumericProperty(10)
     fade_exit = BooleanProperty(True)
     fade_open = BooleanProperty(True)
-    animation_transition = StringProperty('out_quad')
+    animation_transition = StringProperty("out_quad")
     animation_duration = NumericProperty(0.1)
     open_position = ListProperty()
     maximize_animation = BooleanProperty(True)
     minimize_animation = BooleanProperty(True)
-    window_radius = NumericProperty('8dp')
+    window_radius = NumericProperty("8dp")
     bg_color = ListProperty()
 
-    exit_button_icon = StringProperty('close')
+    exit_button_icon = StringProperty("close")
     exit_button_color = ListProperty()
     exit_button_text_color = ListProperty()
-    max_button_icon = StringProperty('window-maximize')
+    max_button_icon = StringProperty("window-maximize")
     max_button_color = ListProperty()
     max_button_text_color = ListProperty()
 
@@ -139,9 +145,9 @@ class AKFloatingWindow(
     right_widget = ObjectProperty()
     top_widget = ObjectProperty()
 
-    _state = 'close'
+    _state = "close"
     _maximized = False
-    _resize_click_dis = NumericProperty('10dp')
+    _resize_click_dis = NumericProperty("10dp")
     _allow_resize = False
     _size_before = False
     _pos_before = False
@@ -166,58 +172,59 @@ class AKFloatingWindow(
 
         self.elevation = self.window_elevation
 
-        exit_pos = [-self.width, - self.height]
+        exit_pos = [-self.width, -self.height]
         self.pos = exit_pos
         self.opacity = 0
-        self._state = 'close'
+        self._state = "close"
 
     def _update_open_pos(self):
         self.open_position = [
             Window.size[0] / 2 - self.width / 2,
-            Window.size[1] / 2 - self.height / 2]
+            Window.size[1] / 2 - self.height / 2,
+        ]
 
     def add_widget(self, widget, index=0, canvas=None):
-        if issubclass(widget.__class__, WindowContent) or \
-                issubclass(widget.__class__, WindowHeader):
+        if issubclass(widget.__class__, WindowContent) or issubclass(
+            widget.__class__, WindowHeader
+        ):
             return super().add_widget(widget, index=index, canvas=canvas)
         else:
             return self.ids.content.add_widget(widget)
 
     def dismiss(self):
-        if self._state == 'close':
+        if self._state == "close":
             return
 
-        exit_pos = [-self.width, - self.height]
+        exit_pos = [-self.width, -self.height]
 
         if self.fade_exit:
-            anim = Animation(opacity=0, t=self.animation_transition, duration=self.animation_duration) +\
-                Animation(pos=exit_pos, duration=0)
+            anim = Animation(
+                opacity=0, t=self.animation_transition, duration=self.animation_duration
+            ) + Animation(pos=exit_pos, duration=0)
             anim.start(self)
         else:
             self.opacity = 0
             self.pos = exit_pos
 
-        self._state = 'close'
+        self._state = "close"
 
     def open(self):
         self.parent._bring_to_front(self)
         self.parent._update_header_color(self)
         self._update_open_pos()
 
-        if self._state == 'open':
+        if self._state == "open":
             return
 
         if self.fade_open:
-            anim = Animation(pos=self.open_position, duration=0) +\
-                Animation(
-                opacity=1,
-                t=self.animation_transition,
-                duration=self.animation_duration)
+            anim = Animation(pos=self.open_position, duration=0) + Animation(
+                opacity=1, t=self.animation_transition, duration=self.animation_duration
+            )
             anim.start(self)
         else:
             self.opacity = 1
             self.pos = self.open_position
-        self._state = 'open'
+        self._state = "open"
 
     def minimize_to_normal(self):
         pos = self._pos_before
@@ -228,7 +235,8 @@ class AKFloatingWindow(
                 pos=pos,
                 size=size,
                 duration=self.animation_duration,
-                t=self.animation_transition)
+                t=self.animation_transition,
+            )
             anim.start(self)
         else:
             self.pos = pos
@@ -272,7 +280,8 @@ class AKFloatingWindow(
                 pos=pos,
                 size=size,
                 duration=self.animation_duration,
-                t=self.animation_transition)
+                t=self.animation_transition,
+            )
             anim.start(self)
         else:
             self.pos = pos
@@ -291,12 +300,12 @@ class AKFloatingWindow(
 
         if x < touch_pos[0] < right and y < touch_pos[1] < top:
             self._allow_resize = True
-            Window.set_system_cursor('size_nwse')
+            Window.set_system_cursor("size_nwse")
         return super().on_touch_down(touch)
 
     def on_touch_up(self, touch):
         self._allow_resize = False
-        Window.set_system_cursor('arrow')
+        Window.set_system_cursor("arrow")
         return super().on_touch_up(touch)
 
     def on_touch_move(self, touch):
@@ -338,7 +347,8 @@ class AKFloatingWindowLayout(ThemableBehavior, FloatLayout):
         header = top_window.ids.header
 
         if clicked_window == top_window and header.collide_point(
-                touch_pos[0], touch_pos[1]):
+            touch_pos[0], touch_pos[1]
+        ):
             self._allow_move = True
             self._x_dist = touch_pos[0] - top_window.pos[0]
             self._y_dist = touch_pos[1] - top_window.pos[1]
@@ -359,10 +369,7 @@ class AKFloatingWindowLayout(ThemableBehavior, FloatLayout):
             touch_pos = touch.pos
             top_window = self._get_top_window()
             top_window_pos = top_window.pos
-            top_window.pos = [
-                touch_pos[0] - self._x_dist,
-                touch_pos[1] - self._y_dist
-            ]
+            top_window.pos = [touch_pos[0] - self._x_dist, touch_pos[1] - self._y_dist]
         return super().on_touch_move(touch)
 
     def _bring_to_front(self, window):

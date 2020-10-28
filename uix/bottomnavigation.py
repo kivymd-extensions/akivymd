@@ -2,7 +2,12 @@ from kivymd.app import MDApp
 from kivy.lang.builder import Builder
 from kivy.uix.boxlayout import BoxLayout
 from kivy.animation import Animation
-from kivy.properties import NumericProperty, ObjectProperty, ListProperty, StringProperty
+from kivy.properties import (
+    NumericProperty,
+    ObjectProperty,
+    ListProperty,
+    StringProperty,
+)
 from kivy.clock import Clock
 from kivymd.uix.button import MDIconButton
 from kivy.metrics import dp
@@ -10,7 +15,7 @@ from kivy.core.window import Window
 from kivymd.uix.label import MDLabel
 from kivymd.theming import ThemableBehavior
 
-__all__ = ('AKBottomNavigation')
+__all__ = "AKBottomNavigation"
 
 Builder.load_string(
     """
@@ -118,7 +123,7 @@ class AKBottomNavigation(ThemableBehavior, BoxLayout):
     icon_color = ListProperty()
     text_color = ListProperty()
     bg_color = ListProperty()
-    transition = StringProperty('out_sine')
+    transition = StringProperty("out_sine")
     duration = NumericProperty(0.2)
 
     _selected = -1
@@ -137,32 +142,32 @@ class AKBottomNavigation(ThemableBehavior, BoxLayout):
         but_pos = section_x
         for x in range(0, count):
             button = _AKButton(
-                icon=self.items[x]['icon'],
-                pos_hint={'center_x': but_pos},
-                icon_color=self.icon_color
+                icon=self.items[x]["icon"],
+                pos_hint={"center_x": but_pos},
+                icon_color=self.icon_color,
             )
-            button.bind(on_release=self.items[x]['on_release'])
+            button.bind(on_release=self.items[x]["on_release"])
 
             label = _AKLabel(
-                text=self.items[x]['text'],
-                pos_hint={'center_x': but_pos},
+                text=self.items[x]["text"],
+                pos_hint={"center_x": but_pos},
                 opacity=0,
-                text_color=self.text_color
+                text_color=self.text_color,
             )
 
             self.ids._text_bar.add_widget(label)
             self.ids._buttons_bar.add_widget(button)
             but_pos += section_x
-        self.ids._bubble.bubble_x = Window.size[0] * \
-            self.ids._buttons_bar.children[self._selected].pos_hint['center_x'] - dp(
-                56)
+        self.ids._bubble.bubble_x = Window.size[0] * self.ids._buttons_bar.children[
+            self._selected
+        ].pos_hint["center_x"] - dp(56)
         self.ids._buttons_bar.children[self._selected].opacity = 0
         self.ids._text_bar.children[self._selected].opacity = 1
 
     def _on_resize(self, instance, width, height):
-        self.ids._bubble.bubble_x = width * \
-            self.ids._buttons_bar.children[self._selected].pos_hint['center_x'] - dp(
-                56)
+        self.ids._bubble.bubble_x = width * self.ids._buttons_bar.children[
+            self._selected
+        ].pos_hint["center_x"] - dp(56)
 
     def on_items(self, *args):
         self._clear_bar()
@@ -181,13 +186,14 @@ class AKBottomNavigation(ThemableBehavior, BoxLayout):
 
         bubble_pos = current_item_button.x - dp(31)
         anim_bubble = Animation(
-            bubble_x=bubble_pos,
-            t=self.transition,
-            duration=self.duration)
+            bubble_x=bubble_pos, t=self.transition, duration=self.duration
+        )
         anim_text_opacity = Animation(
-            opacity=1, t=self.transition, duration=self.duration)
+            opacity=1, t=self.transition, duration=self.duration
+        )
         anim_icon_opacity = Animation(
-            opacity=0, t=self.transition, duration=self.duration)
+            opacity=0, t=self.transition, duration=self.duration
+        )
 
         anim_icon_opacity.start(current_item_button)
         anim_text_opacity.start(current_item_text)

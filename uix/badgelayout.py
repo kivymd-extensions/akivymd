@@ -2,7 +2,13 @@ from kivy.lang.builder import Builder
 from kivy.uix.widget import Widget
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.floatlayout import FloatLayout
-from kivy.properties import NumericProperty, ListProperty, StringProperty, BooleanProperty, OptionProperty
+from kivy.properties import (
+    NumericProperty,
+    ListProperty,
+    StringProperty,
+    BooleanProperty,
+    OptionProperty,
+)
 from kivy.metrics import dp
 from kivy.clock import Clock
 from kivymd.theming import ThemableBehavior
@@ -80,8 +86,8 @@ class BadgeItem(ThemableBehavior, BoxLayout):
     bg_color = ListProperty()
     badgeitem_padding = NumericProperty()
     badgeitem_color = ListProperty()
-    position = OptionProperty('right', options=['right', 'left'])
-    text = StringProperty('')
+    position = OptionProperty("right", options=["right", "left"])
+    text = StringProperty("")
     bold = BooleanProperty()
     offset = NumericProperty()
     badge_disabled = BooleanProperty(False)
@@ -92,16 +98,17 @@ class AKBadgeLayout(FloatLayout):
     bg_color = ListProperty()
     badgeitem_padding = NumericProperty(dp(3))
     badgeitem_color = ListProperty()
-    position = StringProperty('right')
-    text = StringProperty('')
+    position = StringProperty("right")
+    text = StringProperty("")
     bold = BooleanProperty(False)
     offset = NumericProperty(0.25)
     badge_disabled = BooleanProperty(False)
 
     def add_widget(self, widget, index=0, canvas=None):
 
-        if issubclass(widget.__class__, BadgeItem) or\
-                issubclass(widget.__class__, BadgeContent):
+        if issubclass(widget.__class__, BadgeItem) or issubclass(
+            widget.__class__, BadgeContent
+        ):
 
             return super().add_widget(widget, index=index, canvas=canvas)
         else:
