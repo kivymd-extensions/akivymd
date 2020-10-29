@@ -29,36 +29,32 @@ Example
     Main().run()
 """
 
-from kivy.animation import Animation
 from kivy.clock import Clock
 from kivy.lang.builder import Builder
 from kivy.metrics import dp
 from kivy.properties import (
-    AliasProperty,
     ListProperty,
     NumericProperty,
-    ObjectProperty,
     OptionProperty,
     StringProperty,
 )
 from kivy.uix.behaviors import ButtonBehavior
-from kivy.uix.boxlayout import BoxLayout
 
 from kivymd.theming import ThemableBehavior
 from kivymd.uix.behaviors import MagicBehavior
+from kivymd.uix.boxlayout import MDBoxLayout
 
 Builder.load_string(
     """
-
 <_RaitingItem>
     size_hint: None, None
-    size: root.font_size+ root.item_spacing , root.font_size
-    magic_speed: 0.6
+    size: root.font_size + root.item_spacing, root.font_size
+    magic_speed: .6
 
     MDIcon:
         icon: root.icon
         theme_text_color: "Custom"
-        text_color : root.text_color
+        text_color: root.text_color if root.text_color else app.theme_cls.text_color
         font_size: root.font_size
         halign: "center"
         valign: "center"
@@ -67,19 +63,18 @@ Builder.load_string(
 <AKRating>
     size_hint: None, None
     size: self.minimum_size
-
-    """
+"""
 )
 
 
-class _RaitingItem(ButtonBehavior, BoxLayout, MagicBehavior):
+class _RaitingItem(ButtonBehavior, MDBoxLayout, MagicBehavior):
     icon = StringProperty()
     text_color = ListProperty()
     font_size = NumericProperty()
     item_spacing = NumericProperty()
 
 
-class AKRating(ThemableBehavior, BoxLayout):
+class AKRating(ThemableBehavior, MDBoxLayout):
     """
     :Events:
         :attr:`on_rate`
@@ -145,8 +140,9 @@ class AKRating(ThemableBehavior, BoxLayout):
     animation_type = OptionProperty(
         "twist", options=[False, "twist", "wobble", "shake", "grow"]
     )
-    """The animation type when an icon is clicked. The animations will be applied on active icons only.
-        Set to `False` for no animation. 
+    """The animation type when an icon is clicked. 
+    The animations will be applied on active icons only.
+    Set to `False` for no animation. 
 
     :attr:`animation_type` is an :class:`~kivy.properties.OptionProperty`
     and defaults to `twist`.
