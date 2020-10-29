@@ -1,14 +1,14 @@
-from kivy.lang.builder import Builder
-from kivy.uix.boxlayout import BoxLayout
-from kivy.properties import (
-    ListProperty,
-    StringProperty,
-    NumericProperty,
-    BooleanProperty,
-)
-from kivy.clock import Clock
 from kivy.animation import Animation
+from kivy.clock import Clock
+from kivy.lang.builder import Builder
+from kivy.properties import (
+    BooleanProperty,
+    ListProperty,
+    NumericProperty,
+    StringProperty,
+)
 from kivy.uix.behaviors import ButtonBehavior
+from kivy.uix.boxlayout import BoxLayout
 
 from kivymd.theming import ThemableBehavior
 
@@ -100,7 +100,9 @@ class AKNavigationrailItemBase(BoxLayout):
     pass
 
 
-class AKNavigationrailItem(ThemableBehavior, ButtonBehavior, AKNavigationrailItemBase):
+class AKNavigationrailItem(
+    ThemableBehavior, ButtonBehavior, AKNavigationrailItemBase
+):
     icon = StringProperty()
     text = StringProperty()
     text_color = ListProperty([0, 0, 0, 0])
@@ -211,7 +213,9 @@ class AKNavigationrail(ThemableBehavior, BoxLayout):
 
     def _set_ghost_pos(self, y, anim):
         if anim:
-            anim = Animation(_ghost_pos_y=y, t=self.transition, duration=self.duration)
+            anim = Animation(
+                _ghost_pos_y=y, t=self.transition, duration=self.duration
+            )
             anim.start(self)
         else:
             self._ghost_pos_y = y
@@ -221,7 +225,9 @@ class AKNavigationrail(ThemableBehavior, BoxLayout):
         if not self._selected:
             return
         Clock.schedule_once(
-            lambda x: self.set_current(self._selected, item_index=False, anim=False)
+            lambda x: self.set_current(
+                self._selected, item_index=False, anim=False
+            )
         )
         return
 
@@ -276,13 +282,17 @@ class AKNavigationrail(ThemableBehavior, BoxLayout):
     def _hide_text(self):
         for item in self.get_item_children():
             anim = Animation(
-                item_text_opacity=0, duration=self.duration / 2, t=self.transition
+                item_text_opacity=0,
+                duration=self.duration / 2,
+                t=self.transition,
             )
             anim.start(item)
 
     def _show_text(self):
         for item in self.get_item_children():
             anim = Animation(
-                item_text_opacity=1, duration=self.duration / 2, t=self.transition
+                item_text_opacity=1,
+                duration=self.duration / 2,
+                t=self.transition,
             )
             anim.start(item)

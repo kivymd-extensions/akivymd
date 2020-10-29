@@ -61,31 +61,17 @@ Test().run()
 
 For now we cannot specify dependencies in the `bulldozer.spec` specification file in the `garden_requirements` 
 (for example, like `components_requirements`) parameter. Instead, you must navigate to the root directory of your project,
-where the `bulldozer.spec` file is located, and issue the command:
+where the bulldozer.spec file is located, and issue the command:
 
 ```bash
 pip install kivymd-components
 components install --app akivymd
 ```
 
-and
-
-```bash
-buildozer android release
-```
-
 The component package will be installed locally in your project. Remember to import a package of components as follows:
 
 ```python
 from kivymd.components.akivymd.uix.widget import Widget
-```
-
-### Run demo
-
-```batch
-git clone git@github.com:kivymd-components/akivymd.git
-cd akivymd/demo
-python main.py
 ```
 
 ### Dependencies:

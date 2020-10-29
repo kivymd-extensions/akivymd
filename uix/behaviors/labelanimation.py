@@ -1,6 +1,6 @@
-from kivy.lang.builder import Builder
-from kivy.properties import NumericProperty, StringProperty, BooleanProperty
 from kivy.animation import Animation
+from kivy.lang.builder import Builder
+from kivy.properties import BooleanProperty, NumericProperty, StringProperty
 
 Builder.load_string(
     """
@@ -36,7 +36,9 @@ class AKAnimationBehaviorBase:
             _angle = 0
 
         if not self._first_text:
-            anim = Animation(_angle=_angle, duration=self.duartion, t=self.transition)
+            anim = Animation(
+                _angle=_angle, duration=self.duartion, t=self.transition
+            )
             anim.start(self)
 
         self._first_text = False

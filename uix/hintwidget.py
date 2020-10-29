@@ -1,14 +1,14 @@
+from kivy.animation import Animation
+from kivy.clock import Clock
+from kivy.core.window import Window
 from kivy.lang.builder import Builder
-from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import (
-    StringProperty,
+    BooleanProperty,
     NumericProperty,
     OptionProperty,
-    BooleanProperty,
+    StringProperty,
 )
-from kivy.clock import Clock
-from kivy.animation import Animation
-from kivy.core.window import Window
+from kivy.uix.boxlayout import BoxLayout
 
 Builder.load_string(
     """
@@ -72,7 +72,9 @@ class AKHintWidget(BoxLayout):
     def _show_hover(self, instance, pos):
         if self.collide_point(pos[0], pos[1]):
             self._set_hintwidget_pos(pos)
-            Clock.schedule_once(lambda x: self._change_opacity(1), self.show_delay)
+            Clock.schedule_once(
+                lambda x: self._change_opacity(1), self.show_delay
+            )
             self._state = "open"
         else:
             self._change_opacity(0)
@@ -123,7 +125,9 @@ class AKHintWidget(BoxLayout):
             if self.hintwidget_pos in ["tr", "br"]:
                 self._hintwidget_x = pos[0] + self.offset_x
             elif self.hintwidget_pos in ["tl", "bl"]:
-                self._hintwidget_x = pos[0] - self.offset_x - self.hintwidget_width
+                self._hintwidget_x = (
+                    pos[0] - self.offset_x - self.hintwidget_width
+                )
 
         if mag_top >= image_top:
             self._hintwidget_y = pos[1] - self.offset_y - self.hintwidget_height
@@ -133,7 +137,9 @@ class AKHintWidget(BoxLayout):
             if self.hintwidget_pos in ["tr", "tl"]:
                 self._hintwidget_y = pos[1] + self.offset_y
             elif self.hintwidget_pos in ["bl", "br"]:
-                self._hintwidget_y = pos[1] - self.offset_y - self.hintwidget_height
+                self._hintwidget_y = (
+                    pos[1] - self.offset_y - self.hintwidget_height
+                )
 
         # ===============
         if pos[0] > image_right:
@@ -180,7 +186,9 @@ class AKHintWidget(BoxLayout):
                 self._state = "open"
             else:
                 return super().on_touch_down(touch)
-            Clock.schedule_once(lambda x: self._change_opacity(opac), self.show_delay)
+            Clock.schedule_once(
+                lambda x: self._change_opacity(opac), self.show_delay
+            )
 
         return super().on_touch_down(touch)
 

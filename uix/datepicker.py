@@ -1,12 +1,9 @@
+from datetime import datetime
+
 from kivy.lang import Builder
+from kivy.properties import ListProperty, OptionProperty, StringProperty
 from kivy.uix.behaviors import ButtonBehavior
 from kivy.uix.boxlayout import BoxLayout
-from kivy.properties import (
-    StringProperty,
-    ListProperty,
-    OptionProperty,
-)
-from datetime import datetime
 
 from kivymd.theming import ThemableBehavior
 from kivymd.uix.behaviors import RectangularRippleBehavior
@@ -206,7 +203,9 @@ class AKDatePicker(BaseDialog, ThemableBehavior):
 
         try:
             date = datetime(
-                int(self._year_title), int(self._month_title), int(self._day_title)
+                int(self._year_title),
+                int(self._month_title),
+                int(self._day_title),
             )
         except BaseException:
             date = False

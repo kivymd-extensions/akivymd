@@ -1,18 +1,14 @@
-from kivy.lang.builder import Builder
-from kivy.uix.boxlayout import BoxLayout
 from kivy.animation import Animation
-from kivy.properties import (
-    NumericProperty,
-    ListProperty,
-    StringProperty,
-)
 from kivy.clock import Clock
-from kivy.metrics import dp
 from kivy.core.window import Window
+from kivy.lang.builder import Builder
+from kivy.metrics import dp
+from kivy.properties import ListProperty, NumericProperty, StringProperty
+from kivy.uix.boxlayout import BoxLayout
 
+from kivymd.theming import ThemableBehavior
 from kivymd.uix.button import MDIconButton
 from kivymd.uix.label import MDLabel
-from kivymd.theming import ThemableBehavior
 
 __all__ = ("AKBottomNavigation",)
 
@@ -155,9 +151,13 @@ class AKBottomNavigation(ThemableBehavior, BoxLayout):
             self.ids._text_bar.add_widget(label)
             self.ids._buttons_bar.add_widget(button)
             but_pos += section_x
-        self.ids._bubble.bubble_x = Window.size[0] * self.ids._buttons_bar.children[
-            self._selected
-        ].pos_hint["center_x"] - dp(56)
+        self.ids._bubble.bubble_x = Window.size[
+            0
+        ] * self.ids._buttons_bar.children[self._selected].pos_hint[
+            "center_x"
+        ] - dp(
+            56
+        )
         self.ids._buttons_bar.children[self._selected].opacity = 0
         self.ids._text_bar.children[self._selected].opacity = 1
 

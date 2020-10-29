@@ -1,5 +1,4 @@
-from kivy.utils import platform
-from kivy.utils import get_hex_from_color
+from kivy.utils import get_hex_from_color, platform
 
 
 def change_statusbar_color(statuscolor, icons_color="Light"):

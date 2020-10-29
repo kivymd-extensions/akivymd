@@ -1,13 +1,13 @@
-from kivy.lang.builder import Builder
-from kivy.uix.widget import Widget
-from kivy.properties import (
-    NumericProperty,
-    ListProperty,
-    StringProperty,
-    BooleanProperty,
-)
 from kivy.animation import Animation
 from kivy.clock import Clock
+from kivy.lang.builder import Builder
+from kivy.properties import (
+    BooleanProperty,
+    ListProperty,
+    NumericProperty,
+    StringProperty,
+)
+from kivy.uix.widget import Widget
 
 from kivymd.theming import ThemableBehavior
 
@@ -193,24 +193,26 @@ class AKSpinnerDoubleBounce(AKSpinnerBase):
 
     def _start_animate(self, size):
         self.anim0 = Animation(
-            _circle_size1=[size, size], opacity=1, t="out_quad", duration=self.speed
+            _circle_size1=[size, size],
+            opacity=1,
+            t="out_quad",
+            duration=self.speed,
         )
 
-        self.anim1 = (
-            Animation(
-                _circle_size1=[size / 2, size / 2], t='in_quad', duration=self.speed
-            )
-            + Animation(
-                _circle_size1=[size, size], t='out_quad', duration=self.speed
-            )
+        self.anim1 = Animation(
+            _circle_size1=[size / 2, size / 2], t="in_quad", duration=self.speed
+        ) + Animation(
+            _circle_size1=[size, size], t="out_quad", duration=self.speed
         )
+
         self.anim2 = (
             Animation(
-                _circle_size2=[size / 2, size / 2], opacity=1, t='in_quad', duration=self.speed
+                _circle_size2=[size / 2, size / 2],
+                opacity=1,
+                t="in_quad",
+                duration=self.speed,
             )
-            + Animation(
-                _circle_size2=[0, 0], t='out_quad', duration=self.speed
-            )
+            + Animation(_circle_size2=[0, 0], t="out_quad", duration=self.speed)
         )
         self.anim1.repeat = True
         self.anim2.repeat = True
@@ -284,16 +286,28 @@ class AKSpinnerFoldingCube(AKSpinnerBase):
                 t=self.animation,
             )
             + Animation(
-                _cubeitem4=[0, size], _cube4a=0, duration=self.speed, t=self.animation
+                _cubeitem4=[0, size],
+                _cube4a=0,
+                duration=self.speed,
+                t=self.animation,
             )
             + Animation(
-                _cubeitem3=[size, 0], _cube3a=0, duration=self.speed, t=self.animation
+                _cubeitem3=[size, 0],
+                _cube3a=0,
+                duration=self.speed,
+                t=self.animation,
             )
             + Animation(
-                _cubeitem2=[0, size], _cube2a=0, duration=self.speed, t=self.animation
+                _cubeitem2=[0, size],
+                _cube2a=0,
+                duration=self.speed,
+                t=self.animation,
             )
             + Animation(
-                _cubeitem1=[size, 0], _cube1a=0, duration=self.speed, t=self.animation
+                _cubeitem1=[size, 0],
+                _cube1a=0,
+                duration=self.speed,
+                t=self.animation,
             )
         )
         self.cube_fold.repeat = True
@@ -309,10 +323,18 @@ class AKSpinnerFoldingCube(AKSpinnerBase):
         size /= 2
         self.cube_fold.cancel_all(self)
         self.cube_stop = (
-            Animation(_cubeitem4=[0, size], _cube4a=0, duration=0.1, t=self.animation)
-            + Animation(_cubeitem3=[size, 0], _cube3a=0, duration=0.1, t=self.animation)
-            + Animation(_cubeitem2=[0, size], _cube2a=0, duration=0.1, t=self.animation)
-            + Animation(_cubeitem1=[size, 0], _cube1a=0, duration=0.1, t=self.animation)
+            Animation(
+                _cubeitem4=[0, size], _cube4a=0, duration=0.1, t=self.animation
+            )
+            + Animation(
+                _cubeitem3=[size, 0], _cube3a=0, duration=0.1, t=self.animation
+            )
+            + Animation(
+                _cubeitem2=[0, size], _cube2a=0, duration=0.1, t=self.animation
+            )
+            + Animation(
+                _cubeitem1=[size, 0], _cube1a=0, duration=0.1, t=self.animation
+            )
         )
         self.cube_stop.start(self)
 
@@ -344,7 +366,9 @@ class AKSpinnerThreeDots(AKSpinnerBase):
                 duration=self.speed,
                 t=self.animation,
             )
-            + Animation(_circle_size1=[0, 0], duration=self.speed, t=self.animation)
+            + Animation(
+                _circle_size1=[0, 0], duration=self.speed, t=self.animation
+            )
             + Animation(duration=self.speed)
         )
 
@@ -355,7 +379,9 @@ class AKSpinnerThreeDots(AKSpinnerBase):
                 duration=self.speed,
                 t=self.animation,
             )
-            + Animation(_circle_size2=[0, 0], duration=self.speed, t=self.animation)
+            + Animation(
+                _circle_size2=[0, 0], duration=self.speed, t=self.animation
+            )
             + Animation(duration=self.speed)
         )
 
@@ -366,7 +392,9 @@ class AKSpinnerThreeDots(AKSpinnerBase):
                 duration=self.speed,
                 t=self.animation,
             )
-            + Animation(_circle_size3=[0, 0], duration=self.speed, t=self.animation)
+            + Animation(
+                _circle_size3=[0, 0], duration=self.speed, t=self.animation
+            )
             + Animation(duration=self.speed)
         )
 

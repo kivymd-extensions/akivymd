@@ -1,10 +1,10 @@
+from kivy.animation import Animation
 from kivy.properties import (
     ListProperty,
     NumericProperty,
-    StringProperty,
     OptionProperty,
+    StringProperty,
 )
-from kivy.animation import Animation
 
 from kivymd.utils import asynckivy
 
@@ -13,7 +13,9 @@ class AKAddWidgetAnimationBehavior:
     items = ListProperty()
     speed = NumericProperty(0.05)
     animation_duration = NumericProperty(0.15)
-    transition = OptionProperty("fade_size", options=["fade", "fade_size", "size"])
+    transition = OptionProperty(
+        "fade_size", options=["fade", "fade_size", "size"]
+    )
     direction = OptionProperty("vertical", options=["horizontal", "vertical"])
     animation = StringProperty("out_quad")
 
@@ -25,7 +27,9 @@ class AKAddWidgetAnimationBehavior:
                 if "fade" in self.transition:
                     x.opacity = 0
                     anim = Animation(
-                        opacity=1, duration=self.animation_duration, t=self.animation
+                        opacity=1,
+                        duration=self.animation_duration,
+                        t=self.animation,
                     )
 
                 if "size" in self.transition:
