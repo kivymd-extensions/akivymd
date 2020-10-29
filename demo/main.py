@@ -8,6 +8,7 @@ from kivymd.app import MDApp
 from kivy.lang import Builder
 
 from kivymd.uix.list import OneLineAvatarListItem
+import kivymd.components.akivymd
 
 from akivymd.uix.statusbarcolor import change_statusbar_color
 
