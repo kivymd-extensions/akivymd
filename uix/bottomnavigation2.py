@@ -11,7 +11,9 @@ from kivy.properties import (
     StringProperty,
 )
 from kivy.uix.behaviors import ButtonBehavior
-from kivy.uix.boxlayout import BoxLayout
+
+from kivymd.theming import ThemableBehavior
+from kivymd.uix.boxlayout import MDBoxLayout
 
 Builder.load_string(
     """
@@ -50,7 +52,7 @@ Builder.load_string(
             theme_text_color: "Custom"
             text_color: root.icon_color if root.icon_color else app.theme_cls.primary_dark
 
-    FloatLayout:
+    MDFloatLayout:
         id: _float
         size_hint_x: None
         width: root.width- _icon.width
@@ -65,11 +67,12 @@ Builder.load_string(
             size_hint: None, None
             size: self.texture_size
             pos_hint: {"center_y": .5}
-            x: _float.x + (_float.width - _label.width) / 2  - (root.height - _icon.font_size) / 2
+            x: _float.x + (_float.width - _label.width) / 2 - (root.height - _icon.font_size) / 2
 
 <AKBottomNavigation2>:
     size_hint: None, None
     height: root.bottomnavigation_height
+
     canvas.before:
         Color:
             rgba: root.bg_color if root.bg_color else app.theme_cls.bg_darkest
@@ -78,13 +81,13 @@ Builder.load_string(
             size: self.size
             radius: [root.radius, root.radius, 0, 0]
 
-    BoxLayout:
+    MDBoxLayout:
         id: _button_box
 """
 )
 
 
-class Button_Item(ThemableBehavior, ButtonBehavior, BoxLayout):
+class Button_Item(ThemableBehavior, ButtonBehavior, MDBoxLayout):
     transition = StringProperty("out_quad")
     duration = NumericProperty(0.3)
     button_bg_color = ListProperty(None)
@@ -99,7 +102,6 @@ class Button_Item(ThemableBehavior, ButtonBehavior, BoxLayout):
     mode = OptionProperty(
         "color_on_normal", options=["color_on_normal", "color_on_active"]
     )
-    # ================
     badgeitem_size = NumericProperty(dp(20))
     badge_bg_color = ListProperty()
     badgeitem_padding = NumericProperty(dp(3))
@@ -158,7 +160,7 @@ class Button_Item(ThemableBehavior, ButtonBehavior, BoxLayout):
         but_anim.start(self)
 
 
-class AKBottomNavigation2(ThemableBehavior, BoxLayout):
+class AKBottomNavigation2(ThemableBehavior, MDBoxLayout):
     bottomnavigation_height = NumericProperty("65dp")
     radius = NumericProperty("20dp")
     bg_color = ListProperty(None)
