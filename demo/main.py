@@ -1,7 +1,8 @@
 import os
 import sys
 
-import kivymd.components.akivymd
+sys.path.append(os.path.abspath(os.path.dirname(__file__)).rsplit("akivymd", 1)[0])
+
 from kivy.factory import Factory
 from kivy.lang import Builder
 from kivymd.app import MDApp
@@ -31,8 +32,6 @@ from screens import (
     statusbarcolor,
     windows,
 )
-
-sys.path.append(os.path.dirname(__file__).split("akivymd")[0])
 
 
 kv = """
