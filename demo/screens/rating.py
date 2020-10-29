@@ -1,41 +1,37 @@
 from kivy.lang.builder import Builder
-from kivy.uix.screenmanager import Screen
 
-from akivymd.uix.rating import AKRating
+from kivymd.uix.screen import MDScreen
 
 Builder.load_string(
     """
-<Rating>:
-    name: 'Rating'
-    BoxLayout:
-        orientation: 'vertical'
-        MDToolbar:
-            title: root.name
-            left_action_items:[['arrow-left' , lambda x:app.show_screen('Home','back') ]]
+<Rating>
+    name: "Rating"
 
-        FloatLayout:
-            AKRating:
-                normal_icon: 'star-circle-outline'
-                active_icon: 'star-circle'
-                pos_hint: {'center_x': .5, 'center_y': .3}
-                on_rate: print(self.get_rate())
+    MDToolbar:
+        title: root.name
+        left_action_items: [["arrow-left", lambda x: app.show_screen("Home", "back")]]
+        pos_hint: {"top": 1}
 
-            AKRating:
-                pos_hint: {'center_x': .5, 'center_y': .5}
-                on_rate: print(self.get_rate())  
-                direction: 'rl'
+    AKRating:
+        direction: "lr"
+        pos_hint: {"center_x": .5, "center_y": .35}
+        on_rate: print(self.get_rate())
 
-            AKRating:
-                normal_icon: 'star-box-outline'
-                active_icon: 'star-box'
-                active_color: 1,0,0.4,1
-                animation_type: 'grow'    
-                pos_hint: {'center_x': .5, 'center_y': .7}
-                on_rate: print(self.get_rate())  
+    AKRating:
+        direction: "rl"
+        animation_type: "wobble"
+        pos_hint: {"center_x": .5, "center_y": .45}
+        on_rate: print(self.get_rate())
 
-    """
+    AKRating:
+        animation_type: "shake"
+        active_color: app.theme_cls.primary_color
+        icon_size: "45dp"
+        pos_hint: {"center_x": .5, "center_y": .55}
+        on_rate: print(self.get_rate())
+"""
 )
 
 
-class Rating(Screen):
+class Rating(MDScreen):
     pass
