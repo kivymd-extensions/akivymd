@@ -1,4 +1,5 @@
 from kivy.lang.builder import Builder
+from kivy.factory import Factory
 
 from kivymd.uix.screen import MDScreen
 
@@ -144,7 +145,7 @@ class Dialogs(MDScreen):
         dialog = AKAlertDialog(
             header_icon="check-circle-outline", header_bg=[0, 0.7, 0, 1]
         )
-        content = SuccessDialog()
+        content = Factory.SuccessDialog()
         content.ids.button.bind(on_release=dialog.dismiss)
         dialog.content_cls = content
         dialog.open()
@@ -153,7 +154,7 @@ class Dialogs(MDScreen):
         dialog = AKAlertDialog(
             header_icon="close-circle-outline", header_bg=[0.9, 0, 0, 1]
         )
-        content = ErrorDialog()
+        content = Factory.ErrorDialog()
         content.ids.button.bind(on_release=dialog.dismiss)
         dialog.content_cls = content
         dialog.open()
@@ -165,7 +166,7 @@ class Dialogs(MDScreen):
             progress_interval=3,
         )
         dialog.bind(on_progress_finish=dialog.dismiss)
-        content = WarningDialog()
+        content = Factory.WarningDialog()
         content.ids.submit.bind(on_release=dialog.dismiss)
         content.bind(on_release=dialog.dismiss)
         dialog.content_cls = content
@@ -177,13 +178,13 @@ class Dialogs(MDScreen):
             progress_interval=5,
             fixed_orientation="landscape",
             pos_hint={"right": 1, "y": 0.05},
-            radius=0,
+            dialog_radius=0,
             opening_duration=5,
             size_landscape=["350dp", "70dp"],
             header_width_landscape="70dp",
         )
         dialog.bind(on_progress_finish=dialog.dismiss)
-        content = Notification()
+        content = Factory.Notification()
         content.ids.button.bind(on_release=dialog.dismiss)
         dialog.content_cls = content
         dialog.open()
@@ -194,14 +195,14 @@ class Dialogs(MDScreen):
             progress_interval=5,
             fixed_orientation="landscape",
             pos_hint={"center_x": 0.5, "top": 0.95},
-            radius=0,
+            dialog_radius=0,
             size_landscape=["300dp", "70dp"],
             header_font_size="40dp",
             header_width_landscape="50dp",
             progress_color=[0.4, 0.1, 1, 1],
         )
         dialog.bind(on_progress_finish=dialog.dismiss)
-        content = Notification()
+        content = Factory.Notification()
         content.ids.button.bind(on_release=dialog.dismiss)
         dialog.content_cls = content
         dialog.open()

@@ -39,13 +39,13 @@ Builder.load_string(
             RoundedRectangle:
                 pos: self.pos
                 size: self.size
-                radius: [root.radius,]
+                radius: [root.dialog_radius,]
 
         canvas.after:
             Color:
                 rgba: root.progress_color if root.progress_color else root.theme_cls.primary_dark
             RoundedRectangle:
-                pos: self.pos[0] + root.radius , self.pos[1] + root.height - root.progress_width
+                pos: self.pos[0] + root.dialog_radius , self.pos[1] + root.height - root.progress_width
                 size: root._progress_value , root.progress_width
                 radius: [root.progress_width/2,]
 
@@ -65,8 +65,8 @@ Builder.load_string(
                 RoundedRectangle:
                     pos: self.pos
                     size: self.size
-                    radius: [root.radius, root.radius, 0, 0] if root._orientation == 'portrait' \
-                        else [root.radius, 0, 0, root.radius]
+                    radius: [root.dialog_radius, root.dialog_radius, 0, 0] if root._orientation == 'portrait' \
+                        else [root.dialog_radius, 0, 0, root.dialog_radius]
 
             MDLabel:
                 font_style: "Icon" if root.header_text_type=='icon' else "Body1"
@@ -91,7 +91,7 @@ class MainAlertBox(RectangularElevationBehavior, BoxLayout):
 
 
 class AKAlertDialog(BaseDialog):
-    radius = NumericProperty("10dp")
+    dialog_radius = NumericProperty("10dp")
     bg_color = ListProperty()
     size_portrait = ListProperty(["250dp", "350dp"])
     size_landscape = ListProperty(["400dp", "250dp"])
@@ -235,7 +235,7 @@ class AKAlertDialog(BaseDialog):
     def _start_progress(self):
         if not self.progress_interval:
             return
-        max_width = self.size[0] - self.radius * 2
+        max_width = self.size[0] - self.dialog_radius * 2
         anim = Animation(
             _progress_value=max_width, duration=self.progress_interval
         )
