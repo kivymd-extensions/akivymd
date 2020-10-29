@@ -1,21 +1,38 @@
 import os
 import sys
 
-sys.path.append(os.path.dirname(__file__).split("akivymd")[0])
-
-from kivy.factory import Factory
-from kivymd.app import MDApp
-from kivy.lang import Builder
-
-from kivymd.uix.list import OneLineAvatarListItem
 import kivymd.components.akivymd
+from kivy.factory import Factory
+from kivy.lang import Builder
+from kivymd.app import MDApp
+from kivymd.uix.list import OneLineAvatarListItem
 
 from akivymd.uix.statusbarcolor import change_statusbar_color
+from screens import (
+    addwidget,
+    badgelayout,
+    bottomappbar,
+    bottomnavigation,
+    dataloader,
+    datepicker,
+    dialogs,
+    hintwidget,
+    imageviewer,
+    labelanimation,
+    navigationrail,
+    onboarding,
+    piechart,
+    progressbutton,
+    progresswidget,
+    rating,
+    selectionlist,
+    silverappbar,
+    spinners,
+    statusbarcolor,
+    windows,
+)
 
-from screens import bottomnavigation, spinners, dataloader, selectionlist, piechart,\
-    imageviewer, onboarding, progressbutton, silverappbar, badgelayout, addwidget, bottomappbar,\
-    labelanimation, statusbarcolor, datepicker, progresswidget, hintwidget, windows, navigationrail,\
-    dialogs
+sys.path.append(os.path.dirname(__file__).split("akivymd")[0])
 
 
 kv = """
@@ -108,6 +125,7 @@ class DemoApp(MDApp):
         "Windows",
         "Navigationrail",
         "Dialogs",
+        "Rating",
     ]
     intro = """Here is where you can find all of the widgets. take a look at 
     screens folder to find exmples of how to use them. I will gradually add 
