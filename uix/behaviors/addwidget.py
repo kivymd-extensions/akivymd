@@ -24,7 +24,6 @@ class AKAddWidgetAnimationBehavior:
 
         async def add_item():
             for x in self.items:
-
                 if "fade" in self.transition:
                     x.opacity = 0
                     anim = Animation(

@@ -13,15 +13,12 @@ from kivy.properties import (
 from kivy.uix.behaviors import ButtonBehavior
 from kivy.uix.boxlayout import BoxLayout
 
-from akivymd.uix.badgelayout import AKBadgeLayout
-from kivymd.theming import ThemableBehavior
-
 Builder.load_string(
     """
 <Button_Item>
     size_hint: None, None
-    size: root.button_height , root.button_height
-    pos_hint: {'center_x': .5, 'center_y': .5}
+    size: root.button_height, root.button_height
+    pos_hint: {"center_x": .5, "center_y": .5}
 
     canvas.before:
         Color:
@@ -30,7 +27,7 @@ Builder.load_string(
         RoundedRectangle:
             size: self.size
             pos: self.pos
-            radius: [self.height/2,]
+            radius: [self.height / 2,]
 
     AKBadgeLayout:
         badgeitem_size: root.badgeitem_size
@@ -46,11 +43,11 @@ Builder.load_string(
         MDIcon:
             id: _icon
             icon: root.icon
-            halign: 'center'
+            halign: "center"
             size_hint: None, None
             size: root.height, root.height
             font_size: root.icon_size
-            theme_text_color: 'Custom'
+            theme_text_color: "Custom"
             text_color: root.icon_color if root.icon_color else app.theme_cls.primary_dark
 
     FloatLayout:
@@ -62,13 +59,13 @@ Builder.load_string(
             id: _label
             text: root.text
             opacity: 0
-            halign: 'center'
+            halign: "center"
             color: root.text_color if root.text_color else app.theme_cls.primary_dark
             font_size: root.text_size
             size_hint: None, None
             size: self.texture_size
-            pos_hint: {'center_y': .5}
-            x: _float.x + (_float.width- _label.width)/2  - (root.height- _icon.font_size)/2
+            pos_hint: {"center_y": .5}
+            x: _float.x + (_float.width - _label.width) / 2  - (root.height - _icon.font_size) / 2
 
 <AKBottomNavigation2>:
     size_hint: None, None
@@ -79,7 +76,7 @@ Builder.load_string(
         RoundedRectangle:
             pos: self.pos
             size: self.size
-            radius: [root.radius, root.radius, 0,0]
+            radius: [root.radius, root.radius, 0, 0]
 
     BoxLayout:
         id: _button_box
