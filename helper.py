@@ -1,4 +1,4 @@
-from math import cos, sin, radians
+from math import cos, radians, sin
 
 
 def point_on_circle(degree, center, dis):

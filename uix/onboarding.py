@@ -1,18 +1,18 @@
-from kivy.lang import Builder
+from kivy.animation import Animation
 from kivy.clock import Clock
+from kivy.core.window import Window
+from kivy.event import EventDispatcher
+from kivy.lang import Builder
+from kivy.metrics import dp
+from kivy.properties import (
+    BooleanProperty,
+    ListProperty,
+    NumericProperty,
+    StringProperty,
+)
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.carousel import Carousel
 from kivy.uix.widget import Widget
-from kivy.properties import (
-    NumericProperty,
-    BooleanProperty,
-    StringProperty,
-    ListProperty,
-)
-from kivy.core.window import Window
-from kivy.animation import Animation
-from kivy.event import EventDispatcher
-from kivy.metrics import dp
 
 from kivymd.theming import ThemableBehavior
 
@@ -102,7 +102,9 @@ class MyCarousel(ThemableBehavior, Carousel):
 
         for _ in range(self.total_circles + 1):
             self.parent.ids.circles_box.add_widget(
-                ItemCircles(width=self.parent.circles_size, _circles_color=circle_color)
+                ItemCircles(
+                    width=self.parent.circles_size, _circles_color=circle_color
+                )
             )
 
         self._current_circle = self.total_circles
@@ -130,15 +132,17 @@ class MyCarousel(ThemableBehavior, Carousel):
         if animation:
             width = self.parent.ids.ghost_circle.width
             anim = Animation(
-                pos=self.parent.ids.circles_box.children[self._current_circle].pos,
+                pos=self.parent.ids.circles_box.children[
+                    self._current_circle
+                ].pos,
                 t=self.anim_type,
                 duration=self.anim_move_duration,
             )
             anim.start(self.parent.ids.ghost_circle)
         else:
-            self.parent.ids.ghost_circle.pos = self.parent.ids.circles_box.children[
-                self._current_circle
-            ].pos
+            self.parent.ids.ghost_circle.pos = (
+                self.parent.ids.circles_box.children[self._current_circle].pos
+            )
 
     def on_touch_up(self, touch):
         if abs(self._offset) > self.width * self.min_move:

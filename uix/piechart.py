@@ -1,22 +1,21 @@
+from kivy.animation import Animation
+from kivy.clock import Clock
+from kivy.graphics import Color, Ellipse
 from kivy.lang.builder import Builder
-from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import (
+    BooleanProperty,
     ListProperty,
     NumericProperty,
-    StringProperty,
-    BooleanProperty,
     OptionProperty,
+    StringProperty,
 )
-from kivy.clock import Clock
-from kivy.graphics import Ellipse, Color
+from kivy.uix.boxlayout import BoxLayout
 from kivy.utils import get_color_from_hex
-from kivy.animation import Animation
-
-from kivymd.uix.label import MDLabel
-from kivymd.color_definitions import palette, colors
-from kivymd.theming import ThemableBehavior
 
 from akivymd.helper import point_on_circle
+from kivymd.color_definitions import colors, palette
+from kivymd.theming import ThemableBehavior
+from kivymd.uix.label import MDLabel
 
 """issues
 color_mode
@@ -80,7 +79,8 @@ class AKPieChart(ThemableBehavior, BoxLayout):
 
         if self.order:
             new_items = {
-                k: v for k, v in sorted(new_items.items(), key=lambda item: item[1])
+                k: v
+                for k, v in sorted(new_items.items(), key=lambda item: item[1])
             }
 
         return new_items
@@ -94,7 +94,10 @@ class AKPieChart(ThemableBehavior, BoxLayout):
         angle_start = 0
         color_item = 0
         i = 1
-        circle_center = [self.pos[0] + self.size[0] / 2, self.pos[1] + self.size[1] / 2]
+        circle_center = [
+            self.pos[0] + self.size[0] / 2,
+            self.pos[1] + self.size[1] / 2,
+        ]
 
         for title, value in items.items():
             with self.canvas.before:
@@ -105,7 +108,9 @@ class AKPieChart(ThemableBehavior, BoxLayout):
                     alpha = 1
 
                 if self.color_mode == "colors":
-                    color = get_color_from_hex(colors[palette[color_item]]["500"])
+                    color = get_color_from_hex(
+                        colors[palette[color_item]]["500"]
+                    )
 
                 c = Color(rgb=color, a=alpha)
                 if self.starting_animation:
@@ -144,7 +149,9 @@ class AKPieChart(ThemableBehavior, BoxLayout):
                     circle_center,
                     self.size[0] / 3,
                 )
-                l = PieChartNumberLabel(x=label_pos[0], y=label_pos[1], title=title)
+                l = PieChartNumberLabel(
+                    x=label_pos[0], y=label_pos[1], title=title
+                )
                 anim_label = Animation(percent=value * 100 / 360)
                 anim_label.start(l)
             angle_start += value

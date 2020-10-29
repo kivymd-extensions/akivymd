@@ -1,14 +1,14 @@
 from kivy.lang.builder import Builder
+from kivy.metrics import dp
+from kivy.properties import (
+    BooleanProperty,
+    ListProperty,
+    NumericProperty,
+    OptionProperty,
+    StringProperty,
+)
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.floatlayout import FloatLayout
-from kivy.properties import (
-    NumericProperty,
-    ListProperty,
-    StringProperty,
-    BooleanProperty,
-    OptionProperty,
-)
-from kivy.metrics import dp
 
 from kivymd.theming import ThemableBehavior
 

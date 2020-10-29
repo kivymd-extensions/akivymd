@@ -1,17 +1,17 @@
+from kivy.animation import Animation
+from kivy.clock import Clock
+from kivy.core.window import Window
 from kivy.lang.builder import Builder
+from kivy.properties import (
+    BooleanProperty,
+    ListProperty,
+    NumericProperty,
+    ObjectProperty,
+    StringProperty,
+)
+from kivy.uix.behaviors import ButtonBehavior
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.floatlayout import FloatLayout
-from kivy.properties import (
-    NumericProperty,
-    StringProperty,
-    ListProperty,
-    BooleanProperty,
-    ObjectProperty,
-)
-from kivy.clock import Clock
-from kivy.animation import Animation
-from kivy.core.window import Window
-from kivy.uix.behaviors import ButtonBehavior
 
 from kivymd.theming import ThemableBehavior
 from kivymd.uix.behaviors import RectangularElevationBehavior
@@ -113,7 +113,9 @@ class HeaderButton(ThemableBehavior, ButtonBehavior, BoxLayout):
     button_text_color = ListProperty()
 
 
-class AKFloatingWindow(ThemableBehavior, RectangularElevationBehavior, BoxLayout):
+class AKFloatingWindow(
+    ThemableBehavior, RectangularElevationBehavior, BoxLayout
+):
     _window_active = BooleanProperty(False)
     header_height = NumericProperty("20dp")
     header_color_normal = ListProperty()
@@ -197,10 +199,14 @@ class AKFloatingWindow(ThemableBehavior, RectangularElevationBehavior, BoxLayout
         exit_pos = [-self.width, -self.height]
 
         if self.fade_exit:
-            anim = Animation(
-                opacity=0, t=self.animation_transition, duration=self.animation_duration
-            ) + Animation(pos=exit_pos, duration=0)
-            anim.start(self)
+            (
+                Animation(
+                    opacity=0,
+                    t=self.animation_transition,
+                    duration=self.animation_duration,
+                )
+                + Animation(pos=exit_pos, duration=0)
+            ).start(self)
         else:
             self.opacity = 0
             self.pos = exit_pos
@@ -217,7 +223,9 @@ class AKFloatingWindow(ThemableBehavior, RectangularElevationBehavior, BoxLayout
 
         if self.fade_open:
             anim = Animation(pos=self.open_position, duration=0) + Animation(
-                opacity=1, t=self.animation_transition, duration=self.animation_duration
+                opacity=1,
+                t=self.animation_transition,
+                duration=self.animation_duration,
             )
             anim.start(self)
         else:
@@ -368,7 +376,10 @@ class AKFloatingWindowLayout(ThemableBehavior, FloatLayout):
             touch_pos = touch.pos
             top_window = self._get_top_window()
             top_window_pos = top_window.pos
-            top_window.pos = [touch_pos[0] - self._x_dist, touch_pos[1] - self._y_dist]
+            top_window.pos = [
+                touch_pos[0] - self._x_dist,
+                touch_pos[1] - self._y_dist,
+            ]
         return super().on_touch_move(touch)
 
     def _bring_to_front(self, window):
