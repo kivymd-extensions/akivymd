@@ -1,7 +1,7 @@
 from kivy.lang.builder import Builder
 from kivy.uix.screenmanager import Screen
 
-from kivymd.components.akivymd.uix.rating import AKRating
+from akivymd.uix.rating import AKRating
 
 Builder.load_string(
     """
