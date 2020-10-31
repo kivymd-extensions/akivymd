@@ -68,10 +68,24 @@ pip install kivymd-components
 components install --app akivymd
 ```
 
+and
+
+```bash
+buildozer android release
+```
+
 The component package will be installed locally in your project. Remember to import a package of components as follows:
 
 ```python
 from kivymd.components.akivymd.uix.widget import Widget
+```
+
+### Run demo
+
+```bash
+git clone git@github.com:kivymd-components/akivymd.git
+cd akivymd/demo
+python main.py
 ```
 
 ### Dependencies:
