@@ -2,7 +2,7 @@ from kivy.lang.builder import Builder
 from kivy.metrics import dp
 from kivymd.uix.screen import MDScreen
 
-from akivymd.uix.piechart import AKPieChart
+from kivymd_extensions.akivymd.uix.piechart import AKPieChart
 
 Builder.load_string(
     """

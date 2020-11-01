@@ -2,7 +2,7 @@ from kivy.lang.builder import Builder
 from kivy.uix.screenmanager import Screen
 from kivymd.uix.list import MDList, OneLineListItem
 
-from akivymd.uix.behaviors.addwidget import AKAddWidgetAnimationBehavior
+from kivymd_extensions.akivymd.uix.behaviors.addwidget import AKAddWidgetAnimationBehavior
 
 Builder.load_string(
     """

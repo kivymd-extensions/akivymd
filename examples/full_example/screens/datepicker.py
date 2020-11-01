@@ -1,7 +1,7 @@
 from kivy.lang.builder import Builder
 from kivy.uix.screenmanager import Screen
 
-from akivymd.uix.datepicker import AKDatePicker
+from kivymd_extensions.akivymd.uix.datepicker import AKDatePicker
 
 Builder.load_string(
     """

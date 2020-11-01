@@ -2,7 +2,7 @@ from kivy.factory import Factory
 from kivy.lang.builder import Builder
 from kivymd.uix.screen import MDScreen
 
-from akivymd.uix.dialogs import AKAlertDialog
+from kivymd_extensions.akivymd.uix.dialogs import AKAlertDialog
 
 Builder.load_string(
     """

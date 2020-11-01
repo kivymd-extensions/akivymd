@@ -1,7 +1,7 @@
 from kivy.lang.builder import Builder
 from kivymd.uix.screen import MDScreen
 
-from akivymd.uix.imageview import AKImageViewer, AKImageViewerItem
+from kivymd_extensions.akivymd.uix.imageview import AKImageViewer, AKImageViewerItem
 
 Builder.load_string(
     """

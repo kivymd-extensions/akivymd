@@ -2,7 +2,7 @@ from kivy.lang.builder import Builder
 from kivymd.toast import toast
 from kivymd.uix.screen import MDScreen
 
-from akivymd.uix.selectionlist import AKSelectListAvatarItem
+from kivymd_extensions.akivymd.uix.selectionlist import AKSelectListAvatarItem
 
 Builder.load_string(
     """

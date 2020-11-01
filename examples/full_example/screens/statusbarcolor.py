@@ -1,7 +1,7 @@
 from kivy.lang.builder import Builder
 from kivymd.uix.screen import MDScreen
 
-from akivymd.uix.statusbarcolor import change_statusbar_color
+from kivymd_extensions.akivymd.uix.statusbarcolor import change_statusbar_color
 
 Builder.load_string(
     """

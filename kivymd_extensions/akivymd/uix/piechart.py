@@ -15,7 +15,7 @@ from kivymd.color_definitions import colors, palette
 from kivymd.theming import ThemableBehavior
 from kivymd.uix.label import MDLabel
 
-from akivymd.helper import point_on_circle
+from kivymd_extensions.akivymd.helper import point_on_circle
 
 """issues
 color_mode
