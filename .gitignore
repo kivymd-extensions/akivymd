@@ -1,10 +1,12 @@
-# Visual studio settings
-.vscode
+# Directories and files that cannot be commited to git
 
 # Byte-compiled
 __pycache__
 *.py[cod]
 *$py.class
+
+# C extensions
+*.so
 
 # Distribution / packaging
 .Python
@@ -23,6 +25,7 @@ eggs
 *.egg
 MANIFEST
 .installed.cfg
+downloads
 docs/_build
 build
 dist
@@ -35,11 +38,15 @@ pip-log.txt
 pip-delete-this-directory.txt
 
 # Editors
-.idea
 .vscode
 .ipynb_checkpoints
 *.swp
-*.code-workspace
+# PyCharm
+.idea/*
+!/.idea/*.iml
+!/.idea/modules.xml
+!/.idea/vcs.xml
+!/.idea/runConfigurations
 
 # Environments
 venv
@@ -48,12 +55,10 @@ env
 .env
 .python-version
 
-#  Temp / Cache
+# Temp / Cache
 cache
 .cache
 temp
 .temp
 .pytest_cache
 .coverage
-*.rst
-test.py

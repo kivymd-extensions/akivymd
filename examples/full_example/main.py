@@ -3,12 +3,11 @@ import sys
 
 sys.path.append(os.path.abspath(os.path.dirname(__file__)).rsplit("akivymd", 1)[0])
 
-from kivy.factory import Factory
 from kivy.lang import Builder
 from kivymd.app import MDApp
 from kivymd.uix.list import OneLineAvatarListItem
 
-from akivymd.uix.statusbarcolor import change_statusbar_color
+from kivymd_extensions.akivymd.uix.statusbarcolor import change_statusbar_color
 from screens import (
     addwidget,
     badgelayout,

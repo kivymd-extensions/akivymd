@@ -9,17 +9,24 @@ Awesome KivyMD is a package containing customized and non-material widgets for K
 ## Installation
 
 ```bash
-pip install kivymd-components
-components install akivymd
+pip install kivymd_extensions.example_extension
 ```
 
-## Usage
+### Dependencies:
+
+- [KivyMD](https://github.com/kivymd/KivyMD) >= 0.104.2 (from master branch)
+- [Kivy](https://github.com/kivy/kivy) >= 1.10.1 ([Installation](https://kivy.org/doc/stable/gettingstarted/installation.html))
+- [Python 3.6+](https://www.python.org/)
+
+## Documentation
+
+### Usage
 
 ```python
 from kivy.lang import Builder
 
 from kivymd.app import MDApp
-import kivymd.components.akivymd
+import kivymd_extensions.akivymd
 
 KV = """
 <NavigationButton@Button_Item>
@@ -57,49 +64,22 @@ class Test(MDApp):
 Test().run()
 ```
 
-## Usage with Buildozer
-
-For now we cannot specify dependencies in the `buildozer.spec` specification file in the `garden_requirements` 
-(for example, like `components_requirements`) parameter. Instead, you must navigate to the root directory of your project,
-where the buildozer.spec file is located, and issue the command:
+## Examples
 
 ```bash
-pip install kivymd-components
-components install --app akivymd
-```
-
-and
-
-```bash
-buildozer android release
-```
-
-The component package will be installed locally in your project. Remember to import a package of components as follows:
-
-```python
-from kivymd.components.akivymd.uix.widget import Widget
-```
-
-### Run demo
-
-```bash
-git clone git@github.com:kivymd-components/akivymd.git
-cd akivymd/demo
+git clone https://github.com/kivymd-extensions/akivymd.git
+cd akivymd
+cd examples/full_example
 python main.py
 ```
 
-### Dependencies:
-
-- [Kivy](https://github.com/kivy/kivy) >= 1.10.1 ([Installation](https://kivy.org/doc/stable/gettingstarted/installation.html))
-- [KivyMD](https://github.com/kivymd/KivyMD) >= 0.104.2 (`pip install https://github.com/kivymd/KivyMD/archive/master.zip
-`)
-- [Python 3.6+](https://www.python.org/) _(Python 2 not supported)_
-
-### Support
+## Support
 
 If you need assistance or you have a question, you can ask for help on our mailing list:
 
-- **Discord server:** https://discord.gg/RxbT5wF
+- **Discord server:** https://discord.gg/wu3qBST
+- _Email:_ kivydevelopment@gmail.com
 
 ## License
-[MIT](https://choosealicense.com/licenses/mit/)
+
+[MIT License](LICENSE)
