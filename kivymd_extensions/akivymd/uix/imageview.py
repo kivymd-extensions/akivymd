@@ -2,7 +2,6 @@ from kivy.animation import Animation
 from kivy.lang import Builder
 from kivy.properties import NumericProperty, ObjectProperty, StringProperty
 from kivy.uix.scatter import Scatter
-
 from kivymd.uix.dialog import BaseDialog
 
 Builder.load_string(

@@ -1,11 +1,10 @@
 import threading
 
 from kivy.lang import Builder
-from kivy.uix.screenmanager import Screen
 from kivy.network.urlrequest import UrlRequest
-
-from kivymd.uix.card import MDCard
+from kivy.uix.screenmanager import Screen
 from kivymd.toast import toast
+from kivymd.uix.card import MDCard
 
 Builder.load_string(
     """
@@ -120,10 +119,10 @@ class Dataloader(Screen):
     def send_request(self):
         url = "https://jsonplaceholder.typicode.com/"
 
-        user1 = UrlRequest(
+        UrlRequest(
             url + "users/1", self.set_user1, on_error=self.got_error, timeout=4
         )
-        user2 = UrlRequest(
+        UrlRequest(
             url + "users/2", self.set_user2, on_error=self.got_error, timeout=4
         )
         return True

@@ -1,8 +1,6 @@
 from kivy.lang.builder import Builder
 from kivy.uix.screenmanager import Screen
 
-from akivymd.uix.rating import AKRating
-
 Builder.load_string(
     """
 <Rating>:
@@ -22,16 +20,16 @@ Builder.load_string(
 
             AKRating:
                 pos_hint: {'center_x': .5, 'center_y': .5}
-                on_rate: print(self.get_rate())  
+                on_rate: print(self.get_rate())
                 direction: 'rl'
 
             AKRating:
                 normal_icon: 'star-box-outline'
                 active_icon: 'star-box'
                 active_color: 1,0,0.4,1
-                animation_type: 'grow'    
+                animation_type: 'grow'
                 pos_hint: {'center_x': .5, 'center_y': .7}
-                on_rate: print(self.get_rate())  
+                on_rate: print(self.get_rate())
 
     """
 )

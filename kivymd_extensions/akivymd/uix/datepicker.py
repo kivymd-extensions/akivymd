@@ -4,7 +4,6 @@ from kivy.lang import Builder
 from kivy.properties import ListProperty, OptionProperty, StringProperty
 from kivy.uix.behaviors import ButtonBehavior
 from kivy.uix.boxlayout import BoxLayout
-
 from kivymd.theming import ThemableBehavior
 from kivymd.uix.behaviors import RectangularRippleBehavior
 from kivymd.uix.dialog import BaseDialog

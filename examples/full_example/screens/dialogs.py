@@ -1,6 +1,5 @@
-from kivy.lang.builder import Builder
 from kivy.factory import Factory
-
+from kivy.lang.builder import Builder
 from kivymd.uix.screen import MDScreen
 
 from akivymd.uix.dialogs import AKAlertDialog

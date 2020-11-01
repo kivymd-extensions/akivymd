@@ -193,7 +193,6 @@ class AKHintWidget(BoxLayout):
         return super().on_touch_down(touch)
 
     def on_touch_up(self, touch):
-        pos = touch.pos
         if self.show_mode == "touch":
             if not self.auto_dismiss and self._state == "open":
                 opac = 1

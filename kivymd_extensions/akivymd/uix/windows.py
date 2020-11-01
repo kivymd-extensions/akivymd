@@ -12,7 +12,6 @@ from kivy.properties import (
 from kivy.uix.behaviors import ButtonBehavior
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.floatlayout import FloatLayout
-
 from kivymd.theming import ThemableBehavior
 from kivymd.uix.behaviors import RectangularElevationBehavior
 
@@ -375,7 +374,6 @@ class AKFloatingWindowLayout(ThemableBehavior, FloatLayout):
         if self._allow_move:
             touch_pos = touch.pos
             top_window = self._get_top_window()
-            top_window_pos = top_window.pos
             top_window.pos = [
                 touch_pos[0] - self._x_dist,
                 touch_pos[1] - self._y_dist,
@@ -391,7 +389,6 @@ class AKFloatingWindowLayout(ThemableBehavior, FloatLayout):
         self.add_widget(temp_window)
 
     def _get_top_window(self):
-        windows = self.children
         return self.children[0]
 
     def _get_clicked_window(self, touch_pos):

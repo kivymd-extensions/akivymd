@@ -5,7 +5,6 @@ from kivy.properties import (
     OptionProperty,
     StringProperty,
 )
-
 from kivymd.utils import asynckivy
 
 

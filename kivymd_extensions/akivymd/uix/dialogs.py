@@ -1,6 +1,6 @@
 from kivy.animation import Animation
 from kivy.clock import Clock
-from kivy.core.window import Window, WindowBase
+from kivy.core.window import Window
 from kivy.lang.builder import Builder
 from kivy.properties import (
     ListProperty,
@@ -11,7 +11,6 @@ from kivy.properties import (
 )
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.modalview import ModalView
-
 from kivymd.app import MDApp
 from kivymd.uix.behaviors import RectangularElevationBehavior
 from kivymd.uix.dialog import BaseDialog

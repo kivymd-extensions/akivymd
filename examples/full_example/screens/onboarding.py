@@ -1,5 +1,4 @@
 from kivy.lang.builder import Builder
-
 from kivymd.toast import toast
 from kivymd.uix.screen import MDScreen
 

@@ -5,7 +5,6 @@ from kivy.lang.builder import Builder
 from kivy.metrics import dp
 from kivy.properties import ListProperty, NumericProperty, StringProperty
 from kivy.uix.boxlayout import BoxLayout
-
 from kivymd.theming import ThemableBehavior
 from kivymd.uix.button import MDIconButton
 from kivymd.uix.label import MDLabel

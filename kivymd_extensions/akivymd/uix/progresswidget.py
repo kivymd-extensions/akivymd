@@ -8,7 +8,6 @@ from kivy.properties import (
     StringProperty,
 )
 from kivy.uix.boxlayout import BoxLayout
-
 from kivymd.theming import ThemableBehavior
 
 Builder.load_string(

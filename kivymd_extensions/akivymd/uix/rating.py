@@ -29,21 +29,17 @@ Example
     Main().run()
 """
 
-from kivy.animation import Animation
 from kivy.clock import Clock
 from kivy.lang.builder import Builder
 from kivy.metrics import dp
 from kivy.properties import (
-    AliasProperty,
     ListProperty,
     NumericProperty,
-    ObjectProperty,
     OptionProperty,
     StringProperty,
 )
 from kivy.uix.behaviors import ButtonBehavior
 from kivy.uix.boxlayout import BoxLayout
-
 from kivymd.theming import ThemableBehavior
 from kivymd.uix.behaviors import MagicBehavior
 
@@ -146,7 +142,7 @@ class AKRating(ThemableBehavior, BoxLayout):
         "twist", options=[False, "twist", "wobble", "shake", "grow"]
     )
     """The animation type when an icon is clicked. The animations will be applied on active icons only.
-        Set to `False` for no animation. 
+        Set to `False` for no animation.
 
     :attr:`animation_type` is an :class:`~kivy.properties.OptionProperty`
     and defaults to `twist`.

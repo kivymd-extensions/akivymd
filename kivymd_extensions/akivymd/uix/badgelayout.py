@@ -9,7 +9,6 @@ from kivy.properties import (
 )
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.floatlayout import FloatLayout
-
 from kivymd.theming import ThemableBehavior
 
 Builder.load_string(

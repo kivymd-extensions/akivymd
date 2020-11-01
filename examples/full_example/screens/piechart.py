@@ -1,6 +1,5 @@
 from kivy.lang.builder import Builder
 from kivy.metrics import dp
-
 from kivymd.uix.screen import MDScreen
 
 from akivymd.uix.piechart import AKPieChart
@@ -54,7 +53,7 @@ class Piechart(MDScreen):
         self.ids.chart_box.add_widget(self.piechart)
 
     def update_chart(self):
-        self.piechart.items = items = [{"Python": 70, "Dart": 10, "C#": 10, "Css": 10}]
+        self.piechart.items = [{"Python": 70, "Dart": 10, "C#": 10, "Css": 10}]
 
     def remove_chart(self):
         self.ids.chart_box.remove_widget(self.piechart)

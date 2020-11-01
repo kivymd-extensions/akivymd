@@ -11,11 +11,11 @@ from kivy.properties import (
 )
 from kivy.uix.boxlayout import BoxLayout
 from kivy.utils import get_color_from_hex
-
-from akivymd.helper import point_on_circle
 from kivymd.color_definitions import colors, palette
 from kivymd.theming import ThemableBehavior
 from kivymd.uix.label import MDLabel
+
+from akivymd.helper import point_on_circle
 
 """issues
 color_mode
@@ -93,7 +93,6 @@ class AKPieChart(ThemableBehavior, BoxLayout):
         items = self._format_items(items)
         angle_start = 0
         color_item = 0
-        i = 1
         circle_center = [
             self.pos[0] + self.size[0] / 2,
             self.pos[1] + self.size[1] / 2,
@@ -149,11 +148,11 @@ class AKPieChart(ThemableBehavior, BoxLayout):
                     circle_center,
                     self.size[0] / 3,
                 )
-                l = PieChartNumberLabel(
+                number_anim = PieChartNumberLabel(
                     x=label_pos[0], y=label_pos[1], title=title
                 )
-                anim_label = Animation(percent=value * 100 / 360)
-                anim_label.start(l)
+                Animation(percent=value * 100 / 360).start(number_anim)
+
             angle_start += value
 
     def _clear_canvas(self):

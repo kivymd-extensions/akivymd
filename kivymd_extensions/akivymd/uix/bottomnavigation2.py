@@ -12,7 +12,6 @@ from kivy.properties import (
 )
 from kivy.uix.behaviors import ButtonBehavior
 from kivy.uix.boxlayout import BoxLayout
-
 from kivymd.theming import ThemableBehavior
 
 Builder.load_string(

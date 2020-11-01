@@ -13,7 +13,6 @@ from kivy.properties import (
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.carousel import Carousel
 from kivy.uix.widget import Widget
-
 from kivymd.theming import ThemableBehavior
 
 Builder.load_string(
@@ -130,7 +129,6 @@ class MyCarousel(ThemableBehavior, Carousel):
             if self._current_circle < self.total_circles:
                 self._current_circle += 1
         if animation:
-            width = self.parent.ids.ghost_circle.width
             anim = Animation(
                 pos=self.parent.ids.circles_box.children[
                     self._current_circle

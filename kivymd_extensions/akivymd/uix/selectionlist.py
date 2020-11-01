@@ -4,7 +4,6 @@ from kivy.properties import BooleanProperty, NumericProperty, StringProperty
 from kivy.uix.behaviors import ButtonBehavior
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.stacklayout import StackLayout
-
 from kivymd.theming import ThemableBehavior
 from kivymd.uix.behaviors.ripplebehavior import CircularRippleBehavior
 
