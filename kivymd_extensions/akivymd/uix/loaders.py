@@ -3,7 +3,6 @@ from kivy.clock import Clock
 from kivy.lang import Builder
 from kivy.properties import BooleanProperty, NumericProperty
 from kivy.uix.image import AsyncImage
-
 from kivymd.theming import ThemableBehavior
 from kivymd.uix.label import MDLabel
 
@@ -59,13 +58,7 @@ class AKLabelLoader(MDLabel):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.start_anim = None
-        Clock.schedule_once(lambda x: self._update(self.text))
-
-    def _update(self, text):
-        if self._check_text(text):
-            self._stop_animate()
-        else:
-            self._start_animate()
+        Clock.schedule_once(self.on_text)
 
     def _check_text(self, text):
         if not text:
@@ -89,10 +82,10 @@ class AKLabelLoader(MDLabel):
 
         if self.bg_rec_opacity != 0 and self.fr_rec_opacity != 0:
             self.stop_anim = Animation(
-                fr_rec_opacity=0, t="out_quad", duration=0.8
+                fr_rec_opacity=0, t="out_quad", duration=0.3
             )
             self.stop_anim &= Animation(
-                bg_rec_opacity=0, t="out_quad", duration=0.8
+                bg_rec_opacity=0, t="out_quad", duration=0.3
             )
             self.stop_anim.start(self)
 
@@ -136,10 +129,10 @@ class AKImageLoader(ThemableBehavior, AsyncImage):
         if self.start_anim:
             self.start_anim.cancel_all(self)
             self.stop_anim = Animation(
-                fr_rec_opacity=0, t="out_quad", duration=0.8
+                fr_rec_opacity=0, t="out_quad", duration=0.3
             )
             self.stop_anim &= Animation(
-                bg_rec_opacity=0, t="out_quad", duration=0.8
+                bg_rec_opacity=0, t="out_quad", duration=0.3
             )
             self.stop_anim.start(self)
 

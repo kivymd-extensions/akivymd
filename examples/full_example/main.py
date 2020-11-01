@@ -7,11 +7,10 @@ sys.path.append(
     )
 )
 
-from kivy.factory import Factory
-from kivy.lang import Builder
-from kivymd.app import MDApp
-from kivymd.uix.list import OneLineAvatarListItem
-from screens import (
+from kivy.factory import Factory  # noqa
+from kivy.lang import Builder  # noqa
+from kivymd.app import MDApp  # noqa
+from screens import (  # noqa
     addwidget,
     badgelayout,
     bottomappbar,
@@ -35,9 +34,13 @@ from screens import (
     windows,
 )
 
-from kivymd_extensions.akivymd.uix.statusbarcolor import change_statusbar_color
+from kivymd_extensions.akivymd.uix.statusbarcolor import (  # noqa
+    change_statusbar_color,
+)
 
 kv = """
+#: import StiffScrollEffect kivymd.stiffscroll.StiffScrollEffect
+
 <MyMenuItem@OneLineAvatarListItem>
 
     IconLeftWidget:
@@ -75,7 +78,7 @@ MDScreen:
         id: navdrawer
 
         ScrollView:
-
+            effect_cls: StiffScrollEffect
             MDBoxLayout:
                 orientation: "vertical"
                 adaptive_height: True
@@ -130,8 +133,8 @@ class DemoApp(MDApp):
         "Rating",
     ]
     intro = """Here is where you can find all of the widgets. take a look at
-    screens folder to find exmples of how to use them. I will gradually add
-    more and more Awesome widets to this project. Stay tuned!"""
+    screens folder to find examples of how to use them. I will gradually add
+    more and more Awesome widgets to this project. Stay tuned!"""
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -149,7 +152,9 @@ class DemoApp(MDApp):
 
         for list_item in self.screens:
             self.mainkv.ids.menu_list.add_widget(
-                MyMenuItem(text=list_item, on_release=self.list_menu_callback)
+                Factory.MyMenuItem(
+                    text=list_item, on_release=self.list_menu_callback
+                )
             )
 
     def list_menu_callback(self, instance):
@@ -163,10 +168,6 @@ class DemoApp(MDApp):
             self.mainkv.ids.sm.transition.direction = "left"
         self.mainkv.ids.sm.current = name
         return True
-
-
-class MyMenuItem(OneLineAvatarListItem):
-    pass
 
 
 DemoApp().run()
