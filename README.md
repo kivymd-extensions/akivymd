@@ -9,7 +9,7 @@ Awesome KivyMD is a package containing customized and non-material widgets for K
 ## Installation
 
 ```bash
-pip install kivymd_extensions.example_extension
+pip install kivymd_extensions.akivymd
 
 #or 
 
