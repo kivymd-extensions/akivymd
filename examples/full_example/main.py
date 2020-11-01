@@ -1,13 +1,16 @@
-import os
 import sys
+from os import path
 
-sys.path.append(os.path.abspath(os.path.dirname(__file__)).rsplit("akivymd", 1)[0])
+sys.path.append(
+    path.join(
+        path.abspath(__file__).rsplit("examples", 1)[0], "kivymd_extensions"
+    )
+)
 
+from kivy.factory import Factory
 from kivy.lang import Builder
 from kivymd.app import MDApp
 from kivymd.uix.list import OneLineAvatarListItem
-
-from kivymd_extensions.akivymd.uix.statusbarcolor import change_statusbar_color
 from screens import (
     addwidget,
     badgelayout,
@@ -32,6 +35,7 @@ from screens import (
     windows,
 )
 
+from kivymd_extensions.akivymd.uix.statusbarcolor import change_statusbar_color
 
 kv = """
 <MyMenuItem@OneLineAvatarListItem>
@@ -125,8 +129,8 @@ class DemoApp(MDApp):
         "Dialogs",
         "Rating",
     ]
-    intro = """Here is where you can find all of the widgets. take a look at 
-    screens folder to find exmples of how to use them. I will gradually add 
+    intro = """Here is where you can find all of the widgets. take a look at
+    screens folder to find exmples of how to use them. I will gradually add
     more and more Awesome widets to this project. Stay tuned!"""
 
     def __init__(self, **kwargs):
