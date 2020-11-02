@@ -78,7 +78,7 @@ MDScreen:
         id: navdrawer
 
         ScrollView:
-            effect_cls: StiffScrollEffect
+            # effect_cls: StiffScrollEffect
             MDBoxLayout:
                 orientation: "vertical"
                 adaptive_height: True
