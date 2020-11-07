@@ -16,6 +16,12 @@ pip install kivymd_extensions.akivymd
 pip install https://github.com/kivymd-extensions/akivymd/archive/main.zip
 ```
 
+## Usage with Buildozer
+
+```bash
+requirements = https://github.com/kivymd-extensions/akivymd/archive/main.zip
+```
+
 ### Dependencies:
 
 - [KivyMD](https://github.com/kivymd/KivyMD) >= 0.104.2 (from master branch)
