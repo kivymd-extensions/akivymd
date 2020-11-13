@@ -1,11 +1,7 @@
 import sys
 from os import path
 
-sys.path.append(
-    path.join(
-        path.abspath(__file__).rsplit("examples", 1)[0], "kivymd_extensions"
-    )
-)
+sys.path.append(path.join(path.abspath(__file__).rsplit("examples", 1)[0]))
 
 from kivy.factory import Factory  # noqa
 from kivy.lang import Builder  # noqa
