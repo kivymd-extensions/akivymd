@@ -25,6 +25,7 @@ Builder.load_string(
         Line:
             circle: ( self.x+ self.width/2, self.y+ self.height/2, self.height/2, root.start_deg, root._current_deg)
             width: root.line_width
+            cap: root.cap_type
 
     MDLabel:
         id: _percent_label
@@ -51,6 +52,7 @@ class AKCircularProgress(ThemableBehavior, BoxLayout):
     percent_type = OptionProperty("percent", options=["percent", "relative"])
     background_circle_color = ListProperty()
     background_line_width = NumericProperty("1dp")
+    cap_type = OptionProperty("round", options=["round", "none"])
     _current_deg = NumericProperty(-1)
 
     def __init__(self, **kwargs):
