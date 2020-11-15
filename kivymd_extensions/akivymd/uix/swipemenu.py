@@ -11,6 +11,8 @@ Usage
 
     from kivymd.app import MDApp
 
+    import kivymd_extensions.akivymd
+
     KV = '''
     <MyLabel@MDLabel>
         valign: 'center'
