@@ -27,6 +27,7 @@ from screens import (  # noqa
     silverappbar,
     spinners,
     statusbarcolor,
+    swipemenu,
     windows,
 )
 
@@ -127,6 +128,7 @@ class DemoApp(MDApp):
         "Navigationrail",
         "Dialogs",
         "Rating",
+        "SwipeMenu",
     ]
     intro = """Here is where you can find all of the widgets. take a look at
     screens folder to find examples of how to use them. I will gradually add
