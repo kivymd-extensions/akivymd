@@ -1,5 +1,5 @@
 """
-Components/Rating
+Components/Toolbar
 =================
 
 
