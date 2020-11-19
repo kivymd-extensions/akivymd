@@ -23,6 +23,7 @@ Builder.load_string(
     auto_dismiss: False
     size_hint: None , None
     background_color: 0,0,0,0
+    overlay_color: 0,0,0,0
     size: root.size_portrait if root._orientation == 'portrait'\
         else root.size_landscape
 
