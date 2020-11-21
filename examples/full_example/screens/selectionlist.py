@@ -7,14 +7,12 @@ from kivymd_extensions.akivymd.uix.selectionlist import AKSelectListAvatarItem
 Builder.load_string(
     """
 <Selectionlist>
-    name: "Selectionlist"
 
     MDBoxLayout:
         orientation: "vertical"
 
-        MDToolbar:
-            title: root.name
-            left_action_items: [["arrow-left" , lambda x: app.show_screen("Home", "back")]]
+        Toolbar:
+            id: _toolbar
 
         ScrollView:
 

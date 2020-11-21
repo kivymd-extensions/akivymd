@@ -12,15 +12,13 @@ Builder.load_string(
 
 
 <BottomNavigation>
-    name: "BottomNavigation"
 
     MDBoxLayout:
         orientation: "vertical"
         spacing: dp(40)
 
-        MDToolbar:
-            title: root.name
-            left_action_items: [["arrow-left" , lambda x: app.show_screen("Home", "back")]]
+        Toolbar:
+            id: _toolbar
 
         MDBoxLayout:
             orientation: "vertical"

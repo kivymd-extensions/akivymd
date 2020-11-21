@@ -1,0 +1,140 @@
+{
+    "Bottom Navigation": {
+    	"import": "from screens import bottomnavigation",
+    	"factory": "Factory.BottomNavigation()",
+    	"screen_name": "bottomnavigation",
+    	"icon": "picture-in-picture-bottom-right"
+    },
+    "Spinners": {
+    	"import": "from screens import spinners",
+    	"factory": "Factory.Spinners()",
+    	"screen_name": "spinners",
+    	"icon": "progress-check"
+    },
+    "Dataloader": {
+    	"import": "from screens import dataloader",
+    	"factory": "Factory.Dataloader()",
+    	"screen_name": "dataloader",
+    	"icon": "reload"
+    },
+    "Selectionlist": {
+    	"import": "from screens import selectionlist",
+    	"factory": "Factory.Selectionlist()",
+    	"screen_name": "selectionlist",
+    	"icon": "list-status"
+    },
+    "Piechart": {
+    	"import": "from screens import piechart",
+    	"factory": "Factory.Piechart()",
+    	"screen_name": "piechart",
+    	"icon": "chart-pie"
+    },
+    "Image Viewer": {
+    	"import": "from screens import imageviewer",
+    	"factory": "Factory.ImageViewer()",
+    	"screen_name": "imageviewer",
+    	"icon": "view-carousel-outline"
+    },
+    "Onboarding": {
+    	"import": "from screens import onboarding",
+    	"factory": "Factory.Onboarding()",
+    	"screen_name": "onboarding",
+    	"icon": "view-carousel"
+    },
+    "Progress Button": {
+    	"import": "from screens import progressbutton",
+    	"factory": "Factory.ProgressButton()",
+    	"screen_name": "progressbutton",
+    	"icon": "refresh"
+    },
+    "Silver Appbar": {
+    	"import": "from screens import silverappbar",
+    	"factory": "Factory.SilverAppbar()",
+    	"screen_name": "sileverappbar",
+    	"icon": "dock-bottom"
+    },
+    "Badge Layout": {
+    	"import": "from screens import badgelayout",
+    	"factory": "Factory.BadgeLayout()",
+    	"screen_name": "badgelayout",
+    	"icon": "eye-check"
+    },
+    "AddWidget Behavior": {
+    	"import": "from screens import addwidget",
+    	"factory": "Factory.AddWidgetBehavior()",
+    	"screen_name": "addwidget",
+    	"icon": "plus-box-multiple"
+    },
+    "Bottom Appbar": {
+    	"import": "from screens import bottomappbar",
+    	"factory": "Factory.BottomAppbar()",
+    	"screen_name": "bottomappbar",
+    	"icon": "color-helper"
+    },
+    "Label Animation": {
+    	"import": "from screens import labelanimation",
+    	"factory": "Factory.LabelAnimation()",
+    	"screen_name": "labelanimation",
+    	"icon": "animation-play"
+    },
+    "Statusbar Color": {
+    	"import": "from screens import statusbarcolor",
+    	"factory": "Factory.StatusbarColor()",
+    	"screen_name": "statusbarcolor",
+    	"icon": "invert-colors"
+    },
+    "Date Picker": {
+    	"import": "from screens import datepicker",
+    	"factory": "Factory.DatePicker()",
+    	"screen_name": "datepicker",
+    	"icon": "calendar"
+    },
+    "Progress Widget": {
+    	"import": "from screens import progresswidget",
+    	"factory": "Factory.ProgressWidget()",
+    	"screen_name": "progresswidget",
+    	"icon": "widgets"
+    },
+    "Hint Widget": {
+    	"import": "from screens import hintwidget",
+    	"factory": "Factory.HintWidget()",
+    	"screen_name": "hintwidget",
+    	"icon": "tooltip-text"
+    },
+    "Windows": {
+    	"import": "from screens import windows",
+    	"factory": "Factory.Windows()",
+    	"screen_name": "windows",
+    	"icon": "window-maximize"
+    },
+    "Navigationrail": {
+    	"import": "from screens import navigationrail",
+    	"factory": "Factory.Navigationrail()",
+    	"screen_name": "navigationrail",
+    	"icon": "microsoft-xbox-controller-menu"
+    },
+    "Dialogs": {
+    	"import": "from screens import dialogs",
+    	"factory": "Factory.Dialogs()",
+    	"screen_name": "dialogs",
+    	"icon": "message"
+    },
+    "Rating": {
+    	"import": "from screens import rating",
+    	"factory": "Factory.Rating()",
+    	"screen_name": "rating",
+    	"icon": "star-half-full"
+    },
+    "Swipe Menu": {
+    	"import": "from screens import swipemenu",
+    	"factory": "Factory.SwipeMenu()",
+    	"screen_name": "swipemenu",
+    	"icon": "gesture-swipe-up"
+    },
+    "Toolbar": {
+    	"import": "from screens import toolbar",
+    	"factory": "Factory.Toolbar_()",
+    	"screen_name": "toolbar",
+    	"icon": "set-top-box"
+    }
+}

@@ -8,14 +8,12 @@ Builder.load_string(
     """
 <Piechart>
     on_leave: root.remove_chart()
-    name: "Piechart"
 
     MDBoxLayout:
         orientation: "vertical"
 
-        MDToolbar:
-            title: root.name
-            left_action_items: [["arrow-left", lambda x: app.show_screen("Home", "back")]]
+        Toolbar:
+            id: _toolbar
 
         ScrollView:
 

@@ -10,15 +10,12 @@ Builder.load_string(
 
 
 <Windows>
-    name: "Windows"
 
     MDBoxLayout:
         orientation: "vertical"
 
-        MDToolbar:
-            id: toolbar
-            title: root.name
-            left_action_items: [["arrow-left", lambda x: app.show_screen("Home", "back")]]
+        Toolbar:
+            id: _toolbar
 
         MDBoxLayout:
             spacing: dp(10)
@@ -35,7 +32,7 @@ Builder.load_string(
         MyWindow:
             id: window2
             window_title: "Window 2"
-            top_widget: toolbar
+            top_widget: _toolbar
 
             MDLabel:
                 text: "MyLabel"

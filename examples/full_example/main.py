@@ -1,36 +1,14 @@
+import ast
 import sys
 from os import path
 
 sys.path.append(path.join(path.abspath(__file__).rsplit("examples", 1)[0]))
-
 from kivy.factory import Factory  # noqa
 from kivy.lang import Builder  # noqa
+from kivy.properties import StringProperty
 from kivymd.app import MDApp  # noqa
-from screens import (  # noqa
-    addwidget,
-    badgelayout,
-    bottomappbar,
-    bottomnavigation,
-    dataloader,
-    datepicker,
-    dialogs,
-    hintwidget,
-    imageviewer,
-    labelanimation,
-    navigationrail,
-    onboarding,
-    piechart,
-    progressbutton,
-    progresswidget,
-    rating,
-    selectionlist,
-    silverappbar,
-    spinners,
-    statusbarcolor,
-    swipemenu,
-    toolbar,
-    windows,
-)
+from kivymd.uix.list import OneLineAvatarListItem
+from kivymd.uix.toolbar import MDToolbar
 
 from kivymd_extensions.akivymd.uix.statusbarcolor import (  # noqa
     change_statusbar_color,
@@ -39,16 +17,20 @@ from kivymd_extensions.akivymd.uix.statusbarcolor import (  # noqa
 kv = """
 #: import StiffScrollEffect kivymd.stiffscroll.StiffScrollEffect
 
-<MyMenuItem@OneLineAvatarListItem>
+<IconListItem>:
 
     IconLeftWidget:
-        icon: "language-python"
+        icon: root.icon
+
+<Toolbar>:
+    elevation: 10
+    left_action_items: [["arrow-left", lambda x: app.show_screen("Home", "back")]]
 
 
 MDScreen:
 
     ScreenManager:
-        id: sm
+        id: screen_manager
 
         MDScreen:
             name: "Home"
@@ -105,33 +87,16 @@ MDScreen:
 """
 
 
+class IconListItem(OneLineAvatarListItem):
+    icon = StringProperty()
+
+
+class Toolbar(MDToolbar):
+    pass
+
+
 class DemoApp(MDApp):
 
-    screens = [
-        "BottomNavigation",
-        "Spinners",
-        "Dataloader",
-        "Selectionlist",
-        "Piechart",
-        "ImageViewer",
-        "Onboarding",
-        "ProgressButton",
-        "SilverAppbar",
-        "BadgeLayout",
-        "AddWidgetBehavior",
-        "BottomAppbar",
-        "LabelAnimation",
-        "StatusbarColor",
-        "DatePicker",
-        "ProgressWidget",
-        "HintWidget",
-        "Windows",
-        "Navigationrail",
-        "Dialogs",
-        "Rating",
-        "SwipeMenu",
-        "Toolbar",
-    ]
     intro = """Here is where you can find all of the widgets. take a look at
     screens folder to find examples of how to use them. I will gradually add
     more and more Awesome widgets to this project. Stay tuned!"""
@@ -143,30 +108,45 @@ class DemoApp(MDApp):
         change_statusbar_color(self.theme_cls.primary_color)
 
     def build(self):
-        self.mainkv = Builder.load_string(kv)
-        return self.mainkv
+        self.root = Builder.load_string(kv)
 
     def on_start(self):
-        for screen in self.screens:
-            self.mainkv.ids.sm.add_widget(eval("Factory.%s()" % screen))
+        with open("screens.json") as read_file:
+            self.data_screens = ast.literal_eval(read_file.read())
+            data_screens = list(self.data_screens.keys())
+            data_screens.sort()
 
-        for list_item in self.screens:
-            self.mainkv.ids.menu_list.add_widget(
-                Factory.MyMenuItem(
-                    text=list_item, on_release=self.list_menu_callback
+        for list_item in data_screens:
+            self.root.ids.menu_list.add_widget(
+                IconListItem(
+                    text=list_item,
+                    icon=self.data_screens[list_item]["icon"],
+                    on_release=lambda x=list_item: self.set_screen(x),
                 )
             )
 
-    def list_menu_callback(self, instance):
-        self.show_screen(instance.text)
-        self.mainkv.ids.navdrawer.set_state("close")
+    def set_screen(self, screen_name):
+        manager = self.root.ids.screen_manager
+        screen_details = self.data_screens[screen_name.text]
+
+        if not manager.has_screen(screen_details["screen_name"]):
+            exec(screen_details["import"])
+            screen_object = eval(screen_details["factory"])
+            screen_object.name = screen_details["screen_name"]
+            manager.add_widget(screen_object)
+
+            if "_toolbar" in screen_object.ids:
+                screen_object.ids._toolbar.title = screen_name.text
+
+        self.root.ids.navdrawer.set_state("close")
+        self.show_screen(screen_details["screen_name"])
 
     def show_screen(self, name, mode=""):
         if mode == "back":
-            self.mainkv.ids.sm.transition.direction = "right"
+            self.root.ids.screen_manager.transition.direction = "right"
         else:
-            self.mainkv.ids.sm.transition.direction = "left"
-        self.mainkv.ids.sm.current = name
+            self.root.ids.screen_manager.transition.direction = "left"
+        self.root.ids.screen_manager.current = name
         return True
 
 

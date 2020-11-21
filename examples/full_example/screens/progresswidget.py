@@ -4,7 +4,6 @@ from kivymd.uix.screen import MDScreen
 Builder.load_string(
     """
 <ProgressWidget>
-    name: "ProgressWidget"
     on_leave:
         progress_relative = 0
         progress_percent = 0
@@ -12,9 +11,8 @@ Builder.load_string(
     MDBoxLayout:
         orientation: "vertical"
 
-        MDToolbar:
-            title: root.name
-            left_action_items: [["arrow-left", lambda x: app.show_screen("Home", "back")]]
+        Toolbar:
+            id: _toolbar
 
         MDBoxLayout:
             orientation: "vertical"

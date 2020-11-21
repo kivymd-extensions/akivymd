@@ -10,7 +10,6 @@ Builder.load_string(
     text_color: 1,1,1,1
 
 <SwipeMenu>
-    name: "SwipeMenu"
 
     AKSwipeMenu:
         id: menu
@@ -18,11 +17,10 @@ Builder.load_string(
         on_dismiss: but.icon ="arrow-up"
 
         AKSwipeMenuMainContent:
-
             orientation: "vertical"
-            MDToolbar:
-                title: root.name
-                left_action_items: [["arrow-left", lambda x: app.show_screen("Home", "back")]]
+
+            Toolbar:
+                id: _toolbar
 
             ScrollView:
                 MDBoxLayout:
@@ -70,7 +68,7 @@ class SwipeMenu(MDScreen):
         for x in range(50):
             self.ids.list.add_widget(
                 OneLineListItem(
-                    text="Items",
+                    text=f"Items {x}",
                 )
             )
         return super().on_enter(*args)

@@ -5,7 +5,6 @@ from kivymd.uix.screen import MDScreen
 Builder.load_string(
     """
 <SilverAppbar>
-    name: "SilverAppbar"
 
     AKSilverAppbar:
         max_height: dp(300)

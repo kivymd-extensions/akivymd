@@ -6,15 +6,13 @@ from kivymd_extensions.akivymd.uix.datepicker import AKDatePicker
 Builder.load_string(
     """
 <DatePicker>:
-    name: "DatePicker"
     on_leave: date.text = ""
 
     MDBoxLayout:
         orientation: "vertical"
 
-        MDToolbar:
-            title: root.name
-            left_action_items: [["arrow-left", lambda x: app.show_screen("Home", "back")]]
+        Toolbar:
+            id: _toolbar
 
         MDFloatLayout:
 

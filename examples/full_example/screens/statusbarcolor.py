@@ -6,15 +6,13 @@ from kivymd_extensions.akivymd.uix.statusbarcolor import change_statusbar_color
 Builder.load_string(
     """
 <StatusbarColor>
-    name: "StatusbarColor"
     on_leave: root.change_color( app.theme_cls.primary_color , "Light" )
 
     MDBoxLayout:
         orientation: "vertical"
 
-        MDToolbar:
-            title: root.name
-            left_action_items: [["arrow-left", lambda x: app.show_screen("Home", "back")]]
+        Toolbar:
+            id: _toolbar
 
         MDFloatLayout:
 

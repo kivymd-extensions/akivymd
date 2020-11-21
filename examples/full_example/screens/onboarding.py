@@ -52,7 +52,6 @@ Builder.load_string(
 
 
 <Onboarding>
-    name: "Onboarding"
     on_leave: boarding.reset()
 
     MDBoxLayout:

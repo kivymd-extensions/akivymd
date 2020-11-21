@@ -102,14 +102,12 @@ Builder.load_string(
 
 
 <Dialogs>
-    name: "Dialogs"
 
     MDBoxLayout:
         orientation: "vertical"
 
-        MDToolbar:
-            title: root.name
-            left_action_items: [["arrow-left", lambda x: app.show_screen("Home", "back")]]
+        Toolbar:
+            id: _toolbar
 
         StackLayout:
             orientation: "lr-tb"

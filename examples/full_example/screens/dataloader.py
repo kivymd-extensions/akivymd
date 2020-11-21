@@ -58,14 +58,12 @@ Builder.load_string(
 
 <Dataloader>
     on_leave: root.clear_data()
-    name: "Dataloader"
 
     MDBoxLayout:
         orientation: "vertical"
 
-        MDToolbar:
-            title: root.name
-            left_action_items: [["arrow-left" , lambda x: app.show_screen("Home", "back")]]
+        Toolbar:
+            id: _toolbar
 
         ScrollView:
 

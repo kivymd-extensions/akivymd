@@ -9,14 +9,12 @@ from kivymd_extensions.akivymd.uix.imageview import (
 Builder.load_string(
     """
 <ImageViewer>
-    name: "ImageViewer"
 
     MDBoxLayout:
         orientation: "vertical"
 
-        MDToolbar:
-            title: root.name
-            left_action_items: [["arrow-left", lambda x: app.show_screen("Home", "back")]]
+        Toolbar:
+            id: _toolbar
 
         MDFloatLayout:
 

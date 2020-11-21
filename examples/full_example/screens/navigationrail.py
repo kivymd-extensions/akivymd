@@ -4,7 +4,6 @@ from kivymd.uix.screen import MDScreen
 Builder.load_string(
     """
 <Navigationrail>
-    name: "Navigationrail"
 
     AKNavigationrail:
         id: rail

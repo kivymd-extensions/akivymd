@@ -4,12 +4,10 @@ from kivy.uix.screenmanager import Screen
 Builder.load_string(
     """
 <Rating>:
-    name: 'Rating'
     BoxLayout:
         orientation: 'vertical'
-        MDToolbar:
-            title: root.name
-            left_action_items:[['arrow-left' , lambda x:app.show_screen('Home','back') ]]
+        Toolbar:
+            id: _toolbar
 
         FloatLayout:
             AKRating:

@@ -17,7 +17,6 @@ Builder.load_string(
 
 
 <Spinners>
-    name: "Spinners"
 
     on_leave:
         root.stop_animation()
@@ -25,9 +24,8 @@ Builder.load_string(
     MDBoxLayout:
         orientation: "vertical"
 
-        MDToolbar:
-            title: root.name
-            left_action_items: [["arrow-left", lambda x: app.show_screen("Home", "back")]]
+        Toolbar:
+            id: _toolbar
 
         MDFloatLayout:
             padding: dp(10)

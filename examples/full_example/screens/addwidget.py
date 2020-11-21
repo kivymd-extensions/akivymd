@@ -9,14 +9,12 @@ from kivymd_extensions.akivymd.uix.behaviors.addwidget import (
 Builder.load_string(
     """
 <AddWidgetBehavior>:
-    name: "AddWidgetBehavior"
 
     MDBoxLayout:
         orientation: "vertical"
 
-        MDToolbar:
-            title: root.name
-            left_action_items: [["arrow-left", lambda x: app.show_screen("Home", "back")]]
+        Toolbar:
+            id: _toolbar
 
         ScrollView:
 
@@ -39,7 +37,7 @@ class AddWidgetBehavior(Screen):
         items = []
         for x in range(20):
             items.append(
-                OneLineListItem(text="item %d" % x, on_release=self.update)
+                OneLineListItem(text=f"Item {x}", on_release=self.update)
             )
         self.ids.list.items = items
 
