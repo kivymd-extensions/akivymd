@@ -131,7 +131,7 @@ class DemoApp(MDApp):
 
         if not manager.has_screen(screen_details["screen_name"]):
             exec(screen_details["import"])
-            screen_object = eval(screen_details["factory"])
+            screen_object = eval("Factory.%s()" % screen_details["factory"])
             screen_object.name = screen_details["screen_name"]
             manager.add_widget(screen_object)
 
