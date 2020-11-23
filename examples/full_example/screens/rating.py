@@ -6,7 +6,7 @@ Builder.load_string(
 <Rating>:
     BoxLayout:
         orientation: 'vertical'
-        Toolbar:
+        MyToolbar:
             id: _toolbar
 
         FloatLayout:

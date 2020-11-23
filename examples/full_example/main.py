@@ -5,10 +5,10 @@ from os import path
 sys.path.append(path.join(path.abspath(__file__).rsplit("examples", 1)[0]))
 from kivy.factory import Factory  # noqa
 from kivy.lang import Builder  # noqa
-from kivy.properties import StringProperty
+from kivy.properties import StringProperty  # noqa
 from kivymd.app import MDApp  # noqa
-from kivymd.uix.list import OneLineAvatarListItem
-from kivymd.uix.toolbar import MDToolbar
+from kivymd.uix.list import OneLineAvatarListItem  # noqa
+from kivymd.uix.toolbar import MDToolbar  # noqa
 
 from kivymd_extensions.akivymd.uix.statusbarcolor import (  # noqa
     change_statusbar_color,
@@ -17,12 +17,12 @@ from kivymd_extensions.akivymd.uix.statusbarcolor import (  # noqa
 kv = """
 #: import StiffScrollEffect kivymd.stiffscroll.StiffScrollEffect
 
-<IconListItem>:
+<IconListItem@OneLineAvatarListItem>:
 
     IconLeftWidget:
         icon: root.icon
 
-<Toolbar>:
+<MyToolbar@MDToolbar>:
     elevation: 10
     left_action_items: [["arrow-left", lambda x: app.show_screen("Home", "back")]]
 
@@ -42,7 +42,7 @@ MDScreen:
             MDBoxLayout:
                 orientation: "vertical"
 
-                MDToolbar:
+                MyToolbar:
                     title: app.title
                     left_action_items:[["menu" , lambda x: navdrawer.set_state("open")]]
 
@@ -91,10 +91,6 @@ class IconListItem(OneLineAvatarListItem):
     icon = StringProperty()
 
 
-class Toolbar(MDToolbar):
-    pass
-
-
 class DemoApp(MDApp):
 
     intro = """Here is where you can find all of the widgets. take a look at
@@ -111,7 +107,9 @@ class DemoApp(MDApp):
         self.root = Builder.load_string(kv)
 
     def on_start(self):
-        with open("screens.json") as read_file:
+        with open(
+            path.join(path.dirname(__file__), "screens.json")
+        ) as read_file:
             self.data_screens = ast.literal_eval(read_file.read())
             data_screens = list(self.data_screens.keys())
             data_screens.sort()
@@ -121,16 +119,16 @@ class DemoApp(MDApp):
                 IconListItem(
                     text=list_item,
                     icon=self.data_screens[list_item]["icon"],
-                    on_release=lambda x=list_item: self.set_screen(x),
+                    on_release=lambda x=list_item: self.load_screen(x),
                 )
             )
 
-    def set_screen(self, screen_name):
+    def load_screen(self, screen_name):
         manager = self.root.ids.screen_manager
         screen_details = self.data_screens[screen_name.text]
 
         if not manager.has_screen(screen_details["screen_name"]):
-            exec(screen_details["import"])
+            exec("from screens import %s" % screen_details["import"])
             screen_object = eval("Factory.%s()" % screen_details["factory"])
             screen_object.name = screen_details["screen_name"]
             manager.add_widget(screen_object)

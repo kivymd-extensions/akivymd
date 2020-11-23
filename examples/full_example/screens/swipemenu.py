@@ -19,7 +19,7 @@ Builder.load_string(
         AKSwipeMenuMainContent:
             orientation: "vertical"
 
-            Toolbar:
+            MyToolbar:
                 id: _toolbar
 
             ScrollView:

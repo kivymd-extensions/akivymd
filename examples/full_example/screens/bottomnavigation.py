@@ -17,7 +17,7 @@ Builder.load_string(
         orientation: "vertical"
         spacing: dp(40)
 
-        Toolbar:
+        MyToolbar:
             id: _toolbar
 
         MDBoxLayout:

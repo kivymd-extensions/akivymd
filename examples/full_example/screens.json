@@ -1,139 +1,139 @@
 {
     "Bottom Navigation": {
-    	"import": "from screens import bottomnavigation",
+    	"import": "bottomnavigation",
     	"factory": "BottomNavigation",
     	"screen_name": "bottomnavigation",
     	"icon": "picture-in-picture-bottom-right"
     },
     "Spinners": {
-    	"import": "from screens import spinners",
+    	"import": "spinners",
     	"factory": "Spinners",
     	"screen_name": "spinners",
     	"icon": "progress-check"
     },
     "Dataloader": {
-    	"import": "from screens import dataloader",
+    	"import": "dataloader",
     	"factory": "Dataloader",
     	"screen_name": "dataloader",
     	"icon": "reload"
     },
     "Selectionlist": {
-    	"import": "from screens import selectionlist",
+    	"import": "selectionlist",
     	"factory": "Selectionlist",
     	"screen_name": "selectionlist",
     	"icon": "list-status"
     },
     "Piechart": {
-    	"import": "from screens import piechart",
+    	"import": "piechart",
     	"factory": "Piechart",
     	"screen_name": "piechart",
     	"icon": "chart-pie"
     },
     "Image Viewer": {
-    	"import": "from screens import imageviewer",
+    	"import": "imageviewer",
     	"factory": "ImageViewer",
     	"screen_name": "imageviewer",
     	"icon": "view-carousel-outline"
     },
     "Onboarding": {
-    	"import": "from screens import onboarding",
+    	"import": "onboarding",
     	"factory": "Onboarding",
     	"screen_name": "onboarding",
     	"icon": "view-carousel"
     },
     "Progress Button": {
-    	"import": "from screens import progressbutton",
+    	"import": "progressbutton",
     	"factory": "ProgressButton",
     	"screen_name": "progressbutton",
     	"icon": "refresh"
     },
     "Silver Appbar": {
-    	"import": "from screens import silverappbar",
+    	"import": "silverappbar",
     	"factory": "SilverAppbar",
     	"screen_name": "sileverappbar",
     	"icon": "dock-bottom"
     },
     "Badge Layout": {
-    	"import": "from screens import badgelayout",
+    	"import": "badgelayout",
     	"factory": "BadgeLayout",
     	"screen_name": "badgelayout",
     	"icon": "eye-check"
     },
     "AddWidget Behavior": {
-    	"import": "from screens import addwidget",
+    	"import": "addwidget",
     	"factory": "AddWidgetBehavior",
     	"screen_name": "addwidget",
     	"icon": "plus-box-multiple"
     },
     "Bottom Appbar": {
-    	"import": "from screens import bottomappbar",
+    	"import": "bottomappbar",
     	"factory": "BottomAppbar",
     	"screen_name": "bottomappbar",
     	"icon": "color-helper"
     },
     "Label Animation": {
-    	"import": "from screens import labelanimation",
+    	"import": "labelanimation",
     	"factory": "LabelAnimation",
     	"screen_name": "labelanimation",
     	"icon": "animation-play"
     },
     "Statusbar Color": {
-    	"import": "from screens import statusbarcolor",
+    	"import": "statusbarcolor",
     	"factory": "StatusbarColor",
     	"screen_name": "statusbarcolor",
     	"icon": "invert-colors"
     },
     "Date Picker": {
-    	"import": "from screens import datepicker",
+    	"import": "datepicker",
     	"factory": "DatePicker",
     	"screen_name": "datepicker",
     	"icon": "calendar"
     },
     "Progress Widget": {
-    	"import": "from screens import progresswidget",
+    	"import": "progresswidget",
     	"factory": "ProgressWidget",
     	"screen_name": "progresswidget",
     	"icon": "widgets"
     },
     "Hint Widget": {
-    	"import": "from screens import hintwidget",
+    	"import": "hintwidget",
     	"factory": "HintWidget",
     	"screen_name": "hintwidget",
     	"icon": "tooltip-text"
     },
     "Windows": {
-    	"import": "from screens import windows",
+    	"import": "windows",
     	"factory": "Windows",
     	"screen_name": "windows",
     	"icon": "window-maximize"
     },
     "Navigationrail": {
-    	"import": "from screens import navigationrail",
+    	"import": "navigationrail",
     	"factory": "Navigationrail",
     	"screen_name": "navigationrail",
     	"icon": "microsoft-xbox-controller-menu"
     },
     "Dialogs": {
-    	"import": "from screens import dialogs",
+    	"import": "dialogs",
     	"factory": "Dialogs",
     	"screen_name": "dialogs",
     	"icon": "message"
     },
     "Rating": {
-    	"import": "from screens import rating",
+    	"import": "rating",
     	"factory": "Rating",
     	"screen_name": "rating",
     	"icon": "star-half-full"
     },
     "Swipe Menu": {
-    	"import": "from screens import swipemenu",
+    	"import": "swipemenu",
     	"factory": "SwipeMenu",
     	"screen_name": "swipemenu",
     	"icon": "gesture-swipe-up"
     },
     "Toolbar": {
-    	"import": "from screens import toolbar",
-    	"factory": "Toolbar_",
+    	"import": "toolbar",
+    	"factory": "Toolbar",
     	"screen_name": "toolbar",
     	"icon": "set-top-box"
     }

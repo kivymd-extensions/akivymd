@@ -106,7 +106,7 @@ Builder.load_string(
     MDBoxLayout:
         orientation: "vertical"
 
-        Toolbar:
+        MyToolbar:
             id: _toolbar
 
         StackLayout:

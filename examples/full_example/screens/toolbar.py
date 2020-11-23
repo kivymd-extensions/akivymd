@@ -5,13 +5,13 @@ from kivymd.uix.screen import MDScreen
 Builder.load_string(
     """
 
-<Toolbar_>
+<Toolbar>
 
     AKToolbarLayout:
         id: toolbar
 
         AKToolbarClass:
-            Toolbar:
+            MyToolbar:
                 id: _toolbar
 
         AKToolbarContent:
@@ -42,7 +42,7 @@ Builder.load_string(
 )
 
 
-class Toolbar_(MDScreen):
+class Toolbar(MDScreen):
     def on_pre_enter(self, *args):
         for x in range(30):
             self.ids.box.add_widget(OneLineListItem(text=f"List {x}"))
