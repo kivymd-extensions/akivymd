@@ -25,7 +25,7 @@ requirements = https://github.com/kivymd-extensions/akivymd/archive/main.zip
 ### Dependencies:
 
 - [KivyMD](https://github.com/kivymd/KivyMD) >= 0.104.2 (from master branch)
-- [Kivy](https://github.com/kivy/kivy) >= 1.10.1 ([Installation](https://kivy.org/doc/stable/gettingstarted/installation.html))
+- [Kivy](https://github.com/kivy/kivy) >= 1.11.1 ([Installation](https://kivy.org/doc/stable/gettingstarted/installation.html))
 - [Python 3.6+](https://www.python.org/)
 
 ## Documentation
