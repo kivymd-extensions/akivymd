@@ -10,51 +10,52 @@ from kivymd.uix.behaviors.ripplebehavior import CircularRippleBehavior
 Builder.load_string(
     """
 <AKSelectList>
-    orientation: 'lr-tb'
+    orientation: "lr-tb"
     spacing: dp(5)
     padding: dp(10)
     size_hint_y: None
     height: self.minimum_height
 
+
 <AKSelectListAvatarItem>
-    orientation: 'vertical'
-    size_hint: 1/root.columns, None
-    height: self.width*1.2
+    orientation: "vertical"
+    size_hint: 1 / root.columns, None
+    height: self.width * 1.2
     padding: dp(5)
     spacing: dp(5)
     on_release: root._choose_selection(_first_label.text)
 
     FloatLayout:
         Image:
-            pos_hint: {'center_x': .5 , 'center_y': .5}
+            pos_hint: {"center_x": .5, "center_y": .5}
             keep_ratio: True
             source: root.source
 
         MDIcon:
             id: _box
-            pos_hint: {'center_x': 0.9 , 'center_y': 0.9}
+            pos_hint: {"center_x": 0.9, "center_y": 0.9}
             size_hint: None,None
             font_size: 0
-            icon: 'check-circle'
+            icon: "check-circle"
             color: root.theme_cls.primary_color
 
     BoxLayout:
         size_hint_y: None
         height: dp(50)
-        orientation: 'vertical'
+        orientation: "vertical"
         spacing: dp(4)
 
         MDLabel:
             id: _first_label
             text: root.first_label
-            theme_text_color: 'Primary'
-            halign: 'center'
+            theme_text_color: "Primary"
+            halign: "center"
 
         MDLabel:
             text: root.second_label
-            halign: 'center'
-            theme_text_color: 'Secondary'
-            font_style: 'Caption'
+            halign: "center"
+            theme_text_color: "Secondary"
+            font_style: "Caption"
 """
 )
 
