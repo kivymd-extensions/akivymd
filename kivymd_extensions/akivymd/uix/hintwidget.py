@@ -15,6 +15,7 @@ Builder.load_string(
 <AKHintWidgetItem>
     pos: self.parent.pos
 
+
 <AKHintWidget>:
     FloatLayout:
         pos: root.pos
