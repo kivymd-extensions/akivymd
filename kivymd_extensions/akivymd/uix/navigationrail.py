@@ -15,7 +15,9 @@ Builder.load_string(
     """
 <AKNavigationrailItemBase>:
 
+
 <AKNavigationrailCustomItem>:
+
 
 <AKNavigationrailItem>:
     size_hint_y: None
@@ -24,23 +26,23 @@ Builder.load_string(
         icon: root.icon
         size_hint_x: None
         width: root.height
-        theme_text_color: 'Custom'
+        theme_text_color: "Custom"
         text_color: root.active_icon_color if root.active else root.icon_color
-        halign: 'center'
+        halign: "center"
 
     MDLabel:
         opacity: root.item_text_opacity
         text: root.text
-        theme_text_color: 'Custom'
+        theme_text_color: "Custom"
         text_color: root.active_text_color if root.active else root.text_color
-        halign: 'left'
-        valign: 'center'
+        halign: "left"
+        valign: "center"
 
 
 <AKNavigationrail>
 
     BoxLayout:
-        orientation: 'vertical'
+        orientation: "vertical"
         id: items_box
         size_hint_x: None
         width: root._opening_width
@@ -61,9 +63,9 @@ Builder.load_string(
             Color:
                 rgba: root.active_color if root.active_color else root.theme_cls.bg_normal
             RoundedRectangle:
-                pos: self.pos[0] , self.pos[1]+ root._ghost_pos_y
+                pos: self.pos[0], self.pos[1] + root._ghost_pos_y
                 size: self.width, root.item_height
-                radius: [root.item_height/2, 0, 0, root.item_height/2]
+                radius: [root.item_height / 2, 0, 0, root.item_height / 2]
 
             #=============
             # second rects
@@ -72,10 +74,10 @@ Builder.load_string(
                 rgba: root.active_color if root.active_color else root.theme_cls.bg_normal
             Rectangle:
                 size: root._item_radius, root._item_radius
-                pos: self.width-root._item_radius , root._ghost_pos_y - root._item_radius
+                pos: self.width - root._item_radius, root._ghost_pos_y - root._item_radius
             Rectangle:
                 size: root._item_radius, root._item_radius
-                pos:  self.width-root._item_radius, root._ghost_pos_y+ root.item_height
+                pos:  self.width - root._item_radius, root._ghost_pos_y + root.item_height
 
             #===========
             # circles
@@ -83,11 +85,11 @@ Builder.load_string(
             Color:
                 rgba: root.navigation_bg_color
             Ellipse:
-                size: root._item_radius*2 , root._item_radius*2
-                pos: self.width - root._item_radius*2 ,  root._ghost_pos_y - root._item_radius*2
+                size: root._item_radius * 2, root._item_radius * 2
+                pos: self.width - root._item_radius * 2,  root._ghost_pos_y - root._item_radius * 2
             Ellipse:
-                size: root._item_radius*2, root._item_radius*2
-                pos: self.width-root._item_radius*2 , root._ghost_pos_y + root.item_height
+                size: root._item_radius * 2, root._item_radius * 2
+                pos: self.width - root._item_radius * 2, root._ghost_pos_y + root.item_height
 
     BoxLayout:
         id: content

@@ -30,7 +30,7 @@ Builder.load_string(
 
 
 <AKImageLoader>:
-    source: ' '
+    source: " "
     canvas.before:
         Color:
             rgba: root.theme_cls.bg_darkest
