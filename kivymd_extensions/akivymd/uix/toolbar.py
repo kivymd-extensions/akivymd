@@ -102,18 +102,22 @@ Builder.load_string(
     size_hint_y: None
     height: self.minimum_height
 
+
 <AKToolbarPinClass>
     size_hint_y: None
     height: self.minimum_height
+
 
 <AKToolbarFloatingButton>
     size_hint: None, None
     size: self.minimum_size
 
+
 <AKToolbarContent>
     size_hint_y: None
     height: self.minimum_height
     orientation: 'vertical'
+
 
 <AKToolbarLayout>
     _toolbar: _toolbar
@@ -129,7 +133,7 @@ Builder.load_string(
 
             BoxLayout:
                 size_hint_y: None
-                height: _toolbar.height+ _pin_widget.height
+                height: _toolbar.height + _pin_widget.height
 
     MDBoxLayout:
         id: _toolbar
