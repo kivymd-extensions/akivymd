@@ -19,19 +19,20 @@ Builder.load_string(
     """
 #:import md_icons kivymd.icon_definitions.md_icons
 
+
 <AKAlertDialog>:
     auto_dismiss: False
-    size_hint: None , None
-    background_color: 0,0,0,0
-    overlay_color: 0,0,0,0
-    size: root.size_portrait if root._orientation == 'portrait'\
+    size_hint: None, None
+    background_color: 0, 0, 0, 0
+    overlay_color: 0, 0, 0, 0
+    size: root.size_portrait if root._orientation == "portrait" \
         else root.size_landscape
 
     MainAlertBox:
         elevation: root.elevation
 
-        orientation: 'vertical' if root._orientation == 'portrait' \
-            else 'horizontal'
+        orientation: "vertical" if root._orientation == "portrait" \
+            else "horizontal"
 
         canvas.before:
             Color:
@@ -39,25 +40,25 @@ Builder.load_string(
             RoundedRectangle:
                 pos: self.pos
                 size: self.size
-                radius: [root.dialog_radius,]
+                radius: [root.dialog_radius, ]
 
         canvas.after:
             Color:
                 rgba: root.progress_color if root.progress_color else root.theme_cls.primary_dark
             RoundedRectangle:
-                pos: self.pos[0] + root.dialog_radius , self.pos[1] + root.height - root.progress_width
-                size: root._progress_value , root.progress_width
-                radius: [root.progress_width/2,]
+                pos: self.pos[0] + root.dialog_radius, self.pos[1] + root.height - root.progress_width
+                size: root._progress_value, root.progress_width
+                radius: [root.progress_width / 2, ]
 
         BoxLayout:
-            size_hint_y: None if root._orientation == 'portrait' \
+            size_hint_y: None if root._orientation == "portrait"  \
                 else 1
 
-            size_hint_x: None if root._orientation == 'landscape' \
+            size_hint_x: None if root._orientation == "landscape" \
                 else 1
 
-            size: (root.width, root.header_height_portrait) if root._orientation == 'portrait' \
-                else (root.header_width_landscape , root.height)
+            size: (root.width, root.header_height_portrait) if root._orientation == "portrait" \
+                else (root.header_width_landscape, root.height)
 
             canvas.before:
                 Color:
@@ -65,23 +66,21 @@ Builder.load_string(
                 RoundedRectangle:
                     pos: self.pos
                     size: self.size
-                    radius: [root.dialog_radius, root.dialog_radius, 0, 0] if root._orientation == 'portrait' \
+                    radius: [root.dialog_radius, root.dialog_radius, 0, 0] if root._orientation == "portrait" \
                         else [root.dialog_radius, 0, 0, root.dialog_radius]
 
             MDLabel:
-                font_style: "Icon" if root.header_text_type=='icon' else "Body1"
+                font_style: "Icon" if root.header_text_type == "icon" else "Body1"
                 bold: True
-                text: u"{}".format(md_icons[root.header_icon]) if root.header_text_type=='icon' else root.header_text
-                theme_text_color: 'Custom'
-                text_color: root.header_color if root.header_color else [1,1,1,1]
+                text: u"{}".format(md_icons[root.header_icon]) if root.header_text_type == "icon" else root.header_text
+                theme_text_color: "Custom"
+                text_color: root.header_color if root.header_color else [1, 1, 1, 1]
                 valign: root.header_v_pos
                 halign: root.header_h_pos
                 font_size: root.header_font_size
 
         BoxLayout:
             id: content
-
-
     """
 )
 
