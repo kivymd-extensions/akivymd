@@ -26,13 +26,14 @@ Builder.load_string(
 <PieChartNumberLabel>
     size_hint: None, None
     size: dp(40), dp(30)
-    text: '%s\\n%d%%'%(root.title,root.percent)
+    text: "%s\\n%d%%" % (root.title, root.percent)
     font_size: dp(10)
-    halign: 'center'
-    valign: 'center'
-    font_style: 'Caption'
-    theme_text_color: 'Custom'
-    text_color: 1,1,1,1
+    halign: "center"
+    valign: "center"
+    font_style: "Caption"
+    theme_text_color: "Custom"
+    text_color: 1, 1, 1, 1
+
 
 <AKPieChart>:
 """
