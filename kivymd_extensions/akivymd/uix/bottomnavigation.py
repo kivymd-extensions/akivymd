@@ -14,20 +14,22 @@ __all__ = ("AKBottomNavigation",)
 Builder.load_string(
     """
 <_AKLabel>
-    size_hint:None ,None
-    size: dp(48) , dp(48)
-    font_style: 'Caption'
-    halign: 'center'
-    valign: 'center'
-    theme_text_color: 'Custom'
+    size_hint: None, None
+    size: dp(48), dp(48)
+    font_style: "Caption"
+    halign: "center"
+    valign: "center"
+    theme_text_color: "Custom"
     text_color: root.text_color if root.text_color else root.theme_cls.primary_light
 
+
 <_AKButton>
-    theme_text_color: 'Custom'
+    theme_text_color: "Custom"
     text_color: root.icon_color if root.icon_color else root.theme_cls.primary_color
 
+
 <AKBottomNavigation>:
-    orientation: 'vertical'
+    orientation: "vertical"
     size_hint_y: None
     height: self.minimum_height
     BoxLayout:
@@ -55,35 +57,35 @@ Builder.load_string(
         Widget:
             id: _bubble
             bubble_x: 0
-            size_hint: None , None
-            size: root.width , dp(70)
+            size_hint: None, None
+            size: root.width, dp(70)
             canvas.before:
                 Color:
                     rgba: root.bar_color if root.bar_color else root.theme_cls.primary_color
                 Rectangle:
-                    pos: self.bubble_x , dp(28)
-                    size: dp(112) , dp(28)
+                    pos: self.bubble_x, dp(28)
+                    size: dp(112), dp(28)
                 Ellipse:
-                    pos: self.bubble_x+dp(28) , 0
-                    size: dp(56) , dp(56)
+                    pos: self.bubble_x + dp(28), 0
+                    size: dp(56), dp(56)
                 Color:
                     rgba: root.bg_color if root.bg_color else root.theme_cls.bg_dark
                 Ellipse:
-                    pos: self.bubble_x - dp(28) , 0
-                    size: dp(56) , dp(56)
+                    pos: self.bubble_x- dp(28), 0
+                    size: dp(56), dp(56)
                 Ellipse:
-                    pos: self.bubble_x + dp(84) , 0
-                    size: dp(56) , dp(56)
+                    pos: self.bubble_x + dp(84), 0
+                    size: dp(56), dp(56)
 
             FloatLayout:
                 id: _text_bar
-                size_hint: None , None
-                size: root.width , dp(56)
+                size_hint: None, None
+                size: root.width, dp(56)
 
             FloatLayout:
                 id: _buttons_bar
-                size_hint: None , None
-                size: root.width , dp(70)
+                size_hint: None, None
+                size: root.width, dp(70)
 """
 )
 
