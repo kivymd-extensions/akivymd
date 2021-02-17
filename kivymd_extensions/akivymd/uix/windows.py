@@ -25,22 +25,25 @@ Builder.load_string(
         Ellipse:
             pos: self.pos
             size: self.size
+
     MDIcon:
         icon: root.button_icon
-        halign: 'center'
-        valign: 'center'
-        theme_text_color: 'Custom'
+        halign: "center"
+        valign: "center"
+        theme_text_color: "Custom"
         text_color: root.button_text_color if root.button_text_color  else root.theme_cls.primary_color
-        font_size: self.parent.height-dp(4)
-        pos_hint: {'center_x': .5, 'center_y': .5}
+        font_size: self.parent.height - dp(4)
+        pos_hint: {"center_x": .5, "center_y": .5}
+
 
 <AKFloatingWindowLayout>
 
+
 <AKFloatingWindow>:
-    orientation: 'vertical'
-    radius: [root.window_radius,]
+    orientation: "vertical"
+    radius: [root.window_radius, ]
     WindowHeader:
-        orientation: 'vertical'
+        orientation: "vertical"
         id: header
         size_hint_y: None
         height: root.header_height
@@ -55,32 +58,31 @@ Builder.load_string(
         BoxLayout:
             MDLabel:
                 text: root.window_title
-                valign: 'center'
-                halign: 'left'
+                valign: "center"
+                halign: "left"
                 padding: [dp(10), 0]
                 font_size: root.title_font_size
-                theme_text_color: 'Custom'
-                text_color: root.header_text_color if root.header_text_color else 1,1,1,1
-
+                theme_text_color: "Custom"
+                text_color: root.header_text_color if root.header_text_color else 1, 1, 1, 1
 
             MDBoxLayout:
                 adaptive_width: True
                 spacing: dp(3)
                 padding: [dp(10), 0]
                 HeaderButton:
-                    size: header.height-dp(3), header.height-dp(3)
+                    size: header.height - dp(3), header.height - dp(3)
                     button_icon: root.max_button_icon
-                    button_color: root.max_button_color if root.max_button_color else 0,0,1,1
+                    button_color: root.max_button_color if root.max_button_color else 0, 0, 1, 1
                     button_text_color: root.max_button_text_color if root.max_button_text_color else 1,1,1,1
-                    pos_hint: {'center_x': .5, 'center_y': .5}
+                    pos_hint: {"center_x": .5, "center_y": .5}
                     on_release: root.maximize()
 
                 HeaderButton:
-                    size: header.height-dp(3), header.height-dp(3)
+                    size: header.height - dp(3), header.height - dp(3)
                     button_icon: root.exit_button_icon
-                    button_color: root.exit_button_color if root.exit_button_color else 1,0,0,1
+                    button_color: root.exit_button_color if root.exit_button_color else 1, 0, 0, 1
                     button_text_color: root.exit_button_text_color if root.exit_button_text_color else 1,1,1,1
-                    pos_hint: {'center_x': .5, 'center_y': .5}
+                    pos_hint: {"center_x": .5, "center_y": .5}
                     on_release: root.dismiss()
 
         MDSeparator:
@@ -93,7 +95,7 @@ Builder.load_string(
             RoundedRectangle:
                 pos: self.pos
                 size: self.size
-                radius: [0,0, root.window_radius, root.window_radius]
+                radius: [0, 0, root.window_radius, root.window_radius]
 """
 )
 

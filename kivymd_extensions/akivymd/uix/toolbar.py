@@ -116,7 +116,7 @@ Builder.load_string(
 <AKToolbarContent>
     size_hint_y: None
     height: self.minimum_height
-    orientation: 'vertical'
+    orientation: "vertical"
 
 
 <AKToolbarLayout>
@@ -129,7 +129,7 @@ Builder.load_string(
         MDBoxLayout:
             id: scrollbox
             adaptive_height: True
-            orientation: 'vertical'
+            orientation: "vertical"
 
             BoxLayout:
                 size_hint_y: None
