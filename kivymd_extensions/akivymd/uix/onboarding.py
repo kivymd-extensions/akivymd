@@ -72,6 +72,7 @@ Builder.load_string(
             on_release: root._on_finish_dispatch()
             disabled: False if root.skip_button else True
             opacity: 1 if root.skip_button else 0
+            theme_text_color: "Custom"
             text_color: root.circles_color if root.circles_color else root.theme_cls.primary_color
             pos_hint: {'right': .95, 'center_y': .5}
 """
