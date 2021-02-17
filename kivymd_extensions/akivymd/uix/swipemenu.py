@@ -83,6 +83,7 @@ Builder.load_string(
 <AdaptiveBox>
     adaptive_height: True
 
+
 <BaseMenu>
     canvas.before:
         Color:
@@ -91,17 +92,21 @@ Builder.load_string(
             pos: self.pos
             size: self.size
 
+
 <AKSwipeMenuMainContent>
     size_hint_y: None
     height: root._root.height - root._root._top_content.height
+
 
 <AKSwipeMenuBottomContent>
     size_hint_y: None
     _bg_color: root.bg_color if root.bg_color else root.theme_cls.primary_light
 
+
 <AKSwipeMenuTopContent>
     size_hint_y: None
     _bg_color: root.bg_color if root.bg_color else root.theme_cls.primary_color
+
 
 <AKSwipeMenu>:
     _top_content:_top_content
