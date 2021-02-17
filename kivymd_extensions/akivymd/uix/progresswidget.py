@@ -18,20 +18,20 @@ Builder.load_string(
         Color:
             rgba: root.background_circle_color if root.background_circle_color else app.theme_cls.primary_light
         Line:
-            circle: ( self.x+ self.width/2, self.y+ self.height/2, self.height/2, root.start_deg, root.end_deg)
+            circle: (self.x + self.width / 2, self.y + self.height / 2, self.height / 2, root.start_deg, root.end_deg)
             width: root.background_line_width
         Color:
             rgba: root.circle_color if root.circle_color else app.theme_cls.primary_color
         Line:
-            circle: ( self.x+ self.width/2, self.y+ self.height/2, self.height/2, root.start_deg, root._current_deg)
+            circle: (self.x + self.width / 2, self.y + self.height / 2, self.height / 2, root.start_deg, root._current_deg)
             width: root.line_width
             cap: root.cap_type
 
     MDLabel:
         id: _percent_label
-        halign: 'center'
-        valign: 'center'
-        theme_text_color: 'Custom'
+        halign: "center"
+        valign: "center"
+        theme_text_color: "Custom"
         text_color: root.percent_color if root.percent_color else app.theme_cls.primary_color
         font_size: root.percent_size
 """
