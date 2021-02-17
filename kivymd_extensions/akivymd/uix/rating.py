@@ -45,10 +45,9 @@ from kivymd.uix.behaviors import MagicBehavior
 
 Builder.load_string(
     """
-
 <_RaitingItem>
     size_hint: None, None
-    size: root.font_size+ root.item_spacing , root.font_size
+    size: root.font_size + root.item_spacing, root.font_size
     magic_speed: 0.6
 
     MDIcon:
@@ -63,7 +62,6 @@ Builder.load_string(
 <AKRating>
     size_hint: None, None
     size: self.minimum_size
-
     """
 )
 
