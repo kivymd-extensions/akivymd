@@ -10,25 +10,25 @@ from kivymd_extensions.akivymd.uix.spinners import AKSpinnerDoubleBounce
 Builder.load_string(
     """
 <Message_label@BoxLayout>:
-    icon: ''
-    text: ''
+    icon: ""
+    text: ""
     padding: dp(4)
     MDIcon:
         size_hint_x: None
         width: dp(20)
         icon: root.icon
         theme_text_color: "Custom"
-        text_color: 1,1,1,1
-        halign: 'center'
-        valign: 'center'
+        text_color: 1, 1 ,1, 1
+        halign: "center"
+        valign: "center"
 
     MDLabel:
         text: root.text
-        halign: 'center'
-        valign: 'center'
-        font_style: 'Caption'
+        halign: "center"
+        valign: "center"
+        font_style: "Caption"
         theme_text_color: "Custom"
-        text_color: 1,1,1,1
+        text_color: 1, 1, 1, 1
 
 <AKProgressbutton>:
     size_hint: None,None
@@ -40,7 +40,7 @@ Builder.load_string(
 
         BoxLayout: ## Success
             id: _success_box
-            pos_hint: {'center_x': .5, 'center_y': .5}
+            pos_hint: {"center_x": .5, "center_y": .5}
 
             canvas.before:
                 Color:
@@ -48,7 +48,7 @@ Builder.load_string(
                     a: root._success_opacity
                 RoundedRectangle:
                     size: root._success_box_size
-                    pos: [ self.x+self.width/2-root._success_box_size[0]/2 , self.y ]
+                    pos: [self.x + self.width / 2 - root._success_box_size[0] / 2, self.y]
                     radius: [self.height / 2]
 
             Message_label:
@@ -59,7 +59,7 @@ Builder.load_string(
 
         BoxLayout: ## Failure
             id: _failure_box
-            pos_hint: {'center_x': .5, 'center_y': .5}
+            pos_hint: {"center_x": .5, "center_y": .5}
 
             canvas.before:
                 Color:
@@ -67,7 +67,7 @@ Builder.load_string(
                     a: root._failure_opacity
                 RoundedRectangle:
                     size: root._failure_box_size
-                    pos: [ self.x+self.width/2-root._failure_box_size[0]/2 , self.y ]
+                    pos: [self.x + self.width / 2 - root._failure_box_size[0] / 2, self.y]
                     radius: [self.height / 2]
 
             Message_label:
