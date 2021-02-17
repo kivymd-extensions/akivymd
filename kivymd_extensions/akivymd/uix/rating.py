@@ -52,8 +52,8 @@ Builder.load_string(
 
     MDIcon:
         icon: root.icon
-        theme_text_color: "Custom" if root.text_color else None
-        text_color : root.text_color
+        theme_text_color: "Custom" if root.text_color else "Primary"
+        text_color: root.text_color if root.text_color else root.theme_cls.primary_color
         font_size: root.font_size
         halign: "center"
         valign: "center"
@@ -66,7 +66,7 @@ Builder.load_string(
 )
 
 
-class _RaitingItem(ButtonBehavior, BoxLayout, MagicBehavior):
+class _RaitingItem(ThemableBehavior, ButtonBehavior, BoxLayout, MagicBehavior):
     icon = StringProperty()
     text_color = ListProperty()
     font_size = NumericProperty()
