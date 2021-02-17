@@ -23,12 +23,14 @@ Builder.load_string(
 
     canvas.before:
         Color:
-            rgba: root.button_bg_color if root.button_bg_color else app.theme_cls.primary_light
+            rgba:
+                root.button_bg_color if root.button_bg_color \
+                else app.theme_cls.primary_light
             a: root._bg_opacity
         RoundedRectangle:
             size: self.size
             pos: self.pos
-            radius: [self.height / 2,]
+            radius: [self.height / 2, ]
 
     AKBadgeLayout:
         badgeitem_size: root.badgeitem_size
@@ -54,14 +56,16 @@ Builder.load_string(
     FloatLayout:
         id: _float
         size_hint_x: None
-        width: root.width- _icon.width
+        width: root.width - _icon.width
 
         Label:
             id: _label
             text: root.text
             opacity: 0
             halign: "center"
-            color: root.text_color if root.text_color else app.theme_cls.primary_dark
+            color:
+                root.text_color if root.text_color \
+                else app.theme_cls.primary_dark
             font_size: root.text_size
             size_hint: None, None
             size: self.texture_size
