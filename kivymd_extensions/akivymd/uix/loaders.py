@@ -19,14 +19,14 @@ Builder.load_string(
         RoundedRectangle:
             pos: self.pos
             size: self.size
-            radius: [dp(20),]
+            radius: [dp(20), ]
         Color:
             rgba: root.theme_cls.bg_dark
             a: root.bg_rec_opacity
         RoundedRectangle:
             pos: self.pos
             size: self.size
-            radius: [dp(20),]
+            radius: [dp(20), ]
 
 
 <AKImageLoader>:
@@ -38,14 +38,14 @@ Builder.load_string(
         RoundedRectangle:
             pos: self.pos
             size: self.size
-            radius: [(self.size[0]/2),] if root.circle else [dp(20),]
+            radius: [(self.size[0] / 2), ] if root.circle else [dp(20), ]
         Color:
             rgba: root.theme_cls.bg_dark
             a: root.bg_rec_opacity
         RoundedRectangle:
             pos: self.pos
             size: self.size
-            radius: [(self.size[0]/2,self.size[1]/2),] if root.circle else [dp(20),]
+            radius: [(self.size[0] / 2, self.size[1] / 2), ] if root.circle else [dp(20), ]
 """
 )
 
