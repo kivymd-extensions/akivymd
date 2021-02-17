@@ -34,7 +34,7 @@ Builder.load_string(
         valign: "center"
         font_size: dp(10)
         color: root.text_color if root.text_color else 1, 1, 1, 1
-        size_hint: None,None
+        size_hint: None, None
         size: self.texture_size
 
 
@@ -63,7 +63,7 @@ Builder.load_string(
         size: self.texture_size
 
 <AKFloatingRoundedAppbar>:
-    size_hint: None,None
+    size_hint: None, None
     size: self.minimum_width, dp(40)
     pos_hint: {"center_x": .5}
     y: dp(10)
