@@ -11,17 +11,19 @@ from kivymd.uix.dialog import BaseDialog
 Builder.load_string(
     """
 <MDLabeltitle2@MDLabel>:
-    theme_text_color: 'Custom'
-    text_color: 1,1,1,1
-    halign: 'center'
-    vlighn: 'center'
-    fon_style: 'H5'
+    theme_text_color: "Custom"
+    text_color: 1, 1, 1, 1
+    halign: "center"
+    vlighn: "center"
+    fon_style: "H5"
+
 
 <MDLabeltitle@MDLabel>
-    theme_text_color: 'Primary'
-    halign: 'center'
-    vlighn: 'center'
-    fon_style: 'Caption'
+    theme_text_color: "Primary"
+    halign: "center"
+    vlighn: "center"
+    fon_style: "Caption"
+
 
 <ButtonBase>
     size_hint_y: None
@@ -29,19 +31,19 @@ Builder.load_string(
     MDLabel:
         id: value
         text: root.text
-        theme_text_color: 'Primary'
-        halign: 'center'
-        vlighn: 'center'
+        theme_text_color: "Primary"
+        halign: "center"
+        vlighn: "center"
 
 <AKDatePicker>:
-    size_hint: None,None
+    size_hint: None, None
     size:
-        (dp(302), dp(450))\
-        if root.theme_cls.device_orientation == 'portrait'\
-        else (dp(450) , dp(350))
+        (dp(302), dp(450)) \
+        if root.theme_cls.device_orientation == "portrait" \
+        else (dp(450), dp(350))
 
     BoxLayout:
-        orientation: 'vertical'
+        orientation: "vertical"
         canvas.before:
             Color:
                 rgba: root.theme_cls.bg_normal
@@ -80,35 +82,35 @@ Builder.load_string(
                     pos: self.pos
 
             MDLabeltitle:
-                text: 'Year'
+                text: "Year"
 
             MDLabeltitle:
-                text: 'Month'
+                text: "Month"
 
             MDLabeltitle:
-                text: 'Day'
+                text: "Day"
 
 
         BoxLayout:
             ScrollView:
                 MDBoxLayout:
                     id: year_view
-                    orientation: 'vertical'
+                    orientation: "vertical"
                     adaptive_height: True
             ScrollView:
                 MDBoxLayout:
                     id: month_view
-                    orientation: 'vertical'
+                    orientation: "vertical"
                     adaptive_height: True
             ScrollView:
                 MDBoxLayout:
                     id: day_view
-                    orientation: 'vertical'
+                    orientation: "vertical"
                     adaptive_height: True
         BoxLayout:
             size_hint_y: None
             height: dp(40)
-            padding: [dp(10) , 0]
+            padding: [dp(10), 0]
             spacing: dp(10)
             canvas.before:
                 Color:
@@ -119,13 +121,13 @@ Builder.load_string(
                     radius: [(0.0, 10.0), (0.0, 10.0), (10, 10), (10, 10)]
 
             MDFlatButton:
-                text: 'Cancel'
-                pos_hint: {'center_x': .5 , 'center_y': .5}
+                text: "Cancel"
+                pos_hint: {"center_x": .5, "center_y": .5}
                 on_release: root.cancel()
 
             MDFlatButton:
-                text: 'Select'
-                pos_hint: {'center_x': .5 , 'center_y': .5}
+                text: "Select"
+                pos_hint: {"center_x": .5, "center_y": .5}
                 on_release: root._choose()
 """
 )
