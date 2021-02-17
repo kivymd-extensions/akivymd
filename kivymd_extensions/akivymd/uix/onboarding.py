@@ -23,13 +23,15 @@ Builder.load_string(
         Color:
             rgba: root._circles_color
         Line:
-            circle: [ self.pos[0]+self.width/2, self.pos[1]+self.height/2, self.width/2]
+            circle: [self.pos[0] + self.width / 2, self.pos[1] + self.height / 2, self.width / 2]
             width: dp(1)
+
 
 <AKOnboardingItem>:
 
+
 <AKOnboarding>:
-    orientation: 'vertical'
+    orientation: "vertical"
 
     MyCarousel:
         min_move:root.min_move
@@ -40,7 +42,7 @@ Builder.load_string(
     FloatLayout:
         id: rounded_box
         size_hint_y: None
-        height: circles_box.y+ circles_box.height*2
+        height: circles_box.y + circles_box.height * 2
         canvas.before:
             Color:
                 rgba: root.bottom_bar_color if root.bottom_bar_color else app.theme_cls.bg_dark
@@ -62,19 +64,19 @@ Builder.load_string(
 
         BoxLayout:
             id: circles_box
-            pos: rounded_box.width/2-self.width/2 , rounded_box.height/2-self.height/2
+            pos: rounded_box.width / 2 - self.width / 2, rounded_box.height / 2 - self.height / 2
             size_hint: None,None
-            size: self.minimum_width , root.circles_size
-            spacing: root.circles_size/2
+            size: self.minimum_width, root.circles_size
+            spacing: root.circles_size / 2
 
         MDFlatButton:
-            text: 'Skip'
+            text: "Skip"
             on_release: root._on_finish_dispatch()
             disabled: False if root.skip_button else True
             opacity: 1 if root.skip_button else 0
             theme_text_color: "Custom"
             text_color: root.circles_color if root.circles_color else root.theme_cls.primary_color
-            pos_hint: {'right': .95, 'center_y': .5}
+            pos_hint: {"right": .95, "center_y": .5}
 """
 )
 
