@@ -15,39 +15,42 @@ Builder.load_string(
 <AKSpinnerBase>:
     size_hint: None, None
 
+
 <AKSpinnerCircleFlip>:
-    size: root.spinner_size , root.spinner_size
+    size: root.spinner_size, root.spinner_size
 
     canvas:
         Color:
             rgba: root.color if root.color else root.theme_cls.primary_color
         Ellipse:
-            size:  root._circle_size
-            pos: [ self.x+self.width/2 - root._circle_size[0]/2  , self.y+self.height/2 - root._circle_size[1]/2 ]
+            size: root._circle_size
+            pos: [self.x + self.width / 2 - root._circle_size[0] / 2, self.y+self.height / 2 - root._circle_size[1] / 2]
+
 
 <AKSpinnerDoubleBounce>:
-    size: root.spinner_size , root.spinner_size
+    size: root.spinner_size, root.spinner_size
 
     canvas:
         Color:
             rgba: root.color if root.color else root.theme_cls.primary_color
         Ellipse:
-            size:  root._circle_size1
-            pos: [ self.x+self.width/2 - root._circle_size1[0]/2  , self.y+self.height/2 - root._circle_size1[1]/2 ]
+            size: root._circle_size1
+            pos: [self.x + self.width / 2 - root._circle_size1[0] / 2, self.y+self.height / 2 - root._circle_size1[1] / 2]
 
         Color:
             rgba: root.color_secondary if root.color_secondary else root.theme_cls.primary_light
         Ellipse:
-            size:  root._circle_size2
-            pos: [ self.x+self.width/2 - root._circle_size2[0]/2  , self.y+self.height/2 - root._circle_size2[1]/2 ]
+            size: root._circle_size2
+            pos: [self.x+self.width / 2 - root._circle_size2[0] / 2, self.y+self.height / 2 - root._circle_size2[1] / 2]
+
 
 <AKSpinnerFoldingCube>:
-    size: root.spinner_size , root.spinner_size
+    size: root.spinner_size, root.spinner_size
 
     canvas:
         PushMatrix
         Rotate:
-            axis: 0,0,1
+            axis: 0, 0 , 1
             angle: root.angle
             origin: self.center
         Color:
@@ -61,23 +64,24 @@ Builder.load_string(
             a:root._cube2a
         Rectangle:
             size: root._cubeitem2
-            pos: [self.x, self.y+self.height/2  ]
+            pos: [self.x, self.y+self.height / 2]
         Color:
             rgba: root.color if root.color else root.theme_cls.primary_color
             a:root._cube3a
         Rectangle:
             size: root._cubeitem3
-            pos: [self.x+ self.width/2 , self.y+ self.height - root._cubeitem3[1]]
+            pos: [self.x + self.width / 2, self.y + self.height - root._cubeitem3[1]]
         Color:
             rgba: root.color if root.color else root.theme_cls.primary_color
             a:root._cube4a
         Rectangle:
             size: root._cubeitem4
-            pos: [self.x+ self.width - root._cubeitem4[0] , self.y]
+            pos: [self.x + self.width - root._cubeitem4[0], self.y]
         PopMatrix
 
+
 <AKSpinnerThreeDots>:
-    size: root.spinner_size*3 , root.spinner_size
+    size: root.spinner_size * 3, root.spinner_size
     BoxLayout:
         spacing: self.size[1]
         size_hint: None, None
@@ -89,23 +93,23 @@ Builder.load_string(
                 Color:
                     rgba: root.color if root.color else root.theme_cls.primary_color
                 Ellipse:
-                    size:  root._circle_size1
-                    pos: [ self.x+self.width/2 - root._circle_size1[0]/2  , self.y+self.height/2 - root._circle_size1[1]/2 ]
+                    size: root._circle_size1
+                    pos: [self.x + self.width / 2 - root._circle_size1[0] / 2, self.y+self.height / 2 - root._circle_size1[1] / 2]
         Widget:
             canvas:
                 Color:
                     rgba: root.color if root.color else root.theme_cls.primary_color
                 Ellipse:
-                    size:  root._circle_size2
-                    pos: [ self.x+self.width/2 - root._circle_size2[0]/2  , self.y+self.height/2 - root._circle_size2[1]/2 ]
+                    size: root._circle_size2
+                    pos: [self.x + self.width / 2 - root._circle_size2[0] / 2, self.y+self.height / 2 - root._circle_size2[1] / 2]
 
         Widget:
             canvas:
                 Color:
                     rgba: root.color if root.color else root.theme_cls.primary_color
                 Ellipse:
-                    size:  root._circle_size3
-                    pos: [ self.x+self.width/2 - root._circle_size3[0]/2  , self.y+self.height/2 - root._circle_size3[1]/2 ]
+                    size: root._circle_size3
+                    pos: [self.x + self.width / 2 - root._circle_size3[0] / 2, self.y+self.height / 2 - root._circle_size3[1] / 2]
 
 """
 )
