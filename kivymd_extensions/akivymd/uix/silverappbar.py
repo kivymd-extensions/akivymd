@@ -14,6 +14,8 @@ from kivymd.theming import ThemableBehavior
 Builder.load_string(
     """
 #:import ScrollEffect kivy.effects.scroll.ScrollEffect
+
+
 <AKSilverAppbarContent>
     canvas.before:
         Color:
@@ -21,16 +23,16 @@ Builder.load_string(
         RoundedRectangle:
             pos: self.pos
             size : self.size
-            radius: [root.parent.parent.parent.parent.radius, root.parent.parent.parent.parent.radius, 0,0]
+            radius: [root.parent.parent.parent.parent.radius, root.parent.parent.parent.parent.radius, 0, 0]
+
 
 <AKSilverAppbar>
-
     FloatLayout:
         id: float_box
         BoxLayout:
             canvas.after:
                 Color:
-                    rgba: 0,0,0,0
+                    rgba: 0, 0, 0, 0
                     a: root._darkness
                 Rectangle:
                     pos: self.pos
@@ -38,7 +40,7 @@ Builder.load_string(
             id: header
             size_hint_y: None
             height: root.max_height +  root.radius
-            pos: self.x, root.height-root.max_height- root.radius
+            pos: self.x, root.height - root.max_height - root.radius
 
         NewScrollView:
             effect_cls:ScrollEffect
@@ -47,7 +49,7 @@ Builder.load_string(
             MDBoxLayout:
                 id: scroll_box
                 adaptive_height: True
-                orientation: 'vertical'
+                orientation: "vertical"
 
                 BoxLayout:
                     size_hint_y: None
@@ -55,13 +57,13 @@ Builder.load_string(
 
         MDToolbar:
             id: toolbar
-            pos: self.x, float_box.height-self.height
+            pos: self.x, float_box.height - self.height
             right_action_items: root.right_action_items
             left_action_items: root.left_action_items
             title: root.title
             anchor_title: root.anchor_title
             md_bg_color: root.toolbar_bg if root.toolbar_bg else root.theme_cls.primary_color
-            elevation: 0.01 if root.elevation==0 else root.elevation
+            elevation: 0.01 if root.elevation == 0 else root.elevation
 """
 )
 
