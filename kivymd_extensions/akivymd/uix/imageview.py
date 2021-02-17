@@ -8,36 +8,36 @@ Builder.load_string(
     """
 <Navigation_button@MDIconButton>
     theme_text_color: "Custom"
-    text_color: 1,1,1,1
+    text_color: 1, 1, 1, 1
+
 
 <AKImageViewerItem>:
     id: scatter
     do_rotation: False
     Image:
         id: _image
-        size_hint: None,None
+        size_hint: None, None
         size: scatter.size
         source: root.source
 
 <AKImageViewer>:
     id: _mainbox
-    size_hint: (0.9, 0.4) if root.theme_cls.device_orientation == 'portrait' else (0.9,0.7)
+    size_hint: (0.9, 0.4) if root.theme_cls.device_orientation == "portrait" else (0.9, 0.7)
     carousel: carousel
 
     FloatLayout:
-
         Navigation_button:
             id: _left_button
-            pos_hint: {'x': 0 , 'center_y': .5}
-            icon: 'chevron-left'
+            pos_hint: {"x": 0 , "center_y": .5}
+            icon: "chevron-left"
             on_release:
                 root._previous_slide()
                 root._reset_current_slide()
 
         Navigation_button:
             id: _right_button
-            icon: 'chevron-right'
-            pos_hint: {'right': 1 , 'center_y': .5}
+            icon: "chevron-right"
+            pos_hint: {"right": 1, "center_y": .5}
             on_release:
                 root._next_slide()
                 root._reset_current_slide()
@@ -45,11 +45,10 @@ Builder.load_string(
         Carousel:
             id: carousel
             size_hint: None,None
-            size: _mainbox.size[0]-2*_left_button.size[0], _mainbox.size[1]
-            pos_hint: {'center_x': .5 , 'center_y': .5}
+            size: _mainbox.size[0]-2 * _left_button.size[0], _mainbox.size[1]
+            pos_hint: {"center_x": .5, "center_y": .5}
             scroll_distance: dp(9999)
             min_move: 0
-
 """
 )
 
