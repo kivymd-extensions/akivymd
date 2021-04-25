@@ -29,6 +29,18 @@
     	"screen_name": "piechart",
     	"icon": "chart-pie"
     },
+    "Linechart": {
+    	"import": "linechart",
+    	"factory": "Linechart",
+    	"screen_name": "linechart",
+    	"icon": "chart-bell-curve-cumulative"
+    },
+    "Barchart": {
+    	"import": "barchart",
+    	"factory": "Barchart",
+    	"screen_name": "barchart",
+    	"icon": "chart-bar"
+    },
     "Image Viewer": {
     	"import": "imageviewer",
     	"factory": "ImageViewer",

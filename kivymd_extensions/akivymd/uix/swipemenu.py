@@ -208,7 +208,7 @@ class MenuBox(AdaptiveBox):
     def on_touch_up(self, touch):
         pos = touch.pos
         self._allow_move = False
-        
+
         if not self._root.allow_swipe:
             return False
 
