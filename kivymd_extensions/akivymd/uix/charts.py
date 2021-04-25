@@ -25,6 +25,12 @@ from kivymd_extensions.akivymd.utils.draw_tools import DrawTools
 color_mode
 """
 
+__all__ = (
+    "AKPieChart",
+    "AKLineChart",
+    "AKBarChart",
+)
+
 Builder.load_string(
     """
 <PieChartNumberLabel>
