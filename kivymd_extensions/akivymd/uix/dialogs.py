@@ -12,7 +12,7 @@ from kivy.properties import (
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.modalview import ModalView
 from kivymd.app import MDApp
-from kivymd.uix.behaviors import RectangularElevationBehavior
+from kivymd.uix.behaviors import FakeRectangularElevationBehavior
 from kivymd.uix.dialog import BaseDialog
 
 Builder.load_string(
@@ -85,7 +85,7 @@ Builder.load_string(
 )
 
 
-class MainAlertBox(RectangularElevationBehavior, BoxLayout):
+class MainAlertBox(FakeRectangularElevationBehavior, BoxLayout):
     pass
 
 

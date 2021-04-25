@@ -13,7 +13,7 @@ from kivy.uix.behaviors import ButtonBehavior
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.floatlayout import FloatLayout
 from kivymd.theming import ThemableBehavior
-from kivymd.uix.behaviors import RectangularElevationBehavior
+from kivymd.uix.behaviors import FakeRectangularElevationBehavior
 
 Builder.load_string(
     """
@@ -115,7 +115,7 @@ class HeaderButton(ThemableBehavior, ButtonBehavior, BoxLayout):
 
 
 class AKFloatingWindow(
-    ThemableBehavior, RectangularElevationBehavior, BoxLayout
+    ThemableBehavior, FakeRectangularElevationBehavior, BoxLayout
 ):
     _window_active = BooleanProperty(False)
     header_height = NumericProperty("20dp")
