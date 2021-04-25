@@ -18,14 +18,13 @@ source.include_exts = py, png, jpg, jpeg, ttf, kv, json
 #source.include_patterns = assets/*,images/*.png
 
 # (list) Source files to exclude (let empty to not exclude anything)
-#source.exclude_exts = spec
+source.exclude_exts = spec
 
 # (list) List of directory to exclude (let empty to not exclude anything)
-#source.exclude_dirs = bin, __pycache__
+source.exclude_dirs = bin, __pycache__
 
 # (list) List of exclusions using pattern matching
 #source.exclude_patterns = license,images/*/*.jpg
-source.include_patterns = assets/*
 
 # (str) Application versioning (method 1)
 version = 1.0.0
@@ -36,7 +35,7 @@ version = 1.0.0
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements=python3, kivy==2.0.0rc3, https://github.com/kivymd/KivyMD/archive/master.zip, sdl2_ttf==2.0.15, https://github.com/kivymd-extensions/akivymd/archive/main.zip
+requirements=python3, kivy==2.0.0, https://github.com/kivymd/KivyMD/archive/master.zip, sdl2_ttf==2.0.15, https://github.com/kivymd-extensions/akivymd/archive/main.zip, pillow
 
 # (str) The directory in which python-for-android should look for your own build recipes (if any)
 
@@ -100,7 +99,7 @@ android.minapi = 21
 
 # (str) Android NDK version to use 10e
 #android.ndk = 21c
-android.ndk = 19b
+#android.ndk = 19b
 
 # (int) Android NDK API to use. This is the minimum API your app will support, it should usually match android.minapi.
 #android.ndk_api = 17c
