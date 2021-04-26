@@ -242,13 +242,13 @@ class AKChartBase(DrawTools, ThemableBehavior, RelativeLayout):
     lines = BooleanProperty(True)
     trim = BooleanProperty(True)
     _loaded = NumericProperty(1)
-    _myinit = True
     _labels_y_box = ObjectProperty()
     _labels_x_box = ObjectProperty()
     _canvas = ObjectProperty()
 
     def __init__(self, **kw):
         super().__init__(**kw)
+        self._myinit = True
         self.bind(
             _loaded=lambda *args: self._update(anim=True),
         )
@@ -293,6 +293,7 @@ class AKChartBase(DrawTools, ThemableBehavior, RelativeLayout):
             anim = Animation(_loaded=1, t=self.t, d=self.d)
             anim.start(self)
         else:
+            self._update()
             self._update()
 
     def _update(self, anim=False, *args):

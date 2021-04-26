@@ -31,7 +31,7 @@ Builder.load_string(
                 MyAKBarChart:
                     id: chart1
                     labels: True
-                    anim: True
+                    anim: False
                     lines: False
                     on_select: root.set_text(args)
 
