@@ -66,8 +66,8 @@ Builder.load_string(
             size_hint:.4,.4
             md_bg_color:root.theme_cls.primary_light if not root.first_color else root.first_color
             pos_hint:{'center_x':.5, "center_y":.5}
-            elevation:self.elevation
-            radius:self.radius
+            elevation:root.elevation
+            radius:root.radius
 
 
 """
