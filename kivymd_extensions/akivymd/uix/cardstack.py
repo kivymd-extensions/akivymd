@@ -1,75 +1,86 @@
-from kivy.lang import Builder
-from kivy.properties import ListProperty, ObjectProperty, ColorProperty, StringProperty, NumericProperty
-from kivymd.theming import ThemableBehavior
-from kivy.uix.relativelayout import RelativeLayout
 from kivy.animation import Animation
 from kivy.clock import Clock
+from kivy.lang import Builder
 from kivy.metrics import dp
-
+from kivy.properties import (
+    ColorProperty,
+    ListProperty,
+    NumericProperty,
+    ObjectProperty,
+    StringProperty,
+)
+from kivy.uix.relativelayout import RelativeLayout
+from kivymd.theming import ThemableBehavior
 
 Builder.load_string(
     """
 <AKCardStack>:
     id:stack_holder
-    size_hint:None,None
+    size_hint: None, None
+
     RelativeLayout:
         id:card3
-        pos_hint:{'center_x':.5, 'center_y':.5}
+        pos_hint: {"center_x": .5, "center_y": .5}
+
         canvas.before:
             PushMatrix
             Rotate:
                 angle: 5
-                axis: 0,0,1
-                origin: root.center[0]-self.width/1.8, root.center[1]+self.height/2
+                axis: 0, 0, 1
+                origin: root.center[0] - self.width / 1.8, root.center[1] + self.height / 2
+
         canvas.after:
             PopMatrix
+
         MDCard:
-            size_hint:.4,.4
-            md_bg_color:root.theme_cls.primary_dark if not root.third_color else root.third_color
-            pos_hint:{'center_x':.42, "center_y":.5}
-            elevation:0
-            radius:root.radius
-
-
+            size_hint: .4, .4
+            md_bg_color: root.theme_cls.primary_dark if not root.third_color else root.third_color
+            pos_hint: {"center_x": .42, "center_y": .5}
+            elevation: 0
+            radius: root.radius
 
     RelativeLayout:
-        id:card2
-        pos_hint:{'center_x':.5, 'center_y':.5}
+        id: card2
+        pos_hint: {"center_x":.5, "center_y":.5}
+
         canvas.before:
             PushMatrix
             Rotate:
                 angle: 3
-                axis: 0,0,1
-                origin: root.center[0]-self.width/1.8, root.center[1]+self.height/2
+                axis: 0, 0, 1
+                origin: root.center[0] - self.width / 1.8, root.center[1] + self.height / 2
+
         canvas.after:
             PopMatrix
-        MDCard:
-            size_hint:.4,.4
-            md_bg_color:root.theme_cls.primary_color if not root.second_color else root.second_color
-            pos_hint:{'center_x':.45, "center_y":.5}
-            elevation:0
-            radius:root.radius
 
+        MDCard:
+            size_hint: .4, .4
+            md_bg_color: root.theme_cls.primary_color if not root.second_color else root.second_color
+            pos_hint: {"center_x": .45, "center_y": .5}
+            elevation: 0
+            radius: root.radius
 
     RelativeLayout:
         id:card1
-        pos_hint:{'center_x':.5, 'center_y':.5}
+        pos_hint: {"center_x": .5, "center_y": .5}
+
         canvas.before:
             PushMatrix
+
             Rotate:
-                angle:0
-                axis: 0,0,1
-                origin: root.center[0]-self.width/1.8, root.center[1]+self.height/2
+                angle: 0
+                axis: 0, 0, 1
+                origin: root.center[0] - self.width / 1.8, root.center[1] + self.height / 2
+
         canvas.after:
             PopMatrix
+
         MDCard:
-            size_hint:.4,.4
-            md_bg_color:root.theme_cls.primary_light if not root.first_color else root.first_color
-            pos_hint:{'center_x':.5, "center_y":.5}
-            elevation:root.elevation
-            radius:root.radius
-
-
+            size_hint: .4, .4
+            md_bg_color: root.theme_cls.primary_light if not root.first_color else root.first_color
+            pos_hint: {"center_x": .5, "center_y": .5}
+            elevation: root.elevation
+            radius: root.radius
 """
 )
 
@@ -93,8 +104,8 @@ class AKCardStack(ThemableBehavior, RelativeLayout):
 
     transition = StringProperty("in_out_circ")
     """Type of animation interpolation to be used"""
-    
-    elevation = NumericProperty(13)
+
+    elevation = NumericProperty(0)
     """The elevation of the front most card"""
 
     def __init__(self, **kwargs):
@@ -111,13 +122,17 @@ class AKCardStack(ThemableBehavior, RelativeLayout):
         # We drop the first card out of the screen
         card_to_drop = "card" + str(self.counter)
         Animation(
-            pos_hint={"center_x": 0.5, "center_y": -1}, duration=0.3, t=self.transition
+            pos_hint={"center_x": 0.5, "center_y": -1},
+            duration=0.3,
+            t=self.transition,
         ).start(self.ids[card_to_drop].children[0])
         # Update the var current_card to reflect the new card brought to front
         if self.counter + 1 == 4:
             self.current_card = self.ids["card1"].children[0]
         else:
-            self.current_card = self.ids["card" + str(self.counter + 1)].children[0]
+            self.current_card = self.ids[
+                "card" + str(self.counter + 1)
+            ].children[0]
         Clock.schedule_once(self.card_changer, 0.2)
 
     def card_changer(self, *args):
@@ -168,7 +183,9 @@ class AKCardStack(ThemableBehavior, RelativeLayout):
             elevation=0,
             duration=0.4,
         ).start(new_card.children[0])
-        Animation(angle=5, duration=0.2).start(new_card.canvas.before.children[-1])
+        Animation(angle=5, duration=0.2).start(
+            new_card.canvas.before.children[-1]
+        )
 
         # Increment the counter variable and if passes 3 resest counter
         if self.counter != 3:
