@@ -47,6 +47,12 @@
     	"screen_name": "imageviewer",
     	"icon": "view-carousel-outline"
     },
+    "Card Stack": {
+        "import": "cardstack",
+        "factory": "CardStack",
+        "screen_name": "cardstack",
+        "icon": "cards"
+    },
     "Onboarding": {
     	"import": "onboarding",
     	"factory": "Onboarding",
