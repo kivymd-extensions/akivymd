@@ -1,5 +1,5 @@
 from kivy.lang import Builder
-from kivy.properties import ListProperty, ObjectProperty, ColorProperty, StringProperty
+from kivy.properties import ListProperty, ObjectProperty, ColorProperty, StringProperty, NumericProperty
 from kivymd.theming import ThemableBehavior
 from kivy.uix.relativelayout import RelativeLayout
 from kivy.animation import Animation
@@ -66,7 +66,7 @@ Builder.load_string(
             size_hint:.4,.4
             md_bg_color:root.theme_cls.primary_light if not root.first_color else root.first_color
             pos_hint:{'center_x':.5, "center_y":.5}
-            elevation:13
+            elevation:root.elevation
             radius:root.radius
 
 
@@ -93,6 +93,9 @@ class AKCardStack(ThemableBehavior, RelativeLayout):
 
     transition = StringProperty("in_out_circ")
     """Type of animation interpolation to be used"""
+    
+    elevation = NumericProperty(13)
+    """The elevation of the front most card"""
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -110,7 +113,7 @@ class AKCardStack(ThemableBehavior, RelativeLayout):
         Animation(
             pos_hint={"center_x": 0.5, "center_y": -1}, duration=0.3, t=self.transition
         ).start(self.ids[card_to_drop].children[0])
-        # Update the var current_card to reflect the new card brough to front
+        # Update the var current_card to reflect the new card brought to front
         if self.counter + 1 == 4:
             self.current_card = self.ids["card1"].children[0]
         else:
@@ -125,7 +128,7 @@ class AKCardStack(ThemableBehavior, RelativeLayout):
             card2 = "card" + str(self.counter + 1)
         Animation(
             pos_hint={"center_x": 0.5, "center_y": 0.5},
-            elevation=13,
+            elevation=root.elevation,
             md_bg_color=self.first_color,
             duration=0.3,
         ).start(self.ids[card2].children[0])
@@ -162,7 +165,7 @@ class AKCardStack(ThemableBehavior, RelativeLayout):
         Animation(
             opacity=1,
             pos_hint={"center_x": 0.42, "center_y": 0.5},
-            elevation=13,
+            elevation=0,
             duration=0.4,
         ).start(new_card.children[0])
         Animation(angle=5, duration=0.2).start(new_card.canvas.before.children[-1])
