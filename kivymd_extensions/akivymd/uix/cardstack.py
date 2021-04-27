@@ -66,8 +66,8 @@ Builder.load_string(
             size_hint:.4,.4
             md_bg_color:root.theme_cls.primary_light if not root.first_color else root.first_color
             pos_hint:{'center_x':.5, "center_y":.5}
-            elevation:root.elevation
-            radius:root.radius
+            elevation:self.elevation
+            radius:self.radius
 
 
 """
@@ -128,7 +128,7 @@ class AKCardStack(ThemableBehavior, RelativeLayout):
             card2 = "card" + str(self.counter + 1)
         Animation(
             pos_hint={"center_x": 0.5, "center_y": 0.5},
-            elevation=root.elevation,
+            elevation=self.elevation,
             md_bg_color=self.first_color,
             duration=0.3,
         ).start(self.ids[card2].children[0])
