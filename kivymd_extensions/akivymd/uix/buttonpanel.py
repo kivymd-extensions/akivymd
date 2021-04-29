@@ -57,9 +57,9 @@ class AKButtonPanel(ThemableBehavior, RelativeLayout):
     icon_color = ColorProperty(None)
     """Color of the icon for the main button"""
 
-    selectable = BooleanProperty(False)
-    """Allows you to change between selectable and normal mode
-    in selectable mode the widget will not move the main button to depict the current button
+    selectble = BooleanProperty(False)
+    """Allows you to change between selectble and normal mode
+    in selectble mode the widget will not move the main button to depict the current button
     pressed"""
 
     rectangle_color = ColorProperty(None)
@@ -123,7 +123,7 @@ class AKButtonPanel(ThemableBehavior, RelativeLayout):
                 self.open = True
 
     def _button_mover(self, widget, *args):
-        if self.selectable:
+        if self.selectble:
             if not self._added:
                 self.top_icon = MDIconButton(
                     icon=self.icon, pos=(0, 0), theme_text_color="Custom"
