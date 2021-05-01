@@ -94,6 +94,7 @@ class AKButtonPanel(ThemableBehavior, RelativeLayout):
         else:
             if isinstance(widget, MDIconButton):
                 widget.bind(on_press=self._button_mover)
+                widget.pos_hint = {'center_x':.5}
                 self.ids.icon_holder.add_widget(widget)
 
     def _show(self, *args):
@@ -126,7 +127,7 @@ class AKButtonPanel(ThemableBehavior, RelativeLayout):
         if self.selectable:
             if not self._added:
                 self.top_icon = MDIconButton(
-                    icon=self.icon, pos=(0, 0), theme_text_color="Custom"
+                    icon=self.icon, theme_text_color="Custom", pos_hint={'center_x':.5}
                 )
                 self.top_icon.text_color = (
                     self.theme_cls.text_color
@@ -137,7 +138,7 @@ class AKButtonPanel(ThemableBehavior, RelativeLayout):
                 self.ids.icon_holder.add_widget(self.top_icon)
                 self._added = True
             Animation(
-                pos=widget.parent.to_parent(widget.pos[0], widget.pos[1]),
+                pos=widget.parent.to_parent(0, widget.pos[1]),
                 duration=0.3,
                 t="in_out_circ",
             ).start(self.ids.main_button)

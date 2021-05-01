@@ -3,7 +3,7 @@ from kivymd.uix.screen import MDScreen
 
 Builder.load_string(
     """
-<ButtonPanel@AKButton>:
+<ButtonPanel@AKButtonPanel>:
     pos:60,150
     icon:'plus'
     selectable:True
