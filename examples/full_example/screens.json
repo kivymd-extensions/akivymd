@@ -53,6 +53,12 @@
         "screen_name": "cardstack",
         "icon": "cards"
     },
+    "Button Panel": {
+        "import": "buttonpanel",
+        "factory": "ButtonPanel",
+        "screen_name": "buttonpanel",
+        "icon": "gesture-tap-button"
+    },
     "Onboarding": {
     	"import": "onboarding",
     	"factory": "Onboarding",
