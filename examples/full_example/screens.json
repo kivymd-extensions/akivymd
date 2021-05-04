@@ -59,6 +59,12 @@
         "screen_name": "buttonpanel",
         "icon": "gesture-tap-button"
     },
+    "Music Player": {
+        "import": "musicplayer",
+        "factory": "MusicPlayer",
+        "screen_name": "musicplayer",
+        "icon": "music"
+    },
     "Onboarding": {
     	"import": "onboarding",
     	"factory": "Onboarding",
