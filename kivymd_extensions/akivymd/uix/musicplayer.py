@@ -189,6 +189,8 @@ class AKMusicPlayer(RelativeLayout, ThemableBehavior):
         except:
             pass
         id = self.pictures.index(self.current_pic)
+        if id+1 == len(self.songs): #We are at end of list so loop to start
+            id=-1
         self.current_pic = self.pictures[id + 1]
         self.current_song = self.songs[id + 1]
         self.current_singer = self.singers[id + 1]
