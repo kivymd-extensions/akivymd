@@ -1,7 +1,7 @@
 import ast
 import sys
 from os import path
-
+os.environ["KIVY_AUDIO"] = "ffpyplayer"
 sys.path.append(path.join(path.abspath(__file__).rsplit("examples", 1)[0]))
 from kivy.factory import Factory  # noqa
 from kivy.lang import Builder  # noqa
