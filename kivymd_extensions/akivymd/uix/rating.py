@@ -27,6 +27,7 @@ Example
 
 
     Main().run()
+
 """
 
 from kivy.clock import Clock
