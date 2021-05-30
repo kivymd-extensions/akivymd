@@ -1,12 +1,11 @@
 """
 Components/CardStack
-=====================
-
+====================
 
 .. rubric:: The AKCardStack displays an infinte stack of cards that can be swiped away.
 
 Example
-----------
+-------
 
 .. code-block:: python
 
@@ -38,7 +37,6 @@ Example
             self.ids.cardstack.change()
 
     CardStack().run()
-
 
 """
 
@@ -189,7 +187,9 @@ class AKCardStack(ThemableBehavior, RelativeLayout):
 
     """
 
-    card_out_direction = OptionProperty("down", options=["down", "up", "left", "right"])
+    card_out_direction = OptionProperty(
+        "down", options=["down", "up", "left", "right"]
+    )
     """Direction in which the front most card is animated out of the screen.
     Can be 'down', 'up', 'left' or 'right'.
 
@@ -198,7 +198,9 @@ class AKCardStack(ThemableBehavior, RelativeLayout):
 
     """
 
-    card_in_direction = OptionProperty('side', options = ['bottom','top', 'side'])
+    card_in_direction = OptionProperty(
+        "side", options=["bottom", "top", "side"]
+    )
     """Direction in which the new card to be added comes from.
     Can be 'side', 'bottom', or 'top'
 
@@ -236,27 +238,27 @@ class AKCardStack(ThemableBehavior, RelativeLayout):
         Causes the CardStack to change to the next card
         """
         card_to_drop = "card" + str(self.counter)
-        if self.card_out_direction == 'down':
+        if self.card_out_direction == "down":
             Animation(
                 pos_hint={"center_x": 0.5, "center_y": -1},
                 duration=0.3,
                 t=self.transition,
             ).start(self.ids[card_to_drop].children[0])
-        elif self.card_out_direction == 'up':
+        elif self.card_out_direction == "up":
             Animation(
                 pos_hint={"center_x": 0.5, "center_y": 1.5},
                 duration=0.3,
                 t=self.transition,
             ).start(self.ids[card_to_drop].children[0])
-        elif self.card_out_direction == 'right':
+        elif self.card_out_direction == "right":
             Animation(
-                pos_hint={"center_x": 1.5, "center_y": .5},
+                pos_hint={"center_x": 1.5, "center_y": 0.5},
                 duration=0.3,
                 t=self.transition,
             ).start(self.ids[card_to_drop].children[0])
         else:
             Animation(
-                pos_hint={"center_x": -1, "center_y": .5},
+                pos_hint={"center_x": -1, "center_y": 0.5},
                 duration=0.3,
                 t=self.transition,
             ).start(self.ids[card_to_drop].children[0])
@@ -310,9 +312,9 @@ class AKCardStack(ThemableBehavior, RelativeLayout):
         # Clear this card of its widgets
         new_card.children[0].clear_widgets()
         self.remove_widget(new_card)
-        if self.card_in_direction == 'side':
+        if self.card_in_direction == "side":
             new_card.children[0].pos_hint = {"center_x": 0.35, "center_y": 0.55}
-        elif self.card_in_direction == 'top':
+        elif self.card_in_direction == "top":
             new_card.children[0].pos_hint = {"center_x": 0.42, "center_y": 0.60}
         else:
             new_card.children[0].pos_hint = {"center_x": 0.42, "center_y": 0.4}
