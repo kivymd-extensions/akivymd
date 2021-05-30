@@ -1,6 +1,6 @@
 """
-SwipeMenu
-=========
+Components/SwipeMenu
+====================
 
 Usage
 -----

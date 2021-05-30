@@ -6,22 +6,12 @@
 
 {# Write last word in summary #}
 {% set unincluded = obj.include_dir("").startswith("/api") %}
-{% set summary_split = obj.summary.split("/") %}
-{% set name = summary_split[-1] %}
-{% if name %}
-{{ name }}
-{{ "=" * name|length }}
-{% else %}
-{{ obj.name }}
-{{ "=" * obj.name|length }}
-{% endif %}
 
 .. py:module:: {{ obj.name }}
 
 {# Write docstring of module #}
 {% if obj.docstring %}
-
-{{ obj.docstring|prepare_docstring|indent(3) }}
+{{ obj.docstring|prepare_docstring }}
 {% endif %}
 
 {% block api %}
