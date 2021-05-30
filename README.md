@@ -11,7 +11,7 @@ Awesome KivyMD is a package containing customized and non-material widgets for K
 ```bash
 pip install kivymd_extensions.akivymd
 
-#or 
+#or
 
 pip install https://github.com/kivymd-extensions/akivymd/archive/main.zip
 ```
@@ -51,15 +51,15 @@ MDScreen:
 
     AKBottomNavigation2:
         bg_color: app.theme_cls.bg_darkest
-        
+
         NavigationButton:
             text: 'Alert'
             icon: 'bell-outline'
-        
+
         NavigationButton:
             text: 'Bank'
             icon: 'bank-outline'
-        
+
         NavigationButton:
             text: 'Download'
             icon: 'arrow-down-bold-outline'
@@ -81,6 +81,14 @@ git clone https://github.com/kivymd-extensions/akivymd.git
 cd akivymd
 cd examples/full_example
 python main.py
+```
+
+## Build Docs
+
+```bash
+git clone https://github.com/kivymd-extensions/akivymd.git
+cd docs
+sphinx-build -b html sources ./_build
 ```
 
 ## Support
