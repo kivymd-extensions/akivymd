@@ -14,6 +14,8 @@ Builder.load_string(
         pos_hint: {"center_x": .5, "center_y": .5}
         size: dp(800),dp(800)
         transition: "in_out_circ"
+        card_out_direction:'left'
+        card_in_direction:'bottom'
 
     MDRaisedButton:
         text: "change cards"
