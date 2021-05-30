@@ -1,3 +1,47 @@
+"""
+AKCardStack
+============
+
+.. rubric:: The AKCardStack displays an infinte stack of cards that can be swiped away.
+
+Usage
+=====
+
+.. code-block:: python
+
+    from kivy.lang import Builder
+    from kivymd.app import MDApp
+
+    kv_string = '''
+    <CardStack@MDScreen>:
+
+        AKCardStack:
+            id: cardstack
+            pos_hint: {"center_x": .5, "center_y": .5}
+            size: dp(800),dp(800)
+            transition: "in_out_circ"
+
+        MDRaisedButton:
+            text: "change cards"
+            on_press: root.change()
+            pos_hint: {"center_x": .5, "y": .05}
+    '''
+    )
+
+
+    class CardStack(MDApp):
+        def build(self):
+            return Builder.load_string(kv_string)
+
+        def change(self):
+            self.ids.cardstack.change()
+
+    CardStack().run()
+
+
+"""
+
+
 from kivy.animation import Animation
 from kivy.clock import Clock
 from kivy.lang import Builder
@@ -87,26 +131,71 @@ Builder.load_string(
 
 class AKCardStack(ThemableBehavior, RelativeLayout):
 
+    """
+    Represents a stack of cards. Call the `change()` method on this class to
+    change the stack of cards.
+
+    Use the :attr:`current_card` to get front most card to add widgets to it.
+
+    .. Note:: When first creating the widget. The :attr:'current_card' will be 'None'. This value
+        will be only updated with the front most card after a swipe down.
+
+    """
+
     radius = ListProperty([dp(20), dp(20), dp(20), dp(20)])
-    """This sets the radius for all the cards"""
+    """Sets the radius for all the cards
+
+    :attr:`radius` is an :class:`~kivy.properties.ListProperty`
+    and defaults to `[dp(20), dp(20), dp(20), dp(20)]`.
+
+    """
 
     first_color = ColorProperty(None)
-    """This sets the color of the front most card"""
+    """Sets the color of the front most card
+
+    :attr:`first_color` is an :class:`~kivy.properties.ColorProperty`
+    and defaults to `'app.theme_cls.primary_light'`.
+
+    """
 
     second_color = ColorProperty(None)
-    """This sets the color of the second most card"""
+    """Sets the color of the second most card
+
+    :attr:`second_color` is an :class:`~kivy.properties.ColorProperty`
+    and defaults to `'app.theme_cls.primary_color'`.
+
+    """
 
     third_color = ColorProperty(None)
-    """Third sets the color of the last card"""
+    """Sets the color of the last card
+
+    :attr:`third_color` is an :class:`~kivy.properties.ColorProperty`
+    and defaults to `'app.theme_cls.primary_dark'`.
+
+    """
 
     current_card = ObjectProperty(None)
-    """A read only property that returns the object of the front most card"""
+    """A read only property that returns the object of the front most card
+
+    :attr:`current_card` is an :class:`~kivy.properties.ObjectProperty`
+    and defaults to `None`.
+
+    """
 
     transition = StringProperty("in_out_circ")
-    """Type of animation interpolation to be used"""
+    """Type of animation interpolation to be used
+
+    :attr:`transition` is an :class:`~kivy.properties.StringProperty`
+    and defaults to `'in_our_circ'`.
+
+    """
 
     elevation = NumericProperty(0)
-    """The elevation of the front most card"""
+    """The elevation of the front most card
+    :attr:`elevation` is an :class:`~kivy.properties.NumericProperty`
+    and defaults to `0`.
+
+    """
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -119,6 +208,9 @@ class AKCardStack(ThemableBehavior, RelativeLayout):
             self.third_color = self.theme_cls.primary_dark
 
     def change(self, *args):
+        """
+        Causes the CardStack to change to the next card
+        """
         # We drop the first card out of the screen
         card_to_drop = "card" + str(self.counter)
         Animation(
@@ -136,6 +228,9 @@ class AKCardStack(ThemableBehavior, RelativeLayout):
         Clock.schedule_once(self.card_changer, 0.2)
 
     def card_changer(self, *args):
+        """
+        Internal function. Do not call this function use `change()` instead
+        """
         # Rotate second card into palce
         if self.counter + 1 == 4:
             card2 = "card1"
