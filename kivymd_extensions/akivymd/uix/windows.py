@@ -134,6 +134,8 @@ class AKFloatingWindow(
     minimize_animation = BooleanProperty(True)
     window_radius = NumericProperty("8dp")
     bg_color = ListProperty()
+    minimum_window_width = NumericProperty("120dp")
+    minimum_window_height = NumericProperty("120dp")
 
     exit_button_icon = StringProperty("close")
     exit_button_color = ListProperty()
@@ -322,9 +324,14 @@ class AKFloatingWindow(
 
             width = touch_pos[0] - self.x
             height = self.y + self.height - touch_pos[1]
+            if (
+                width < self.minimum_window_width
+                or height < self.minimum_window_height
+            ):
+                return True
             self.size = [width, height]
             self.pos = [self.x, touch_pos[1]]
-
+            return True
         return super().on_touch_move(touch)
 
 

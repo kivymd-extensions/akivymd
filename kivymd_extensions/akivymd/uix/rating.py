@@ -2,7 +2,6 @@
 Components/Rating
 =================
 
-
 Example
 -------
 
@@ -27,6 +26,7 @@ Example
 
 
     Main().run()
+
 """
 
 from kivy.clock import Clock
@@ -62,6 +62,7 @@ Builder.load_string(
 <AKRating>
     size_hint: None, None
     size: self.minimum_size
+
     """
 )
 
@@ -76,61 +77,70 @@ class _RaitingItem(ThemableBehavior, ButtonBehavior, BoxLayout, MagicBehavior):
 class AKRating(ThemableBehavior, BoxLayout):
     """
     :Events:
+
         :attr:`on_rate`
             Called when an icon is clicked.
     """
 
     count = NumericProperty(5)
-    """Number of items.
+    """
+    Number of items.
 
     :attr:`count` is an :class:`~kivy.properties.NumericProperty`
     and defaults to `5`.
     """
 
     direction = OptionProperty("lr", options=["lr", "rl"])
-    """Direction of item selection. Can be `lr` for left to right or `rl` for right to left.
+    """
+    Direction of item selection. Can be `lr` for left to right or `rl` for right to left.
 
     :attr:`direction` is an :class:`~kivy.properties.OptionProperty`
     and defaults to `lr`.
     """
 
     normal_icon = StringProperty("star-outline")
-    """Normal icon.
+    """
+    Normal icon.
 
     :attr:`normal_icon` is an :class:`~kivy.properties.StringProperty`
     and defaults to `star-outline`.
     """
 
     active_icon = StringProperty("star")
-    """Active icon.
+    """
+    Active icon.
 
     :attr:`normal_icon` is an :class:`~kivy.properties.StringProperty`
     and defaults to `star`.
     """
 
     normal_color = ListProperty()
-    """Normal icon color.
+    """
+    Normal icon color.
 
     :attr:`normal_color` is an :class:`~kivy.properties.ListProperty`
     and defaults to primary color.
     """
 
     active_color = ListProperty()
-    """Active icon color.
+    """
+    Active icon color.
 
     :attr:`active_color` is an :class:`~kivy.properties.ListProperty`
     and defaults to accent color.
     """
 
     icon_size = NumericProperty(dp(30))
-    """The size of icons.
+    """
+    The size of icons.
 
     :attr:`icon_size` is an :class:`~kivy.properties.NumericProperty`
     and defaults to `dp(30)`.
     """
 
     item_spacing = NumericProperty(dp(7))
-    """The space between icons.
+    """
+    The space between icons.
 
     :attr:`item_spacing` is an :class:`~kivy.properties.NumericProperty`
     and defaults to `dp(7)`.
@@ -139,7 +149,8 @@ class AKRating(ThemableBehavior, BoxLayout):
     animation_type = OptionProperty(
         "twist", options=[False, "twist", "wobble", "shake", "grow"]
     )
-    """The animation type when an icon is clicked. The animations will be applied on active icons only.
+    """
+    The animation type when an icon is clicked. The animations will be applied on active icons only.
         Set to `False` for no animation.
 
     :attr:`animation_type` is an :class:`~kivy.properties.OptionProperty`
@@ -213,7 +224,9 @@ class AKRating(ThemableBehavior, BoxLayout):
         pass
 
     def set_rate(self, rate):
-        """Set current rate. """
+        """
+        Set current rate.
+        """
 
         self._selected = rate - 1
         self._update_items()

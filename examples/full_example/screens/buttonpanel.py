@@ -10,7 +10,7 @@ Builder.load_string(
         pos_hint: {"top": 1}
 
     AKButtonPanel:
-        pos: 250, 200
+        pos: root.width / 2 - self.width/2, root.height / 2 + dp(50)
         icon:"plus"
         selectable: True
 
