@@ -1,11 +1,11 @@
 """
 Components/FloatingRoundedAppbar
-============================
+================================
 
 .. rubric:: A floating pill shaped dock/bar to which special icon buttons can be added
 
 Example
--------------
+-------
 
 .. code-block:: python
 
@@ -113,6 +113,12 @@ Builder.load_string(
     """
 )
 
+__all__ = (
+    "AKFloatingRoundedAppbar",
+    "AKFloatingRoundedAppbarAvatarItem",
+    "AKFloatingRoundedAppbarButtonItem",
+)
+
 
 class AKFloatingRoundedAppbarItemBase(
     ThemableBehavior, ButtonBehavior, MagicBehavior, BoxLayout
@@ -208,7 +214,7 @@ class AKFloatingRoundedAppbar(ThemableBehavior, BoxLayout):
     """
     If this property is set to `True`. Pressing on a button/Avatar icon of the bar will display a grow
     and shrink effect for the pressed icon. See
-    <Kivymd Magic behaviour `https://kivymd.readthedocs.io/en/latest/behaviors/magic/#kivymd.uix.behaviors.magic_behavior.MagicBehavior.grow`>_
+    `Kivymd Magic behaviour <https://kivymd.readthedocs.io/en/latest/behaviors/magic/#kivymd.uix.behaviors.magic_behavior.MagicBehavior.grow>`_
     for more info.
 
     :attr:`press_effect` is an :class:`~kivy.properties.BooleanProperty`
