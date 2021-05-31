@@ -1,7 +1,41 @@
+"""
+Components/BadgeLayout
+======================
+
+.. rubric:: This layout can be used to add a badge to the top of KivyMD components.
+
+Example
+-------
+.. code-block:: python
+
+    from kivy.lang.builder import Builder
+    from kivymd.app import MDApp
+
+    kv_string = '''
+    AKBadgeLayout:
+        pos_hint: {"center_x": .5, "center_y": .5}
+        badgeitem_padding: dp(5)
+        bold: True
+        text: "233+"
+        offset: .5
+
+        MDRaisedButton:
+            text: "Press"
+    '''
+    class AKBadgeLayout(MDApp):
+        def build(self):
+            return Builder.load_string(kv_string)
+
+    AKBadgeLayout().run()
+
+"""
+
+
 from kivy.lang.builder import Builder
 from kivy.metrics import dp
 from kivy.properties import (
     BooleanProperty,
+    ColorProperty,
     ListProperty,
     NumericProperty,
     OptionProperty,
@@ -73,13 +107,13 @@ Builder.load_string(
     """
 )
 
+__all__ = ("AKBadgeLayout",)
 
 class BadgeContent(BoxLayout):
     pass
 
-
 class BadgeItem(ThemableBehavior, BoxLayout):
-    bg_color = ListProperty()
+    bg_color = ColorProperty()
     badgeitem_padding = NumericProperty()
     badgeitem_color = ListProperty()
     position = OptionProperty("right", options=["right", "left"])
@@ -90,15 +124,70 @@ class BadgeItem(ThemableBehavior, BoxLayout):
 
 
 class AKBadgeLayout(FloatLayout):
-    badgeitem_size = NumericProperty(dp(20))
-    bg_color = ListProperty()
+    bg_color = ColorProperty()
+    """
+    Color of the bakground around a badge.
+
+    :attr:`bg_color` is an :class:`~kivy.properties.ColorProperty`
+    and defaults to `'app.theme_cls.bg_normal'`.
+    """
+
     badgeitem_padding = NumericProperty(dp(3))
+    """
+    Padding for the badge.
+
+    :attr:`badgeitem_padding` is an :class:`~kivy.properties.NumericProperty`
+    and defaults to `'3dp'`.
+    """
+
     badgeitem_color = ListProperty()
-    position = StringProperty("right")
+    """
+    Color of the badge.
+
+    :attr:`badgeitem_color` is an :class:`~kivy.properties.ListProperty`
+    and defaults to `'app.theme_cls.accent_color'`.
+    """
+
+    position = OptionProperty("right", options=["right", "left"])
+    """
+    Position of the badge relative to the widget it is on.
+    Can be set to `right` or `left`.
+
+    :attr:`position` is an :class:`~kivy.properties.OptionProperty`
+    and defaults to `'right'`.
+    """
+
     text = StringProperty("")
+    """
+    Text to be placed inside the badge.
+
+    :attr:`text` is an :class:`~kivy.properties.StringProperty`
+    and defaults to `''`.
+    """
+
     bold = BooleanProperty(False)
+    """
+    Should the text inside the badge be bold
+
+    :attr:`bold` is an :class:`~kivy.properties.BooleanProperty`
+    and defaults to `False`.
+    """
+
     offset = NumericProperty(0.25)
+    """
+    Offset of the badge's center point from the corner of the widget it is applied to
+
+    :attr:`offset` is an :class:`~kivy.properties.NumericProperty`
+    and defaults to `'0.25'`.
+    """
+
     badge_disabled = BooleanProperty(False)
+    """
+    Show the badge or not. If set to `False` the badge opacity will be set to 0.
+
+    :attr:`badge_disabled` is an :class:`~kivy.properties.BooleanProperty`
+    and defaults to `False`.
+    """
 
     def add_widget(self, widget, index=0, canvas=None):
         if issubclass(widget.__class__, BadgeItem) or issubclass(

@@ -13,8 +13,7 @@ Example
     from kivymd.app import MDApp
 
     kv_string = '''
-    <CardStack@MDScreen>:
-
+    FloatLayout:
         AKCardStack:
             id: cardstack
             pos_hint: {"center_x": .5, "center_y": .5}
@@ -26,7 +25,6 @@ Example
             on_press: root.change()
             pos_hint: {"center_x": .5, "y": .05}
     '''
-    )
 
 
     class CardStack(MDApp):
