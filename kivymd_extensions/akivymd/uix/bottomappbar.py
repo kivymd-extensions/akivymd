@@ -1,3 +1,37 @@
+"""
+Components/FloatingRoundedAppbar
+============================
+
+.. rubric:: A floating pill shaped dock/bar to which special icon buttons can be added
+
+Example
+-------------
+
+.. code-block:: python
+
+    from kivy.lang.builder import Builder
+    from kivy.uix.screenmanager import Screen
+    from kivymd.toast import toast
+
+    kv_string = '''
+        AKFloatingRoundedAppbar:
+
+            AKFloatingRoundedAppbarButtonItem:
+                icon: "magnify"
+                text: "Search"
+                on_release: root.toast(self.text)
+
+            AKFloatingRoundedAppbarAvatarItem:
+                source: "assets/google.jpg"
+    '''
+
+    class BottomAppbar(MDApp):
+        def build(self):
+            return Builder.load_string(kv_string)
+
+        def toast(self, x):
+            return toast(x)
+"""
 from kivy.clock import Clock
 from kivy.lang.builder import Builder
 from kivy.properties import BooleanProperty, ListProperty, StringProperty
@@ -22,7 +56,7 @@ Builder.load_string(
         halign: "center"
         valign: "center"
         theme_text_color: "Custom"
-        text_color: root.icon_color if root.icon_color else 1, 1, 1, 1
+        text_color: root.icon_color if root.icon_color else root.theme_cls.text_color
         font_size: dp(20)
         pos_hint: {"center_x": .5, "center_y": .5}
         size_hint: None, None
@@ -33,7 +67,7 @@ Builder.load_string(
         halign: "center"
         valign: "center"
         font_size: dp(10)
-        color: root.text_color if root.text_color else 1, 1, 1, 1
+        color: root.text_color if root.text_color else root.theme_cls.text_color
         size_hint: None, None
         size: self.texture_size
 
@@ -58,7 +92,7 @@ Builder.load_string(
         halign: "center"
         valign: "center"
         font_size: dp(10)
-        color: root.text_color if root.text_color else 1, 1, 1, 1
+        color: root.text_color if root.text_color else root.theme_cls.text_color
         size_hint: None, None
         size: self.texture_size
 
@@ -83,28 +117,100 @@ Builder.load_string(
 class AKFloatingRoundedAppbarItemBase(
     ThemableBehavior, ButtonBehavior, MagicBehavior, BoxLayout
 ):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        Clock.schedule_once(lambda x: self._update())
-
-    def _update(self):
+    def on_release(self):
         if self.parent.press_effect:
-            self.bind(on_press=lambda x: self.grow())
+            self.grow()
 
 
 class AKFloatingRoundedAppbarButtonItem(AKFloatingRoundedAppbarItemBase):
-    text_color = ListProperty()
-    icon_color = ListProperty()
+    """
+    This class is used to create an icon button to be placed inside the app bar
+    """
+
     icon = StringProperty()
+    """
+    Icon to be displayed on the button
+
+    :attr:`icon` is an :class:`~kivy.properties.StringProperty`
+    and defaults to `None`.
+    """
+
     text = StringProperty()
+    """
+    Text to be displayed below the icon
+
+    :attr:`text` is an :class:`~kivy.properties.StringProperty`
+    and defaults to `None`.
+    """
+
+    text_color = ListProperty()
+    """
+    Color of the text displayed below the icon
+
+    :attr:`text_color` is an :class:`~kivy.properties.ListProperty`
+    and defaults to `'app.theme_cls.text_color'`.
+    """
+
+    icon_color = ListProperty()
+    """
+    Color of the icon
+
+    :attr:`icon_color` is an :class:`~kivy.properties.ListProperty`
+    and defaults to `'app.theme_cls.text_color'`.
+    """
 
 
 class AKFloatingRoundedAppbarAvatarItem(AKFloatingRoundedAppbarItemBase):
+    """
+    This class is used to create a button with an image to be placed inside the app bar
+    """
+
     source = StringProperty()
+    """
+    Filepath for the image to be displayed on the button
+
+    :attr:`source` is an :class:`~kivy.properties.StringProperty`
+    and defaults to `None`.
+    """
+
     text = StringProperty()
+    """
+    Text to be displayed below the image
+
+    :attr:`text` is an :class:`~kivy.properties.StringProperty`
+    and defaults to `None`.
+    """
+
     text_color = ListProperty()
+    """
+    Color of the text below the image
+
+    :attr:`text_color` is an :class:`~kivy.properties.ListProperty`
+    and defaults to `'app.theme_cls.text_color'`.
+    """
 
 
 class AKFloatingRoundedAppbar(ThemableBehavior, BoxLayout):
+    """
+    This is the base class for `AKFloatingRoundedAppbar`. Instances of `AKFloatingRoundedAppbarButtonItem`
+    and `AKFloatingRoundedAppbarAvatarItem` can be added inside this class.
+    """
+
     bg_color = ListProperty()
+    """
+    Color of the appbar
+
+    :attr:`bg_color` is an :class:`~kivy.properties.ListProperty`
+    and defaults to `'app.theme_cls.primary_color'`.
+    """
+
     press_effect = BooleanProperty(True)
+    """
+    If this property is set to `True`. Pressing on a button/Avatar icon of the bar will display a grow
+    and shrink effect for the pressed icon. See
+    <Kivymd Magic behaviour `https://kivymd.readthedocs.io/en/latest/behaviors/magic/#kivymd.uix.behaviors.magic_behavior.MagicBehavior.grow`>_
+    for more info.
+
+    :attr:`press_effect` is an :class:`~kivy.properties.BooleanProperty`
+    and defaults to `True`.
+    """
