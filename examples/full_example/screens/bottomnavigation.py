@@ -70,7 +70,6 @@ Builder.load_string(
 """
 )
 
-
 class BottomNavigation(MDScreen):
     bottomnavigation_items = [
         {"icon": "android", "text": "android", "on_release": lambda x: None},

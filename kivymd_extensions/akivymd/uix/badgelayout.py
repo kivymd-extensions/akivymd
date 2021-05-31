@@ -35,7 +35,6 @@ from kivy.lang.builder import Builder
 from kivy.metrics import dp
 from kivy.properties import (
     BooleanProperty,
-    ColorProperty,
     ListProperty,
     NumericProperty,
     OptionProperty,
@@ -113,7 +112,7 @@ class BadgeContent(BoxLayout):
     pass
 
 class BadgeItem(ThemableBehavior, BoxLayout):
-    bg_color = ColorProperty()
+    bg_color = ListProperty()
     badgeitem_padding = NumericProperty()
     badgeitem_color = ListProperty()
     position = OptionProperty("right", options=["right", "left"])
@@ -124,11 +123,11 @@ class BadgeItem(ThemableBehavior, BoxLayout):
 
 
 class AKBadgeLayout(FloatLayout):
-    bg_color = ColorProperty()
+    bg_color = ListProperty()
     """
     Color of the bakground around a badge.
 
-    :attr:`bg_color` is an :class:`~kivy.properties.ColorProperty`
+    :attr:`bg_color` is an :class:`~kivy.properties.ListProperty`
     and defaults to `'app.theme_cls.bg_normal'`.
     """
 

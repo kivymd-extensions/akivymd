@@ -33,7 +33,6 @@ Builder.load_string(
             radius: [self.height / 2, ]
 
     AKBadgeLayout:
-        badgeitem_size: root.badgeitem_size
         bg_color: root.badge_bg_color
         badgeitem_padding: root.badgeitem_padding
         badgeitem_color: root.badgeitem_color
