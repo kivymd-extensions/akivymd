@@ -1,3 +1,50 @@
+"""
+Components/MusicPlayer
+=========================
+
+.. rubric:: A music player widgets that allows you to play a list of songs
+
+.. note:: This widget may not work properly on android currently due to audio provider problems.
+
+.. warning::
+
+    If on desktop you need to change audio provider to any audio provider other than `sdl2`.
+    Check `here to see how to set the environment variable <https://kivy.org/doc/stable/guide/environment.html#restrict-core-to-specific-implementation>`_.
+    Remember that this must be set at the beginning of your program.
+
+
+Example
+-----------------
+
+.. code-block:: python
+
+    import os
+    os.environ["KIVY_AUDIO"] = "ffpyplayer"
+    from kivy.lang import Builder
+    from kivymd.uix.screen import MDScreen
+
+    Builder.load_string(
+        '''
+    <MusicPlayer>:
+        MyToolbar:
+            id: _toolbar
+            pos_hint: {"top": 1}
+
+        AKMusicPlayer:
+            pos:250,250
+            pictures:'assets/music1.jpg','assets/music2.jpg'
+            songs:"song1", 'song2'
+            singers:'Singer1','Singer2'
+            file_paths:'assets/music1.mp3','assets/music2.mp3'
+
+    '''
+    )
+    class MusicPlayer(MDScreen):
+        pass
+
+
+"""
+
 from kivy.uix.relativelayout import RelativeLayout
 from kivy.lang import Builder
 from kivy.animation import Animation
@@ -102,7 +149,7 @@ Builder.load_string(
     canvas.before:
         PushMatrix
         Rotate:
-            angle: root.angle
+            angle: root._angle
             origin: self.center
     canvas.after:
         PopMatrix
@@ -113,77 +160,153 @@ Builder.load_string(
 
 class AKMusicPlayer(RelativeLayout, ThemableBehavior):
 
-    """NOTE: Add this to the beginning of your python value before importing kivy
+    md_bg_color = ColorProperty()
+    """Color of the main MusicPlayer Card
 
-    import os
-    os.environ['KIVY_AUDIO'] = 'ffpyplayer'
+    :attr:`md_bg_color` is an :class:`~kivy.properties.ColorProperty`
+    and defaults to primary theme color of the app.
 
-    This is required as the default sdl2 audio provider doesnt allow the ability to seek and
-    detect length of audio
     """
 
-    md_bg_color = ColorProperty()
-    """Color of the main MusicPlayer Card"""
-
     font_color = ColorProperty(None)
-    """Color of the label's text"""
+    """Color of label text
+
+    :attr:`font_color` is an :class:`~kivy.properties.ColorProperty`
+    and defaults to `'app.theme_cls.font_color'`.
+
+    """
 
     icon_color = ColorProperty(None)
-    """color of the icons"""
+    """Color of icons
+
+    :attr:`icon_color` is an :class:`~kivy.properties.ColorProperty`
+    and defaults to `'app.theme_cls.primary_color'`
+
+    """
 
     seeker_color = ColorProperty(None)
-    """color of the seeker bar"""
+    """Color of seeker bar
+
+    :attr:`seeker_color` is an :class:`~kivy.properties.ColorProperty`
+    and defaults to `'app.theme_cls.primary_color'`.
+
+    """
 
     card_elevation = NumericProperty(13)
-    """Elevation of the main MusicPlayer Card"""
+    """Elevation of main MusicPlayer Card
+
+    :attr:`card_elevation` is an :class:`~kivy.properties.NumericProperty`
+    and defaults to '13'
+
+    """
 
     radius = ListProperty([dp(20), dp(20), dp(20), dp(20)])
-    """Radius of the main MusicPlayer Card"""
+    """Radius of main MusicPlayer Card
+
+    :attr:`radius` is an :class:`~kivy.properties.ListProperty`
+    and defaults to '[dp(20), dp(20), dp(20), dp(20)]'.
+
+    """
 
     file_paths = ListProperty([])
-    """File paths of all songs to be played"""
+    """File paths of all songs to be played
+
+    :attr:`filepath` is an :class:`~kivy.properties.ListProperty`
+    and defaults to `None`.
+
+    """
 
     songs = ListProperty(["Song1"])
-    """List of all names of songs that are to be played by the widgets"""
+    """List of all names of songs that are to be played by the widgets.
+    Will display `Song1` if no song file paths are added.
+
+    :attr:`songs` is an :class:`~kivy.properties.ListProperty`
+    and defaults to `Song1`.
+
+    """
 
     pictures = ListProperty()
-    """List of all filepaths to pictures of songs to be played"""
+    """List of all filepaths to pictures of songs to be played
+
+    :attr:`pictures` is an :class:`~kivy.properties.ListProperty`
+    and defaults to `None`.
+
+    """
 
     singers = ListProperty(["Singer1"])
-    """List of all singer names of all songs to be played"""
+    """List of all singer names of all songs to be played.
+    Will display `Singer1` if no singer file paths are added.
+
+    :attr:`singers` is an :class:`~kivy.properties.ListProperty`
+    and defaults to `Singer1`.
+
+    """
 
     current_filepath = StringProperty()
-    """Read only property of the file path of the currently playig song's filepath"""
+    """Read only property of the file path of the currently playig song's filepath
+
+    :attr:`current_filepath` is an :class:`~kivy.properties.StringProperty`
+    and defaults to `None`.
+
+    """
 
     current_song = StringProperty()
-    """Read only Property that returns the name of the currently playing song"""
+    """Read only Property that returns the name of the currently playing song
 
-    current_pic = ObjectProperty()
-    """Read only Property that returns the album art of the current playing song"""
+    :attr:`current_song` is an :class:`~kivy.properties.StringProperty`
+    and defaults to `None`.
+
+    """
+
+    current_pic = StringProperty()
+    """Read only Property that returns the album art of the current playing song
+
+    :attr:`current_pic` is an :class:`~kivy.properties.StringProperty`
+    and defaults to `None`.
+
+    """
 
     current_singer = StringProperty()
-    """Read only Property that returns the singer of the current playing song"""
+    """Read only Property that returns the singer of the current playing song
+
+    :attr:`current_singer` is an :class:`~kivy.properties.StringProperty`
+    and defaults to `None`.
+
+    """
 
     current_song_length = NumericProperty()
-    """Read Only Property that returns the length of the current playing song in seconds"""
+    """Read Only Property that returns the length of the current playing song in seconds
+
+    :attr:`current_song_length` is an :class:`~kivy.properties.NumericProperty`
+    and defaults to `None`.
+
+    """
 
     current_song_pos = NumericProperty()
-    """Read Only Property that returns the amount of seconds that is currently being played"""
+    """Read Only Property that returns the amount of seconds that has been played
+
+    :attr:`current_song_pos` is an :class:`~kivy.properties.NumericProperty`
+    and defaults to `None`.
+
+    """
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        Clock.schedule_once(self.current_setter, 0)
+        Clock.schedule_once(self._current_setter, 0)
 
-    def current_setter(self, *args):
+    def _current_setter(self, *args):
         self.current_song = self.songs[0]
         self.current_pic = self.pictures[0]
         self.current_singer = self.singers[0]
         self.song = SoundLoader.load(self.file_paths[0])
-        Clock.schedule_interval(self.song_position, 1)
+        Clock.schedule_interval(self._song_position, 1)
         self.current_song_length = self.song.length
-        self.ids.seeker.bind(on_touch_up=self.seeker)
+        self.ids.seeker.bind(on_touch_up=self._seeker)
 
     def skip_next(self, *args):
+        """
+        Call this method to skip to the next song
+        """
         try:
             self.song.unload()
         except:
@@ -194,14 +317,17 @@ class AKMusicPlayer(RelativeLayout, ThemableBehavior):
         self.current_pic = self.pictures[id + 1]
         self.current_song = self.songs[id + 1]
         self.current_singer = self.singers[id + 1]
-        anim1 = Animation(angle=-720, d=0.5, t="out_circ")
+        anim1 = Animation(_angle=-720, d=0.5, t="out_circ")
         anim1.start(self.ids.musicpic)
-        anim1.bind(on_complete=self.angle_reseter)
+        anim1.bind(on_complete=self._angle_reseter)
         self.song = SoundLoader.load(self.file_paths[id + 1])
         self.current_song_length = self.song.length
         self.ids.play_button.icon = "pause"
 
     def skip_previous(self, *args):
+        """
+        Call this method to skip to the previous song
+        """
         try:
             self.song.unload()
         except:
@@ -210,27 +336,30 @@ class AKMusicPlayer(RelativeLayout, ThemableBehavior):
         self.current_pic = self.pictures[id - 1]
         self.current_song = self.songs[id - 1]
         self.current_singer = self.singers[id - 1]
-        anim2 = Animation(angle=720, d=0.5, t="out_circ")
+        anim2 = Animation(_angle=720, d=0.5, t="out_circ")
         anim2.start(self.ids.musicpic)
-        anim2.bind(on_complete=self.angle_reseter)
+        anim2.bind(on_complete=self._angle_reseter)
         self.song = SoundLoader.load(self.file_paths[id - 1])
         self.ids.play_button.icon = "pause"
 
-    def angle_reseter(self, *args):
-        self.ids.musicpic.angle = 0
+    def _angle_reseter(self, *args):
+        self.ids.musicpic._angle = 0
         self.song.play()
 
-    def song_position(self, *args):
+    def _song_position(self, *args):
         self.current_song_pos = self.song.get_pos()
         if int(self.song.get_pos()) == int(self.song.length):
             self.skip_next()
 
-    def seeker(self, instance, touch):
+    def _seeker(self, instance, touch):
         if super(AKMusicPlayer, self).ids.seeker.collide_point(*touch.pos):
             self.song.seek(instance.value)
             return super(AKMusicPlayer, self).on_touch_up(touch)
 
     def player(self, *args):
+        """
+        Call this method to stop or play the song
+        """
         if self.song.state == "play":
             self.song.stop()
             self.ids.play_button.icon = "play"
@@ -242,7 +371,7 @@ class AKMusicPlayer(RelativeLayout, ThemableBehavior):
 class MusicPic(CircularRippleBehavior, CircularElevationBehavior):
 
     _source = ObjectProperty()
-    # Do not edit this property
+    """Internal variable do not edit"""
 
-    angle = NumericProperty()
-    # Do not edit this property
+    _angle = NumericProperty()
+    """Internal variable do not edit"""
