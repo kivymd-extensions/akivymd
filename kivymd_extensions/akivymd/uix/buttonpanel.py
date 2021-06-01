@@ -1,3 +1,42 @@
+"""
+Components/ButtonPanel
+======================
+
+.. rubric:: A collapsable panel of buttons
+
+Example
+----------
+
+.. code-block:: python
+
+    from kivy.lang import Builder
+    from kivymd.uix.app import MDApp
+
+    kv_string = '''
+    AKButtonPanel:
+        pos: root.width / 2 - self.width/2, root.height / 2 + dp(50)
+        icon:"plus"
+        selectable: True
+
+        MDIconButton:
+            icon: "minus"
+            theme_text_color: "Custom"
+            text_color: 1, 1, 0, 1
+
+        MDIconButton:
+            icon: "calendar"
+            theme_text_color: "Custom"
+            text_color: 1, 0, 0, 1
+    '''
+
+    class ButtonPanel(MDApp):
+
+        def build(self):
+            return Builder.load_string(kv_string)
+
+"""
+
+
 from kivy.animation import Animation
 from kivy.lang import Builder
 from kivy.metrics import dp
@@ -41,40 +80,75 @@ Builder.load_string(
 """
 )
 
-
 class AKButtonPanel(ThemableBehavior, RelativeLayout):
 
-    radius = ListProperty([dp(30), dp(30), dp(30), dp(30)])
-    """Used to define the radius of the drop down rectangle"""
-
     icon = StringProperty("plus")
-    """Defines the icon for the main button"""
+    """Defines the icon for the main button
+
+    :attr:`icon` is an :class:`~kivy.properties.StringProperty`
+    and defaults to `'plus'`.
+    """
+
+    radius = ListProperty([dp(30), dp(30), dp(30), dp(30)])
+    """Used to define the radius of the drop down rectangle
+
+    :attr:`radius` is an :class:`~kivy.properties.ListProperty`
+    and defaults to `30dp`.
+    """
 
     icon_color = ColorProperty(None)
-    """Color of the icon for the main button"""
+    """Color of the icon for the main button
+
+    :attr:`icon_color` is an :class:`~kivy.properties.ColorProperty`
+    and defaults to `'app.theme_cls.text_color'`.
+    """
 
     selectable = BooleanProperty(False)
     """Allows you to change between selectable and normal mode
     in selectable mode the widget will not move the main button to depict the current button
-    pressed"""
+    pressed.
+
+    :attr:`selectable` is an :class:`~kivy.properties.BooleanProperty`
+    and defaults to `False`.
+    """
 
     rectangle_color = ColorProperty(None)
-    """Color of the dropdown rectangle. Defaults to the primary color of the app"""
+    """Color of the dropdown rectangle. Defaults to the primary color of the app
+
+    :attr:`rectangle_color` is an :class:`~kivy.properties.ColorProperty`
+    and defaults to `'app.theme_cls.primary_color'`.
+    """
 
     main_button_color = ColorProperty(None)
-    """Color of the main button.It defaults to Primary Dark Color of the app"""
+    """Color of the main button.It defaults to Primary Dark Color of the app
+
+    :attr:`main_button_color` is an :class:`~kivy.properties.ColorProperty`
+    and defaults to `'app.theme_cls.primary_color'`.
+    """
 
     is_open = BooleanProperty(False)
-    """A read only property that depicts if the widget is open or not"""
+    """A read only property that depicts if the widget is open or not
+
+    :attr:`is_open` is an :class:`~kivy.properties.BooleanProperty`
+    and defaults to `False`.
+    """
 
     animation = StringProperty("in_out_circ")
-    """The animation interpolation to be used for the rectangle drop down"""
+    """The animation interpolation to be used for the rectangle drop down
+
+    :attr:`animation` is an :class:`~kivy.properties.StringProperty`
+    and defaults to `'in_out_circ'`.
+    """
 
     anim_duration = NumericProperty(0.3)
-    """The duration of the animation for the drop down rectangle"""
+    """The duration of the animation for the drop down rectangle in seconds.
 
-    # auto_dismiss = BooleanProperty(True)
-    # """ Hides the pannel when clicking outside of the pannel"""
+    :attr:`anim_duration` is an :class:`~kivy.properties.NumericProperty`
+    and defaults to `0.3`.
+    """
+
+    auto_dismiss = BooleanProperty(True)
+    """ Hides the pannel when clicking outside of the pannel"""
 
     _z = -dp(56)
     # Internal variable used for positioning icons. Do not change this value, can cause weird behaviour
@@ -103,7 +177,9 @@ class AKButtonPanel(ThemableBehavior, RelativeLayout):
             self.show()
 
     def hide(self, *args):
-        """ Hides the pannel """
+        """
+        Call this function to hide the panel.
+        """
         if not self.is_open:
             return False
         if not self._added:
@@ -120,7 +196,9 @@ class AKButtonPanel(ThemableBehavior, RelativeLayout):
         return True
 
     def show(self):
-        """ shows the pannel """
+        """
+        Call this function to show the panel.
+        """
         if self.is_open:
             return False
         for icon in self.ids.icon_holder.children:
@@ -171,6 +249,7 @@ class AKButtonPanel(ThemableBehavior, RelativeLayout):
         self.ids.icon_holder.remove_widget(self.top_icon)
 
     # def on_touch_down(self, touch):
+    #     print(self.ids.icon_holder.collide_point(*touch.pos))
     #     if not self.collide_point(*touch.pos):
     #         if self.is_open and self.auto_dismiss:
     #             self.hide()
