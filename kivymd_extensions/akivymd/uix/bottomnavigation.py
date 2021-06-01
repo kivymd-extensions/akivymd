@@ -10,7 +10,7 @@ Example
 .. code-block:: python
 
     from kivy.lang import Builder
-    from kivymd.uix.screen import MDScreen
+    from kivymd.app import MDApp
 
     kv_string = '''
     AKBottomNavigation:
@@ -25,6 +25,8 @@ Example
                 {"icon": "account", "text": "account", "on_release": lambda x: None},
             ]
             return Builder.load_string(kv_string)
+
+    BottomNavigation().run()
 
 """
 
