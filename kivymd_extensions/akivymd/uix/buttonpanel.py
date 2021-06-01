@@ -147,8 +147,8 @@ class AKButtonPanel(ThemableBehavior, RelativeLayout):
     and defaults to `0.3`.
     """
 
-    auto_dismiss = BooleanProperty(True)
-    """ Hides the pannel when clicking outside of the pannel"""
+    # auto_dismiss = BooleanProperty(True)
+    # """ Hides the pannel when clicking outside of the pannel"""
 
     _z = -dp(56)
     # Internal variable used for positioning icons. Do not change this value, can cause weird behaviour
