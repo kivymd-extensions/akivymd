@@ -1,3 +1,36 @@
+"""
+Components/BottomNavigation
+===========================
+
+.. rubric:: A beautiful navigation bar
+
+Example
+-------
+
+.. code-block:: python
+
+    from kivy.lang import Builder
+    from kivymd.app import MDApp
+
+    kv_string = '''
+    AKBottomNavigation:
+        items: root.bottomnavigation_items
+    '''
+
+    class BottomNavigation(MDApp):
+        def build(self):
+            bottomnavigation_items = [
+                {"icon": "android", "text": "android", "on_release": lambda x: None},
+                {"icon": "menu", "text": "menu", "on_release": lambda x: None},
+                {"icon": "account", "text": "account", "on_release": lambda x: None},
+            ]
+            return Builder.load_string(kv_string)
+
+    BottomNavigation().run()
+
+"""
+
+
 from kivy.animation import Animation
 from kivy.clock import Clock
 from kivy.core.window import Window
@@ -8,6 +41,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivymd.theming import ThemableBehavior
 from kivymd.uix.button import MDIconButton
 from kivymd.uix.label import MDLabel
+
 
 __all__ = ("AKBottomNavigation",)
 
@@ -112,13 +146,75 @@ class _AKButton(MDIconButton):
 
 
 class AKBottomNavigation(ThemableBehavior, BoxLayout):
+
     items = ListProperty()
+    """
+    List of dictionaries where each dictionary represents an icon button of the navigation bar.
+    The properties of each widget can be passed in as `key:value` pairs of the dictionary.
+
+    :attr:`items` is an :class:`~kivy.properties.ListProperty`
+    and defaults to `None`.
+    """
+
     bar_color = ListProperty()
+    """
+    Color of top bar of the Navigation bar
+
+    :attr:`bar_color` is an :class:`~kivy.properties.ListProperty`
+    and defaults to `'app.theme_cls.primary_color'`.
+    """
+
     icon_color = ListProperty()
+    """
+    Color of icons of the Navigation Bar.
+
+    :attr:`icon_color` is an :class:`~kivy.properties.ListProperty`
+    and defaults to `'app.theme_cls.primary_color'`.
+    """
+
     text_color = ListProperty()
+    """
+    Color of text of Navigation bar
+
+    :attr:`text_color` is an :class:`~kivy.properties.ListProperty`
+    and defaults to `'app.theme_cls.primary_light'`.
+    """
+
     bg_color = ListProperty()
+    """
+    Background color of the Navigation Bar
+
+    :attr:`bg_color` is an :class:`~kivy.properties.ListProperty`
+    and defaults to `'app.theme_cls.bg_dark'`.
+    """
+
     transition = StringProperty("out_sine")
+    """
+    Transition interpolation type to use. See
+    `kivy transition types <https://kivy.org/doc/stable/api-kivy.animation.html#kivy.animation.AnimationTransition>_`
+    for all available options
+
+    :attr:`transition` is an :class:`~kivy.properties.StringProperty`
+    and defaults to `'out_sine'`.
+    """
+
     duration = NumericProperty(0.2)
+    """
+    The duration of the transition in seconds
+
+    :attr:`duration` is an :class:`~kivy.properties.NumericProperty`
+    and defaults to `0.2`.
+    """
+
+    current_item_button = None
+    """
+    Current selected icon object. Read only property.
+    """
+
+    current_item_text = None
+    """
+    Text of the current selected icon object. Read only property
+    """
 
     _selected = -1
 
@@ -172,8 +268,16 @@ class AKBottomNavigation(ThemableBehavior, BoxLayout):
         return self._update_items(self.items)
 
     def set_current(self, index):
-        current_item_button = self.ids._buttons_bar.children[index]
-        current_item_text = self.ids._text_bar.children[index]
+        """
+        Call this method to set the Navigation bar to the icon with the passed `index`
+
+        .. note:: The index starts from 0 till 1 minus total icons in the Navigation Bar. Index value starts
+            from icons on right side of the screen
+        """
+
+        self.current_item_button = self.ids._buttons_bar.children[index]
+        self.current_item_text = self.ids._text_bar.children[index]
+
         AKBottomNavigation._selected = index
 
         for x in self.ids._buttons_bar.children:  # button
@@ -182,7 +286,7 @@ class AKBottomNavigation(ThemableBehavior, BoxLayout):
         for x in self.ids._text_bar.children:  # text
             x.opacity = 0
 
-        bubble_pos = current_item_button.x - dp(31)
+        bubble_pos = self.current_item_button.x - dp(31)
         anim_bubble = Animation(
             bubble_x=bubble_pos, t=self.transition, duration=self.duration
         )
@@ -193,6 +297,6 @@ class AKBottomNavigation(ThemableBehavior, BoxLayout):
             opacity=0, t=self.transition, duration=self.duration
         )
 
-        anim_icon_opacity.start(current_item_button)
-        anim_text_opacity.start(current_item_text)
+        anim_icon_opacity.start(self.current_item_button)
+        anim_text_opacity.start(self.current_item_text)
         anim_bubble.start(self.ids._bubble)

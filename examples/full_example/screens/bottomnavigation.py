@@ -24,6 +24,7 @@ Builder.load_string(
             orientation: "vertical"
 
         AKBottomNavigation2:
+            
             bg_color: app.theme_cls.bg_darkest
 
             On_active_button:
@@ -69,7 +70,6 @@ Builder.load_string(
             items: root.bottomnavigation_items
 """
 )
-
 
 class BottomNavigation(MDScreen):
     bottomnavigation_items = [
