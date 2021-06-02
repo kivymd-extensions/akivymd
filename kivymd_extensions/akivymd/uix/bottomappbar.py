@@ -10,20 +10,25 @@ Example
 .. code-block:: python
 
     from kivy.lang.builder import Builder
-    from kivy.uix.screenmanager import Screen
+    from kivymd.app import MDApp
     from kivymd.toast import toast
+    import kivymd_extensions.akivymd  # NOQA
 
     kv_string = '''
+
+    MDScreen:
+
         AKFloatingRoundedAppbar:
 
             AKFloatingRoundedAppbarButtonItem:
                 icon: "magnify"
                 text: "Search"
-                on_release: root.toast(self.text)
+                on_release: app.toast(self.text)
 
             AKFloatingRoundedAppbarAvatarItem:
                 source: "assets/google.jpg"
     '''
+
 
     class BottomAppbar(MDApp):
         def build(self):
@@ -31,8 +36,11 @@ Example
 
         def toast(self, x):
             return toast(x)
+
+
+    BottomAppbar().run()
+
 """
-from kivy.clock import Clock
 from kivy.lang.builder import Builder
 from kivy.properties import BooleanProperty, ListProperty, StringProperty
 from kivy.uix.behaviors import ButtonBehavior

@@ -13,6 +13,7 @@ Example
 
     from kivy.lang import Builder
     from kivymd.app import MDApp
+    import kivymd_extensions.akivymd  # NOQA
 
     kv_string = '''
 
@@ -23,25 +24,30 @@ Example
         mode: "color_on_active"
         badge_disabled: True
 
-    AKBottomNavigation2:
-        bg_color: app.theme_cls.bg_darkest
 
-        On_active_button:
-            text: "Alert"
-            icon: "bell-outline"
+    MDScreen:
 
-        On_active_button:
-            text: "Bank"
-            icon: "bank-outline"
+        AKBottomNavigation2:
+            bg_color: app.theme_cls.bg_darkest
 
-        On_active_button:
-            text: "Download"
-            icon: "arrow-down-bold-outline"
+            On_active_button:
+                text: "Alert"
+                icon: "bell-outline"
+
+            On_active_button:
+                text: "Bank"
+                icon: "bank-outline"
+
+            On_active_button:
+                text: "Download"
+                icon: "arrow-down-bold-outline"
     '''
+
 
     class BottomNavigation2(MDApp):
         def build(self):
             return Builder.load_string(kv_string)
+
 
     BottomNavigation2().run()
 
@@ -72,10 +78,13 @@ Example
             icon_color: .2, .2, .6, 1
             text_color: .2, .2, .6, 1
             button_bg_color: .6, .6, 1, 1
+    '''
+
 
     class BottomNavigation2(MDApp):
         def build(self):
             return Builder.load_string(kv_string)
+
 
     BottomNavigation2().run()
 
@@ -196,7 +205,7 @@ class Button_Item(ThemableBehavior, ButtonBehavior, BoxLayout):
     transition = StringProperty("out_quad")
     """
     The animation interpolation type to use for the selection animation of this icon/element.
-    See `kivy transition interpolations <https://kivy.org/doc/stable/api-kivy.animation.html#kivy.animation.AnimationTransition>`_ 
+    See `kivy transition interpolations <https://kivy.org/doc/stable/api-kivy.animation.html#kivy.animation.AnimationTransition>`_
     for all available options
 
     :attr:`transition` is an :class:`~kivy.properties.StringProperty`

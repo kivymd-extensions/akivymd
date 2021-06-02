@@ -7,16 +7,16 @@ Example
 
 .. code-block:: python
 
-    from kivy.uix.behaviors import ButtonBehavior
     from kivy.lang.builder import Builder
-
-    import kivymd_extensions.akivymd
+    from kivy.uix.behaviors import ButtonBehavior
     from kivymd.app import MDApp
     from kivymd.uix.list import OneLineListItem
 
+    import kivymd_extensions.akivymd  # NOQA
+
     kv = '''
 
-    Screen:
+    MDScreen:
 
         AKToolbarLayout:
             id: toolbar
@@ -24,7 +24,7 @@ Example
             AKToolbarClass:
                 MDToolbar:
                     title: 'Hide On Scroll'
-                    left_action_items: [('menu', lambda x: None)]
+                    left_action_items: [['menu']]
 
             AKToolbarPinClass:
                 id: pin
@@ -53,15 +53,12 @@ Example
 
 
     class Main(MDApp):
-
         def build(self):
             return Builder.load_string(kv)
 
         def on_start(self):
             for x in range(30):
-                self.root.ids.box.add_widget(OneLineListItem(
-                    text= f'List {x}'
-                ))
+                self.root.ids.box.add_widget(OneLineListItem(text=f"List {x}"))
             return super().on_start()
 
 

@@ -6,25 +6,33 @@ Components/BadgeLayout
 
 Example
 -------
+
 .. code-block:: python
 
     from kivy.lang.builder import Builder
     from kivymd.app import MDApp
+    import kivymd_extensions.akivymd  # NOQA
 
     kv_string = '''
-    AKBadgeLayout:
-        pos_hint: {"center_x": .5, "center_y": .5}
-        badgeitem_padding: dp(5)
-        bold: True
-        text: "233+"
-        offset: .5
 
-        MDRaisedButton:
-            text: "Press"
+    MDScreen:
+
+        AKBadgeLayout:
+            pos_hint: {"center_x": .5, "center_y": .5}
+            badgeitem_padding: dp(5)
+            bold: True
+            text: "233+"
+            offset: .5
+
+            MDRaisedButton:
+                text: "Press"
     '''
+
+
     class AKBadgeLayout(MDApp):
         def build(self):
             return Builder.load_string(kv_string)
+
 
     AKBadgeLayout().run()
 
@@ -108,8 +116,10 @@ Builder.load_string(
 
 __all__ = ("AKBadgeLayout",)
 
+
 class BadgeContent(BoxLayout):
     pass
+
 
 class BadgeItem(ThemableBehavior, BoxLayout):
     bg_color = ListProperty()

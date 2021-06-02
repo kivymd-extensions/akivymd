@@ -8,19 +8,19 @@ Usage
 .. code-block:: python
 
     from kivy.lang.builder import Builder
-
     from kivymd.app import MDApp
-
-    import kivymd_extensions.akivymd
+    import kivymd_extensions.akivymd  # NOQA
 
     KV = '''
+
     <MyLabel@MDLabel>
         valign: 'center'
         halign: 'center'
         theme_text_color: "Custom"
         text_color: 1,1,1,1
 
-    Screen:
+
+    MDScreen:
 
         AKSwipeMenu:
 
@@ -53,7 +53,9 @@ Usage
         def build(self):
             return Builder.load_string(KV)
 
+
     Test().run()
+
 
 """
 

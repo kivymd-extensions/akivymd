@@ -11,9 +11,12 @@ Example
 
     from kivy.lang import Builder
     from kivymd.app import MDApp
+    import kivymd_extensions.akivymd  # NOQA
 
     kv_string = '''
-    FloatLayout:
+
+    MDScreen:
+
         AKCardStack:
             id: cardstack
             pos_hint: {"center_x": .5, "center_y": .5}
@@ -22,7 +25,7 @@ Example
 
         MDRaisedButton:
             text: "change cards"
-            on_press: root.change()
+            on_press: app.change()
             pos_hint: {"center_x": .5, "y": .05}
     '''
 
@@ -32,7 +35,8 @@ Example
             return Builder.load_string(kv_string)
 
         def change(self):
-            self.ids.cardstack.change()
+            self.root.ids.cardstack.change()
+
 
     CardStack().run()
 

@@ -5,34 +5,41 @@ Components/ButtonPanel
 .. rubric:: A collapsable panel of buttons
 
 Example
-----------
+-------
 
 .. code-block:: python
 
     from kivy.lang import Builder
-    from kivymd.uix.app import MDApp
+    from kivymd.app import MDApp
+    import kivymd_extensions.akivymd  # NOQA
 
     kv_string = '''
-    AKButtonPanel:
-        pos: root.width / 2 - self.width/2, root.height / 2 + dp(50)
-        icon:"plus"
-        selectable: True
 
-        MDIconButton:
-            icon: "minus"
-            theme_text_color: "Custom"
-            text_color: 1, 1, 0, 1
+    MDScreen:
 
-        MDIconButton:
-            icon: "calendar"
-            theme_text_color: "Custom"
-            text_color: 1, 0, 0, 1
+        AKButtonPanel:
+            pos: root.width / 2 - self.width/2, root.height / 2 + dp(50)
+            icon:"plus"
+            selectable: True
+
+            MDIconButton:
+                icon: "minus"
+                theme_text_color: "Custom"
+                text_color: 1, 1, 0, 1
+
+            MDIconButton:
+                icon: "calendar"
+                theme_text_color: "Custom"
+                text_color: 1, 0, 0, 1
     '''
 
-    class ButtonPanel(MDApp):
 
+    class ButtonPanel(MDApp):
         def build(self):
             return Builder.load_string(kv_string)
+
+
+    ButtonPanel().run()
 
 """
 
@@ -79,6 +86,7 @@ Builder.load_string(
 
 """
 )
+
 
 class AKButtonPanel(ThemableBehavior, RelativeLayout):
 

@@ -10,9 +10,11 @@ Example
     from kivy.lang.builder import Builder
 
     from kivymd.app import MDApp
+    import kivymd_extensions.akivymd  # NOQA
 
     KV = '''
-    Screen:
+    MDScreen:
+
         AKRating:
             direction : 'lr'
             pos_hint: {'center_x': .5, 'center_y': .5}

@@ -11,20 +11,36 @@ Example
 
     from kivy.lang import Builder
     from kivymd.app import MDApp
+    import kivymd_extensions.akivymd  # NOQA
 
     kv_string = '''
-    AKBottomNavigation:
-        items: root.bottomnavigation_items
+
+    MDScreen:
+
+        AKBottomNavigation:
+            items: app.bottomnavigation_items
+
     '''
 
+
     class BottomNavigation(MDApp):
+        bottomnavigation_items = [
+            {
+                "icon": "android",
+                "text": "android",
+                "on_release": lambda x: None,
+            },
+            {"icon": "menu", "text": "menu", "on_release": lambda x: None},
+            {
+                "icon": "account",
+                "text": "account",
+                "on_release": lambda x: None,
+            },
+        ]
+
         def build(self):
-            bottomnavigation_items = [
-                {"icon": "android", "text": "android", "on_release": lambda x: None},
-                {"icon": "menu", "text": "menu", "on_release": lambda x: None},
-                {"icon": "account", "text": "account", "on_release": lambda x: None},
-            ]
             return Builder.load_string(kv_string)
+
 
     BottomNavigation().run()
 
@@ -41,7 +57,6 @@ from kivy.uix.boxlayout import BoxLayout
 from kivymd.theming import ThemableBehavior
 from kivymd.uix.button import MDIconButton
 from kivymd.uix.label import MDLabel
-
 
 __all__ = ("AKBottomNavigation",)
 
