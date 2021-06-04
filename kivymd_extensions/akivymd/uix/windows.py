@@ -311,6 +311,12 @@ class AKFloatingWindow(
         if x < touch_pos[0] < right and y < touch_pos[1] < top:
             self._allow_resize = True
             Window.set_system_cursor("size_nwse")
+
+        if self.collide_point(*touch.pos):
+            for child in self.children:
+                child.on_touch_down(touch)
+            return True
+
         return super().on_touch_down(touch)
 
     def on_touch_up(self, touch):
