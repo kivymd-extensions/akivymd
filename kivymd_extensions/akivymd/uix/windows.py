@@ -71,7 +71,9 @@ Builder.load_string(
                 adaptive_width: True
                 spacing: dp(3)
                 padding: [dp(10), 0]
+
                 HeaderButton:
+                    opacity: 1 if root.allow_maximize else 0
                     size: header.height - dp(3), header.height - dp(3)
                     button_icon: root.max_button_icon
                     button_color: root.max_button_color if root.max_button_color else 0, 0, 1, 1
@@ -150,6 +152,8 @@ class AKFloatingWindow(
     left_widget = ObjectProperty()
     right_widget = ObjectProperty()
     top_widget = ObjectProperty()
+    allow_resize = BooleanProperty(True)
+    allow_maximize = BooleanProperty(True)
 
     _state = "close"
     _maximized = False
@@ -253,6 +257,9 @@ class AKFloatingWindow(
         self._maximized = False
 
     def maximize(self):
+        if not self.allow_maximize:
+            return
+
         if self._maximized:
             self.minimize_to_normal()
             return
@@ -324,7 +331,7 @@ class AKFloatingWindow(
         return super().on_touch_up(touch)
 
     def on_touch_move(self, touch):
-        if self._allow_resize:
+        if self._allow_resize and self.allow_resize:
             touch_pos = touch.pos
 
             width = touch_pos[0] - self.x
