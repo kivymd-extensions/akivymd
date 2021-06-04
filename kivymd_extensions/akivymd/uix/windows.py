@@ -42,6 +42,8 @@ Builder.load_string(
 <AKFloatingWindow>:
     orientation: "vertical"
     radius: [root.window_radius, ]
+    pos: [-self.width, -self.height]
+    opacity: 0
     WindowHeader:
         orientation: "vertical"
         id: header
@@ -175,10 +177,6 @@ class AKFloatingWindow(
             self.header_color_normal = self.theme_cls.primary_light
 
         self.elevation = self.window_elevation
-
-        exit_pos = [-self.width, -self.height]
-        self.pos = exit_pos
-        self.opacity = 0
         self._state = "close"
 
     def _update_open_pos(self):
