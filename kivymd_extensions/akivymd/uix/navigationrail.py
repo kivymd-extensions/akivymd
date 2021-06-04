@@ -112,7 +112,7 @@ class AKNavigationrailItem(
     active_text_color = ListProperty([0, 0, 0, 0])
     active_icon_color = ListProperty([0, 0, 0, 0])
     active = BooleanProperty(False)
-    font_name = StringProperty("Pumpkin.ttf")
+    font_name = StringProperty("")
 
     item_text_opacity = NumericProperty(1)
 
