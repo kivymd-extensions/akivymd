@@ -37,6 +37,7 @@ Builder.load_string(
         text_color: root.active_text_color if root.active else root.text_color
         halign: "left"
         valign: "center"
+        font_name: root.font_name if root.font_name else self.font_name
 
 
 <AKNavigationrail>
@@ -111,6 +112,7 @@ class AKNavigationrailItem(
     active_text_color = ListProperty([0, 0, 0, 0])
     active_icon_color = ListProperty([0, 0, 0, 0])
     active = BooleanProperty(False)
+    font_name = StringProperty("Pumpkin.ttf")
 
     item_text_opacity = NumericProperty(1)
 
