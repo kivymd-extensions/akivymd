@@ -5,6 +5,7 @@ from kivy.properties import (
     BooleanProperty,
     ListProperty,
     NumericProperty,
+    ObjectProperty,
     StringProperty,
 )
 from kivy.uix.behaviors import ButtonBehavior
@@ -21,7 +22,7 @@ Builder.load_string(
 
 <AKNavigationrailItem>:
     size_hint_y: None
-    height: root.parent.parent.item_height
+    height: root._root.item_height
     MDIcon:
         icon: root.icon
         size_hint_x: None
@@ -113,6 +114,7 @@ class AKNavigationrailItem(
     active_icon_color = ListProperty([0, 0, 0, 0])
     active = BooleanProperty(False)
     font_name = StringProperty("")
+    _root = ObjectProperty()
 
     item_text_opacity = NumericProperty(1)
 
@@ -135,9 +137,8 @@ class AKNavigationrailItem(
             self.icon_color = self.theme_cls.text_color
 
     def on_release(self):
-        self.root = self.parent.parent
-        index = self.root.ids.items_box.children.index(self)
-        self.root.set_current(index, item_index=False)
+        index = self._root.ids.items_box.children.index(self)
+        self._root.set_current(index, item_index=False)
         return super().on_release()
 
 
@@ -272,8 +273,8 @@ class AKNavigationrail(ThemableBehavior, BoxLayout):
     def add_widget(self, widget, index=0, canvas=None):
         if issubclass(widget.__class__, AKNavigationrailItem):
             self.ids.items_box.add_widget(widget)
-            Clock.schedule_once(lambda x: self.set_current(-1, anim=False), 1)
-
+            widget._root = self
+            widget.bind(pos=lambda *args: self.set_current(-1, anim=False))
         elif issubclass(widget.__class__, AKNavigationrailCustomItem):
             self.ids.items_box.add_widget(widget)
 
