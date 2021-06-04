@@ -338,6 +338,12 @@ class AKFloatingWindow(
             self.size = [width, height]
             self.pos = [self.x, touch_pos[1]]
             return True
+
+        if self.collide_point(*touch.pos):
+            for child in self.children:
+                child.on_touch_down(touch)
+            return True
+
         return super().on_touch_move(touch)
 
 
