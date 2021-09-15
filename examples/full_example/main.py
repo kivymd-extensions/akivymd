@@ -15,7 +15,7 @@ from kivymd_extensions.akivymd.uix.statusbarcolor import (  # noqa
 )
 
 kv = """
-#: import StiffScrollEffect kivymd.stiffscroll.StiffScrollEffect
+#: import StiffScrollEffect kivymd.effects.stiffscroll.StiffScrollEffect
 
 <IconListItem@OneLineAvatarListItem>:
 
