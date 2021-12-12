@@ -114,15 +114,17 @@ class AKPieChart(ThemableBehavior, BoxLayout):
 
     def _format_items(self, items):
         percentage_sum = 0
-        for k, v in items[0].items():
-            percentage_sum += v
+        for item in items:                          #Adding all Percentage Values
+            for k, v in item.items():
+                percentage_sum += v
 
         if percentage_sum != 100:
             raise Exception("Sum of percenages must be 100")
 
         new_items = {}
-        for k, v in items[0].items():
-            new_items[k] = 360 * v / 100
+        for item in items:                          #Adding all items in new_items Dict
+            for k, v in item.items():
+                new_items[k] = 360 * v / 100
 
         if self.order:
             new_items = {
