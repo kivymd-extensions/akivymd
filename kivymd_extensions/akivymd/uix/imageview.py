@@ -24,6 +24,7 @@ Builder.load_string(
     id: _mainbox
     size_hint: (0.9, 0.4) if root.theme_cls.device_orientation == "portrait" else (0.9, 0.7)
     carousel: carousel
+    elevation: 0
 
     FloatLayout:
         Navigation_button:

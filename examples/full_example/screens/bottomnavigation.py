@@ -24,7 +24,7 @@ Builder.load_string(
             orientation: "vertical"
 
         AKBottomNavigation2:
-            
+
             bg_color: app.theme_cls.bg_darkest
 
             On_active_button:

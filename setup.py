@@ -53,7 +53,7 @@ if __name__ == "__main__":
                 "sphinx_rtd_theme",
             ],
         },
-        install_requires=["kivymd>=0.104.1", "kivy>=1.11.1"],
+        install_requires=["kivymd>=1.1.1", "kivy>=2.2.1"],
         setup_requires=[],
-        python_requires=">=3.6",
+        python_requires=">=3.7",
     )

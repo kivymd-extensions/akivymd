@@ -55,7 +55,7 @@ Builder.load_string(
                     size_hint_y: None
                     height: root.max_height
 
-        MDToolbar:
+        MDTopAppBar:
             id: toolbar
             pos: self.x, float_box.height - self.height
             right_action_items: root.right_action_items

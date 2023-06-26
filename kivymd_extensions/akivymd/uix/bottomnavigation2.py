@@ -135,15 +135,17 @@ Builder.load_string(
         offset: root.badge_offset
         badge_disabled: root.badge_disabled
 
-        MDIcon:
-            id: _icon
-            icon: root.icon
-            halign: "center"
+        FloatLayout:
             size_hint: None, None
             size: root.height, root.height
-            font_size: root.icon_size
-            theme_text_color: "Custom"
-            text_color: root.icon_color if root.icon_color else app.theme_cls.primary_dark
+
+            MDIcon:
+                id: _icon
+                icon: root.icon
+                font_size: root.icon_size
+                theme_text_color: "Custom"
+                text_color: root.icon_color if root.icon_color else app.theme_cls.primary_dark
+                pos_hint: {"center_x": .5, "center_y": .5}
 
     FloatLayout:
         id: _float

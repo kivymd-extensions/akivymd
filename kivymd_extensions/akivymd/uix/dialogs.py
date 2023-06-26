@@ -12,7 +12,7 @@ from kivy.properties import (
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.modalview import ModalView
 from kivymd.app import MDApp
-from kivymd.uix.behaviors import FakeRectangularElevationBehavior
+from kivymd.uix.behaviors import CommonElevationBehavior
 from kivymd.uix.dialog import BaseDialog
 
 Builder.load_string(
@@ -85,7 +85,7 @@ Builder.load_string(
 )
 
 
-class MainAlertBox(FakeRectangularElevationBehavior, BoxLayout):
+class MainAlertBox(CommonElevationBehavior, BoxLayout):
     pass
 
 
@@ -108,7 +108,7 @@ class AKAlertDialog(BaseDialog):
     progress_interval = NumericProperty(None)
     progress_width = NumericProperty("2dp")
     progress_color = ListProperty()
-    elevation = NumericProperty(10)
+    elevation = NumericProperty(2)
     content_cls = ObjectProperty()
     opening_duration = NumericProperty(0.2)
     dismiss_duration = NumericProperty(0.2)
@@ -129,8 +129,8 @@ class AKAlertDialog(BaseDialog):
         Window.bind(on_touch_move=self._window_touch_move)
 
     def _collide_point_with_modal(self, pos):
-        if self.attach_to:
-            raise NotImplementedError
+        # if self.attach_to:
+        #     raise NotImplementedError
         for widget in Window.children:
             if issubclass(widget.__class__, ModalView):
                 if widget.collide_point(pos[0], pos[1]):
@@ -220,13 +220,16 @@ class AKAlertDialog(BaseDialog):
 
     def _opening_animation(self):
         self.opacity = 0
+        _elevation = self.elevation
+        self.elevation = 0
         anim = Animation(
             opacity=1, duration=self.opening_duration, t="out_quad"
-        )
+        ) + Animation(elevation=_elevation, duration=self.opening_duration/2, t="out_quad")
         anim.start(self)
 
     def _dismiss_animation(self):
-        anim = Animation(
+        anim = Animation(elevation=0, duration=self.opening_duration/2, t="out_quad") + \
+            Animation(
             opacity=0, duration=self.dismiss_duration, t="out_quad"
         )
         anim.start(self)

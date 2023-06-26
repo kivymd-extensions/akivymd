@@ -23,13 +23,15 @@ Builder.load_string(
 <AKNavigationrailItem>:
     size_hint_y: None
     height: root._root.item_height
+    spacing: dp(5)
+    padding: dp(5)
     MDIcon:
         icon: root.icon
         size_hint_x: None
         width: root.height
         theme_text_color: "Custom"
         text_color: root.active_icon_color if root.active else root.icon_color
-        halign: "center"
+        pos_hint: {"center_x": .5, "center_y": .5}
 
     MDLabel:
         opacity: root.item_text_opacity

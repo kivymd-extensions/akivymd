@@ -13,7 +13,7 @@ from kivy.uix.behaviors import ButtonBehavior
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.floatlayout import FloatLayout
 from kivymd.theming import ThemableBehavior
-from kivymd.uix.behaviors import FakeRectangularElevationBehavior
+from kivymd.uix.behaviors import CommonElevationBehavior
 
 Builder.load_string(
     """
@@ -28,8 +28,6 @@ Builder.load_string(
 
     MDIcon:
         icon: root.button_icon
-        halign: "center"
-        valign: "center"
         theme_text_color: "Custom"
         text_color: root.button_text_color if root.button_text_color  else root.theme_cls.primary_color
         font_size: self.parent.height - dp(4)
@@ -112,14 +110,14 @@ class WindowContent(BoxLayout):
     pass
 
 
-class HeaderButton(ThemableBehavior, ButtonBehavior, BoxLayout):
+class HeaderButton(ThemableBehavior, ButtonBehavior, FloatLayout):
     button_icon = StringProperty()
     button_color = ListProperty()
     button_text_color = ListProperty()
 
 
 class AKFloatingWindow(
-    ThemableBehavior, FakeRectangularElevationBehavior, BoxLayout
+    ThemableBehavior, CommonElevationBehavior, BoxLayout
 ):
     _window_active = BooleanProperty(False)
     header_height = NumericProperty("20dp")
@@ -128,7 +126,7 @@ class AKFloatingWindow(
     header_text_color = ListProperty()
     title_font_size = NumericProperty("10dp")
     window_title = StringProperty()
-    window_elevation = NumericProperty(10)
+    window_elevation = NumericProperty(2)
     fade_exit = BooleanProperty(True)
     fade_open = BooleanProperty(True)
     animation_transition = StringProperty("out_quad")

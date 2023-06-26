@@ -28,14 +28,14 @@ Builder.load_string(
     FloatLayout:
         Image:
             pos_hint: {"center_x": .5, "center_y": .5}
-            keep_ratio: True
+            fit_mode: "contain"
             source: root.source
 
         MDIcon:
             id: _box
             pos_hint: {"center_x": 0.9, "center_y": 0.9}
-            size_hint: None,None
-            font_size: 0
+            font_size: root.width / 4
+            opacity: 0
             icon: "check-circle"
             color: root.theme_cls.primary_color
 
@@ -61,7 +61,7 @@ Builder.load_string(
 
 
 class AKSelectListAvatarItem(
-    ThemableBehavior, ButtonBehavior, CircularRippleBehavior, BoxLayout
+    ThemableBehavior, CircularRippleBehavior, ButtonBehavior, BoxLayout
 ):
     columns = NumericProperty(4)
     source = StringProperty("")
@@ -73,7 +73,6 @@ class AKSelectListAvatarItem(
         super().__init__(**kwargs)
 
     def _choose_selection(self, select):
-
         selected_list = self.parent._selected_list
 
         if select not in selected_list:
@@ -86,17 +85,15 @@ class AKSelectListAvatarItem(
 
         if not selected_list:
             selected_list = []
-
         self.parent._selected_list = selected_list
 
     def _selection_anim(self):
-        anim = Animation(font_size=self.width / 3, t="out_bounce", duration=0.1)
+        anim = Animation(opacity=1, t="out_bounce", duration=0.1)
         anim.start(self.ids._box)
 
     def _deselection_anim(self):
         anim = Animation(
-            font_size=0,
-            size=self.ids._box.texture_size,
+            opacity=0,
             t="in_bounce",
             duration=0.1,
         )

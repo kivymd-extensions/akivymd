@@ -22,7 +22,7 @@ Example
             id: toolbar
 
             AKToolbarClass:
-                MDToolbar:
+                MDTopAppBar:
                     title: 'Hide On Scroll'
                     left_action_items: [['menu']]
 
