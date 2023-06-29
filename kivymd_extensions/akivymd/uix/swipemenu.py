@@ -139,7 +139,7 @@ class AdaptiveBox(MDBoxLayout):
     _root = ObjectProperty()
 
 
-class BaseMenu(ThemableBehavior, AdaptiveBox):
+class BaseMenu(AdaptiveBox):
     bg_color = ListProperty()
     _bg_color = ListProperty([0, 0, 0, 0])
 
