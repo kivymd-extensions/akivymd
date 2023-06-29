@@ -20,8 +20,7 @@ Builder.load_string(
 
             Image:
                 source: "assets/fly.jpg"
-                allow_stretch: True
-                keep_ratio: False
+                fit_mode: "cover"
 
         AKSilverAppbarContent:
             padding: dp(10)
