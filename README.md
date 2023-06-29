@@ -33,6 +33,8 @@ It's recommened to install the most recent version of `KivyMD` from master:
 ```bash
 pip install https://github.com/kivymd/KivyMD/archive/refs/heads/master.zip
 ```
+> **_WARNING:_**
+akivymd is not fully tested with python 3.11+
 
 ## Documentation
 
