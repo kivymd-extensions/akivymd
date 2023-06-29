@@ -28,6 +28,12 @@ requirements = https://github.com/kivymd-extensions/akivymd/archive/main.zip
 - [Kivy](https://github.com/kivy/kivy) >= 2.2.1 ([Installation](https://kivy.org/doc/stable/gettingstarted/installation.html))
 - [Python 3.7+](https://www.python.org/)
 
+> **_NOTE:_**
+It's recommened to install the most recent version of `KivyMD` from master:
+```bash
+pip install https://github.com/kivymd/KivyMD/archive/refs/heads/master.zip
+```
+
 ## Documentation
 
 ### Usage
