@@ -1,8 +1,8 @@
 import ast
 import sys
-from os import path
-
-sys.path.append(path.join(path.abspath(__file__).rsplit("examples", 1)[0]))
+import os
+os.environ["KIVY_AUDIO"] = "ffpyplayer"
+sys.path.append(os.path.join(os.path.abspath(__file__).rsplit("examples", 1)[0]))
 from kivy.factory import Factory  # noqa
 from kivy.lang import Builder  # noqa
 from kivy.properties import StringProperty  # noqa
@@ -107,7 +107,7 @@ class DemoApp(MDApp):
 
     def on_start(self):
         with open(
-            path.join(path.dirname(__file__), "screens.json")
+            os.path.join(os.path.dirname(__file__), "screens.json")
         ) as read_file:
             self.data_screens = ast.literal_eval(read_file.read())
             data_screens = list(self.data_screens.keys())
